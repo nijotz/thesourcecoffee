@@ -117,6 +117,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_ID = 1
 
+SITE_TITLE = "The Source"
+SITE_TAGLINE = "Roasting Coffee since 2013"
+
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = False
@@ -224,6 +227,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
+    "base",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -244,6 +248,10 @@ INSTALLED_APPS = (
     #"mezzanine.accounts",
     #"mezzanine.mobile",
 )
+
+# mezzanine.twitter
+TWITTER_DEFAULT_QUERY = "coffee roasters"
+
 
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its

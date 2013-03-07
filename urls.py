@@ -4,7 +4,6 @@ from django.contrib import admin
 
 from mezzanine.core.views import direct_to_template
 
-
 admin.autodiscover()
 
 # Add the urlpatterns for any custom Django applications here.
@@ -17,6 +16,8 @@ urlpatterns = patterns("",
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
 
+    url("^$", direct_to_template, {"template": "base/index.html"}, name="home"),
+
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
@@ -27,7 +28,7 @@ urlpatterns = patterns("",
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    #url("^$", direct_to_template, {"template": "index.html"}, name="home"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
