@@ -288,6 +288,7 @@ MIDDLEWARE_CLASSES = (
     # "mezzanine.core.middleware.SSLRedirectMiddleware",
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 )
 
 # Store these package names here as they may change in the future since
