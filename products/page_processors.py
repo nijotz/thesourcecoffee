@@ -5,8 +5,6 @@ from products.models import Product
 @processor_for(Product)
 def customer_subscriptions_for_product(request, page):
 
-    #import ipdb; ipdb.set_trace()
-
     context = {
         'subscription_types': None, 
         'subscriptions': None
