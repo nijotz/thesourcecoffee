@@ -1,0 +1,24 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags %}
+
+{% block main %}{{ block.super }}
+
+{% editable page.product.image %}
+<img src="{{ MEDIA_URL }}{{ page.product.image }}" />
+{% endeditable %}
+
+{% editable page.product.content %}
+{{ page.product.content|richtext_filter|safe }}
+{% endeditable %}
+
+{% if user.is_authenticated %}
+Subscriptions:<br/>
+<form>
+{% for subscription_type in subscription_types %}
+<input type="radio" name="subscription" value="{{ subscription_type.id }}" {% if subscription_type in subscripitons %}checked="checked"{% endif %}>{{ subscription_type }}<br/>
+{% endfor %}
+</form>
+{% endif %}
+
+{% endblock %}
