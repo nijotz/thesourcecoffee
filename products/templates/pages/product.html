@@ -15,9 +15,11 @@
 {% if user.is_authenticated %}
 Subscriptions:<br/>
 <form>
+<input type="radio" name="subscription" value="" {% if not subscriptions %}checked="checked"{% endif %}>No subscription<br/>
 {% for subscription_type in subscription_types %}
 <input type="radio" name="subscription" value="{{ subscription_type.id }}" {% if subscription_type in subscripitons %}checked="checked"{% endif %}>{{ subscription_type }}<br/>
 {% endfor %}
+<input type="submit" value="Update subscription">
 </form>
 {% endif %}
 
