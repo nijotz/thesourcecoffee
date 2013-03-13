@@ -251,7 +251,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     "mezzanine.accounts",
     "mezzanine.mobile",
-    "class_fixtures",
+    "south",
 )
 
 # mezzanine.twitter
