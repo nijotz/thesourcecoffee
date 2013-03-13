@@ -139,6 +139,7 @@ TEMPLATE_LOADERS = (
 )
 
 AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
+AUTH_PROFILE_MODULE = "base.Customer"
 
 # List of finder classes that know how to find static files in
 # various locations.

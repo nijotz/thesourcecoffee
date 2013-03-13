@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from base.models import Customer
 
 
 class Subscription(models.Model):
@@ -7,6 +7,6 @@ class Subscription(models.Model):
 
 
 class CustomerSubscription(models.Model):
-    customer = models.ForeignKey(User)
+    customer = models.ForeignKey(Customer)
     subscription = models.ForeignKey(Subscription)
     custom_amount = models.IntegerField()
