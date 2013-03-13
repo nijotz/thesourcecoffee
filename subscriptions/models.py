@@ -1,5 +1,5 @@
 from django.db import models
-from base.models import Customer
+from customers.models import Customer
 
 
 class Subscription(models.Model):
