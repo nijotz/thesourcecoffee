@@ -1,1 +1,2 @@
-# Create your views here.
+def list(request):
+    return 'Hi!'
