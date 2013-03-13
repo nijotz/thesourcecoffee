@@ -139,7 +139,7 @@ TEMPLATE_LOADERS = (
 )
 
 AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
-AUTH_PROFILE_MODULE = "base.Customer"
+AUTH_PROFILE_MODULE = "customer.Customer"
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -229,6 +229,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
 INSTALLED_APPS = (
     "base",
+    "customer",
     "locations",
     "subscriptions",
     "django.contrib.admin",
