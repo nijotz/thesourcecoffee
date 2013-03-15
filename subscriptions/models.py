@@ -4,8 +4,8 @@ from customers.models import Customer
 
 class Subscription(models.Model):
     amount = models.FloatField()
-    active = models.BooleanField()
-    public = models.BooleanField()
+    active = models.BooleanField(default=True)
+    public = models.BooleanField(default=True)
 
     def __unicode__(self):
         return '%d ozs' % (self.amount)
