@@ -5,3 +5,6 @@ from django_localflavor_us.models import PhoneNumberField
 class Customer(models.Model):
     user = models.OneToOneField(User)
     phone = PhoneNumberField()
+
+    def __unicode__(self):
+        return self.user.email

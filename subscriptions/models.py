@@ -7,6 +7,9 @@ class Subscription(models.Model):
     active = models.BooleanField()
     public = models.BooleanField()
 
+    def __unicode__(self):
+        return '%d ozs' % (self.amount)
+
 
 class CustomerSubscription(models.Model):
     customer = models.ForeignKey(Customer)
