@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load order_extras %}
+
+{% block main %}
+
+Orders:
+<hr/>
+
+<table border=1>
+<tr>
+<th>
+Order Type
+</th>
+<th>
+Order Fulfillment Date/Time
+</th>
+<th>
+Order Subscription
+</th>
+<th>
+Misc
+</th>
+</tr>
+{% for order in orders %}
+<tr>
+<td>
+{{ order|classname }}
+</td>
+<td>
+{{ order.fulfilled|default:"Not fulfilled" }}
+</td>
+<td>
+{{ order.subscription }}
+</td>
+
+{% if order|classname == "PickupOrder" %}
+<td>
+{{ order.location }}
+</td>
+
+{% elif order|classname == "MailOrder" %}
+<td>
+Tracking: {{ order.tracking_number }}
+Sent: {{ order.date_sent }}
+</td>
+{% endif %}
+
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
