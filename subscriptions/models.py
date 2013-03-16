@@ -20,7 +20,7 @@ class Subscription(models.Model):
 # or having more than one subscription to subscribe to.
 class CustomerSubscription(models.Model):
     customer = models.ForeignKey(Customer, related_name='subscriptions')
-    subscription = models.ForeignKey(Subscription)
+    subscription = models.ForeignKey(Subscription, related_name='customer_subscriptions')
     location = models.ForeignKey(Location, related_name='subscriptions')
 
     class Meta:

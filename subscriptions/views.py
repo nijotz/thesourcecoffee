@@ -6,7 +6,9 @@ from subscriptions.forms import CustomerSubscriptionForm
 @render_to('subscriptions/list.html')
 def list(request):
 
-    subscription = request.user.customer.subscriptions.all()
+    customer = request.user.customer
+
+    subscription = customer.subscriptions.all()
     if subscription:
         subscription = subscription[0]
     else:
@@ -14,14 +16,14 @@ def list(request):
 
     msg = ''
     if request.method == 'POST':
-        form = CustomerSubscriptionForm(request.POST, instance=subscription)
+        form = CustomerSubscriptionForm(customer, request.POST, instance=subscription)
         if form.is_valid():
             cust_sub = form.save(commit=False)
-            cust_sub.customer = request.user.customer
+            cust_sub.customer = customer
             cust_sub.save()
             msg = 'Subscription updated'
 
     else:
-        form = CustomerSubscriptionForm(instance=subscription)
+        form = CustomerSubscriptionForm(customer, instance=subscription)
 
     return locals()
