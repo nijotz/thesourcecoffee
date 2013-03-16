@@ -9,7 +9,10 @@ class Subscription(models.Model):
     public = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return '%d ozs' % (self.amount)
+        if self.amount < 1:
+            return '%d ozs' % (self.amount * 16)
+        else:
+            return '%d lbs' % (self.amount)
 
 
 # A manual many-to-many with a unique is an oxymoron. However, I can definitely
