@@ -7,12 +7,21 @@ from subscriptions.forms import CustomerSubscriptionForm
 def list(request):
 
     subscription = request.user.customer.subscriptions.all()
-
     if subscription:
         subscription = subscription[0]
     else:
         subscription = None
 
-    form = CustomerSubscriptionForm(instance=subscription)
+    msg = ''
+    if request.method == 'POST':
+        form = CustomerSubscriptionForm(request.POST, instance=subscription)
+        if form.is_valid():
+            cust_sub = form.save(commit=False)
+            cust_sub.customer = request.user.customer
+            cust_sub.save()
+            msg = 'Subscription updated'
+
+    else:
+        form = CustomerSubscriptionForm(instance=subscription)
 
     return locals()
