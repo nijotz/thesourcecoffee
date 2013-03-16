@@ -25,3 +25,6 @@ class CustomerSubscription(models.Model):
 
     class Meta:
         unique_together = ('customer', 'subscription')
+
+    def __unicode__(self):
+        return '%s - %s' % (self.customer, self.subscription)
