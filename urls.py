@@ -16,6 +16,7 @@ urlpatterns = patterns("",
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
     ("^orders/", include('orders.urls')),
+    ("^subscription/", include('subscriptions.urls')),
 
     url("^$", direct_to_template, {"template": "base/index.html"}, name="home"),
 
