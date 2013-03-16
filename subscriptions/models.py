@@ -5,7 +5,6 @@ from locations.models import Location
 
 class Subscription(models.Model):
     amount = models.FloatField()
-    active = models.BooleanField(default=True)
     public = models.BooleanField(default=True)
 
     def __unicode__(self):
