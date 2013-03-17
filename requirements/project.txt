@@ -1,3 +1,4 @@
 Mezzanine==1.4.3
 git+https://github.com/jklaiho/django-class-fixtures#egg=django-class-fixtures
 django-model-utils
+django-json-field
