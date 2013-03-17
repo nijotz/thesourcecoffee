@@ -24,7 +24,7 @@ def list(request):
             customer_subscription = form.save(commit=False)
             customer_subscription.customer = customer
             customer_subscription.save()
-            del form
+            del form # so it doesn't end up in locals() below
 
     else:
         form = CustomerSubscriptionForm(customer)
