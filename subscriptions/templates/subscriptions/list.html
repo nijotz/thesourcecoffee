@@ -5,9 +5,24 @@
 Subscription:
 <hr/>
 
+{% if customer_subscription %}
+<dl>
+<dt>Subscription</dt>
+<dd>{{ customer_subscription.subscription }}</dd>
+<dt>Pickup Location</dt>
+<dd>{{ customer_subscription.location }}</dd>
+<dt>Activation Date</dt>
+<dd>{{ customer_subscription.activation_date }}</dd>
+<dt>Expiration Date</dt>
+<dd>{{ customer_subscription.expiration_date }}</dd>
+</ul>
+{% endif %}
+
+{% if form %}
 <form method="post">{% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Update" />
 {{ msg }}
+{% endif %}
 
 {% endblock %}

@@ -7,23 +7,26 @@ from subscriptions.forms import CustomerSubscriptionForm
 def list(request):
 
     customer = request.user.customer
+    customer_subscription = customer.subscriptions.active()
 
-    subscription = customer.subscriptions.all()
-    if subscription:
-        subscription = subscription[0]
-    else:
-        subscription = None
+    # this will just show current subscription info without the form
+    # I suppose I could have two templates, one with the info and one with
+    # the form and return a different template based on the data, but I'm
+    # just going to squeeze both into one template for now and split later
+    # if need be.
+    if customer_subscription:
+        return locals()
 
     msg = ''
     if request.method == 'POST':
-        form = CustomerSubscriptionForm(customer, request.POST, instance=subscription)
+        form = CustomerSubscriptionForm(customer, request.POST)
         if form.is_valid():
-            cust_sub = form.save(commit=False)
-            cust_sub.customer = customer
-            cust_sub.save()
-            msg = 'Subscription updated'
+            customer_subscription = form.save(commit=False)
+            customer_subscription.customer = customer
+            customer_subscription.save()
+            del form
 
     else:
-        form = CustomerSubscriptionForm(customer, instance=subscription)
+        form = CustomerSubscriptionForm(customer)
 
     return locals()
