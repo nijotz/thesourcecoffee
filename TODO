@@ -1,1 +1,2 @@
 Verify another customer id can't be submitted on subscription form
+Once a customer signs up for a subscription, they should not be able to change it
