@@ -1,5 +1,8 @@
 Mezzanine==1.4.3
-git+https://github.com/jklaiho/django-class-fixtures#egg=django-class-fixtures
+django-annoying
 django-model-utils
 django-json-field
 fabric
+south
+https://github.com/django/django-localflavor-us/zipball/master
+git+https://github.com/jklaiho/django-class-fixtures#egg=django-class-fixtures
