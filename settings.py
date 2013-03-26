@@ -139,6 +139,12 @@ TEMPLATE_LOADERS = (
 )
 
 AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
+
+# Mezzanine's account view/templates need the profile model with all the extra
+# fields. However, this breaks the fabfile that Mezzanine comes with that tries
+# to create a user without specifying any values for the extra fields, which
+# then triggers a signal that Mezzanine puts in place that ensures there's a
+# profile for every user.  Fucking Mezzanine...
 AUTH_PROFILE_MODULE = "customers.Customer"
 
 # List of finder classes that know how to find static files in
