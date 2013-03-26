@@ -1,5 +1,6 @@
 Mezzanine==1.4.3
 django-annoying
+django-debug-toolbar
 django-model-utils
 django-json-field
 fabric
