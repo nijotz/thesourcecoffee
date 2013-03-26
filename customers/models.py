@@ -12,7 +12,7 @@ add_introspection_rules([], ["^django_localflavor_us\.models\.PhoneNumberField"]
 class Customer(models.Model):
     user = models.OneToOneField(User)
     phone = PhoneNumberField()
-    area = models.ForeignKey(Area)
+    area = models.ForeignKey(Area, null=True)
 
     def __unicode__(self):
         return self.user.email
