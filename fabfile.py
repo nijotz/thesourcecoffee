@@ -514,6 +514,16 @@ def rollback():
 
 @task
 @log_call
+def loaddata():
+    with project():
+        manage("loaddata base.site_settings")
+        manage("loaddata base/fixtures/pages.json")
+        manage("loaddata locations.test_locations")
+        manage("loaddata subscriptions.test_subscriptions")
+
+
+@task
+@log_call
 def all():
     """
     Installs everything required on a new system and deploy.
