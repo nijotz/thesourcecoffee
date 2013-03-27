@@ -265,6 +265,15 @@ INSTALLED_APPS = (
 # mezzanine.twitter
 TWITTER_DEFAULT_QUERY = "coffee roasters"
 
+# mezzanine.accounts
+ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS = (
+    "stripe_id",
+    "created_at",
+    "card_fingerprint",
+    "card_last_4",
+    "card_kind",
+)
+
 
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its

@@ -1,24 +1,20 @@
 from django import forms
 from django.db.models import Q
 from locations.models import Location
-from subscriptions.models import CustomerSubscription, Subscription
+from subscriptions.models import Plan, Subscription
 
-class CustomerSubscriptionForm(forms.ModelForm):
-    #subscription = forms.ModelChoiceField(
-    #    queryset=Subscription.objects.filter(active=True, public=True))
+class SubscriptionForm(forms.ModelForm):
 
     def __init__(self, customer, *args, **kwargs):
 
-        super(CustomerSubscriptionForm, self).__init__(*args, **kwargs)
+        super(SubscriptionForm, self).__init__(*args, **kwargs)
 
-        sub_qs = Subscription.objects.filter(
-            Q(customer_subscriptions__customer=customer) |
-            Q(public=True) )
-        self.fields['subscription'].queryset = sub_qs
+        plans = Plan.objects.filter(public=True)
+        self.fields['plan'].queryset = plans
 
-        loc_qs = Location.objects.filter(area=customer.area)
-        self.fields['location'].queryset = loc_qs
+        locations = Location.objects.filter(area=customer.area)
+        self.fields['location'].queryset = locations
 
     class Meta:
-        model = CustomerSubscription
-        fields = ('subscription', 'location')
+        model = Subscription
+        fields = ('plan', 'location')

@@ -1,7 +1,6 @@
-from subscriptions.models import Subscription
+from subscriptions.models import Plan
 
-Subscription.objects.all().delete()
-Subscription.objects.create(amount=0.5)
-Subscription.objects.create(amount=0.75)
-for lbs in range(1,11):
-    Subscription.objects.create(amount=lbs)
+Plan.objects.all().delete()
+amounts = range(1,11) + [0.5, 0.75]
+for lbs in amounts:
+    Plan.objects.create(amount=lbs, price=lbs * 150)

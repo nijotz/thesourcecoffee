@@ -21,6 +21,9 @@ Subscription:
 {% if form %}
 <form method="post">{% csrf_token %}
 {{ form.as_p }}
+<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key="pk_test_czwzkTp2tactuLOEOqbMTRzG">
+</script>
 <input type="submit" value="Update" />
 {{ msg }}
 {% endif %}

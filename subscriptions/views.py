@@ -1,32 +1,37 @@
 from annoying.decorators import render_to
 from django.contrib.auth.decorators import login_required
-from subscriptions.forms import CustomerSubscriptionForm
+from django.conf import settings
+from subscriptions.forms import SubscriptionForm
+from subscriptions.models import Subscription
 
 @login_required
 @render_to('subscriptions/list.html')
 def list(request):
 
     customer = request.user.customer
-    customer_subscription = customer.subscriptions.active()
 
     # this will just show current subscription info without the form
     # I suppose I could have two templates, one with the info and one with
     # the form and return a different template based on the data, but I'm
     # just going to squeeze both into one template for now and split later
     # if need be.
-    if customer_subscription:
+    try:
+        subscription = customer.subscription
+    except Subscription.DoesNotExist:
+        subscription = None
+
+    if subscription:
         return locals()
 
     msg = ''
     if request.method == 'POST':
-        form = CustomerSubscriptionForm(customer, request.POST)
+        form = SubscriptionForm(customer, request.POST)
         if form.is_valid():
-            customer_subscription = form.save(commit=False)
-            customer_subscription.customer = customer
-            customer_subscription.save()
-            del form # so it doesn't end up in locals() below
-
+            data_key = settings.STRIPE_PUBLIC_KEY
+            customer.update_card(request.POST.get('stripeToken'))
+            customer.subscribe(form.cleaned_data["plan"])
+            del form
     else:
-        form = CustomerSubscriptionForm(customer)
+        form = SubscriptionForm(customer)
 
     return locals()
