@@ -8,3 +8,11 @@ class SiteSetting(models.Model):
 
     def __unicode__(self):
         return self.key
+
+
+class StripeObject(models.Model):
+
+    stripe_id = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        abstract = True

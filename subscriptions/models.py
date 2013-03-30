@@ -1,30 +1,65 @@
 from datetime import date, datetime, timedelta
 from django.db import models
-from customers.models import Customer
-from locations.models import Location
-from base.models import SiteSetting
+import stripe
+from base.models import SiteSetting, StripeObject
 
 
-class Plan(models.Model):
+
+class Plan(StripeObject):
     amount = models.FloatField()
     price = models.DecimalField(decimal_places=2, max_digits=7)
     public = models.BooleanField(default=True)
+    interval = models.IntegerField()
+
+    class Meta:
+        unique_together = ('amount', 'price', 'interval')
 
     def __unicode__(self):
         if self.amount < 1:
-            return '{} ozs - ${:,.2f}'.format(self.amount * 16, self.price)
+            amount = self.amount * 16
+            unit = 'ozs'
         else:
-            return '{} lbs - ${:,.2f}'.format(self.amount, self.price)
+            amount = self.amount
+            unit = 'lbs'
 
-    @property
-    def stripe_id(self):
-        return str(self)
+        return '{amount:g} {unit} every {interval} month(s) for ${price:,.2f}'\
+            .format(
+                amount=amount,
+                unit=unit,
+                interval=self.interval,
+                price=self.price)
+
+    def save(self, *args, **kwargs):
+        if self.stripe_id != str(self):
+            try:
+                plan = stripe.Plan.retrieve(str(self))
+                plan.delete()
+            except stripe.InvalidRequestError:
+                pass
+
+            self.stripe_id = str(self)
+
+            stripe.Plan.create(
+                amount=int(100 * self.price),
+                interval = 'month',
+                interval_count='3',
+                name=str(self),
+                currency='usd',
+                id=self.stripe_id
+            )
+
+        super(Plan, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        plan = stripe.Plan.retrieve(self.stripe_id)
+        plan.delete()
+        super(Plan, self).save(*args, **kwargs)
 
 
 class Subscription(models.Model):
-    customer = models.OneToOneField(Customer, related_name="subscription", null=True)
-    plan = models.ForeignKey(Plan, related_name='subscriptions')
-    location = models.ForeignKey(Location, related_name='subscriptions')
+    customer = models.OneToOneField('customers.Customer', related_name="subscription", null=True)
+    plan = models.ForeignKey('subscriptions.Plan', related_name='subscriptions')
+    location = models.ForeignKey('locations.Location', related_name='subscriptions')
 
     # stripe fields
     started = models.DateTimeField()
@@ -35,7 +70,7 @@ class Subscription(models.Model):
     status = models.CharField(max_length=25)  # trialing, active, past_due, canceled, or unpaid
 
     def __unicode__(self):
-        return '%s - %s' % (self.customer, self.subscription)
+        return '%s - %s' % (self.customer, self.plan)
 
     @property
     def period_is_current(self):
@@ -48,10 +83,3 @@ class Subscription(models.Model):
     @property
     def active(self):
         return self.period_is_current and self.status_is_current
-
-    def save(self):
-        if not self.id:
-            subscription_length = SiteSetting.objects.get(
-                key='subscription.length').value
-            self.expiration_date = date.today() + timedelta(days=subscription_length)
-            super(CustomerSubscription, self).save()

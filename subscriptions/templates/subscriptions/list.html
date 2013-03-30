@@ -5,16 +5,16 @@
 Subscription:
 <hr/>
 
-{% if customer_subscription %}
+{% if subscription %}
 <dl>
 <dt>Subscription</dt>
-<dd>{{ customer_subscription.subscription }}</dd>
+<dd>{{ subscription.plan }}</dd>
 <dt>Pickup Location</dt>
-<dd>{{ customer_subscription.location }}</dd>
+<dd>{{ subscription.location }}</dd>
 <dt>Activation Date</dt>
-<dd>{{ customer_subscription.activation_date }}</dd>
+<dd>{{ subscription.current_period_start }}</dd>
 <dt>Expiration Date</dt>
-<dd>{{ customer_subscription.expiration_date }}</dd>
+<dd>{{ subscription.current_period_end }}</dd>
 </ul>
 {% endif %}
 
@@ -22,7 +22,7 @@ Subscription:
 <form method="post">{% csrf_token %}
 {{ form.as_p }}
 <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-          data-key="pk_test_czwzkTp2tactuLOEOqbMTRzG">
+          data-key="{{data_key}}">
 </script>
 <input type="submit" value="Update" />
 {{ msg }}

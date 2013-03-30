@@ -24,12 +24,15 @@ def list(request):
         return locals()
 
     msg = ''
+    data_key = settings.STRIPE_PUBLIC_KEY
+
     if request.method == 'POST':
         form = SubscriptionForm(customer, request.POST)
         if form.is_valid():
-            data_key = settings.STRIPE_PUBLIC_KEY
             customer.update_card(request.POST.get('stripeToken'))
-            customer.subscribe(form.cleaned_data["plan"])
+            customer.subscribe(
+                form.cleaned_data['plan'],
+                form.cleaned_data['location'])
             del form
     else:
         form = SubscriptionForm(customer)
