@@ -30,6 +30,11 @@ class Plan(StripeObject):
                 price=self.price)
 
     def save(self, *args, **kwargs):
+
+        # dynamic default for interval
+        self.interval = SiteSetting.objects.get(key='subscriptions.length').value
+
+        # sync with stripe
         if self.stripe_id != str(self):
             try:
                 plan = stripe.Plan.retrieve(str(self))
