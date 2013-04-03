@@ -4,6 +4,9 @@ import stripe
 from base.models import SiteSetting, StripeObject
 
 
+class LocationFullException(Exception):
+    pass
+
 
 class Plan(StripeObject):
     amount = models.FloatField()
@@ -75,6 +78,14 @@ class Subscription(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.customer, self.plan)
+
+    def save(self, *args, **kwargs):
+
+        # make sure location is not full
+        if self.location.capacity_remaining < self.plan.amount:
+            raise LocationFullException
+
+        super(Subscription, self).save(*args, **kwargs)
 
     @property
     def period_is_current(self):
