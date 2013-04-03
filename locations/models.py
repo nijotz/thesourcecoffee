@@ -20,6 +20,11 @@ class Location(models.Model):
         return self.address
 
     @property
+    def capacity(self):
+        "alias for capacity_total"
+        return self.capacity_total
+
+    @property
     def capacity_total(self):
         return SiteSetting.objects.get(key='locations.capacity').value
 
