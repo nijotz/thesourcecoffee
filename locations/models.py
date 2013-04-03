@@ -28,7 +28,7 @@ class Location(models.Model):
         return (self.subscriptions
             .filter(current_period_end__gt=datetime.now())
             .aggregate(models.Sum('plan__amount'))
-            .values()[0])
+            .values()[0]) or 0
 
     @property
     def capacity_remaining(self):
