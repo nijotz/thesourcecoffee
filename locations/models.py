@@ -1,4 +1,6 @@
+from datetime import datetime
 from django.db import models
+from base.models import SiteSetting
 
 
 class Area(models.Model):
@@ -16,3 +18,18 @@ class Location(models.Model):
 
     def __unicode__(self):
         return self.address
+
+    @property
+    def capacity_total(self):
+        return SiteSetting.objects.get(key='locations.capacity').value
+
+    @property
+    def capacity_allocated(self):
+        return (self.subscriptions
+            .filter(current_period_end__gt=datetime.now())
+            .aggregate(models.Sum('plan__amount'))
+            .values()[0])
+
+    @property
+    def capacity_remaining(self):
+        return self.capacity_total - self.capacity_allocated
