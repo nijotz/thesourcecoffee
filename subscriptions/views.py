@@ -10,11 +10,6 @@ def list(request):
 
     customer = request.user.customer
 
-    # this will just show current subscription info without the form
-    # I suppose I could have two templates, one with the info and one with
-    # the form and return a different template based on the data, but I'm
-    # just going to squeeze both into one template for now and split later
-    # if need be.
     try:
         subscription = customer.subscription
     except Subscription.DoesNotExist:
