@@ -47,11 +47,10 @@ class Plan(StripeObject):
             stripe.Plan.create(
                 amount=int(100 * self.price),
                 interval = 'month',
-                interval_count='3',
+                interval_count=self.interval,
                 name=str(self),
                 currency='usd',
-                id=self.stripe_id
-            )
+                id=self.stripe_id)
 
         super(Plan, self).save(*args, **kwargs)
 
