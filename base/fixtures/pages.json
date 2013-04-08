@@ -6,7 +6,7 @@
     "status": 2, 
     "_order": 1, 
     "titles": "About", 
-    "description": "Blog", 
+    "description": "About", 
     "parent": null, 
     "title": "About", 
     "short_url": null, 
@@ -16,10 +16,10 @@
     "keywords_string": "", 
     "_meta_title": "", 
     "expiry_date": null, 
-    "publish_date": "2013-04-08T21:49:39.289Z", 
+    "publish_date": "2013-04-08T21:49:39Z", 
     "content_model": "richtextpage", 
     "in_menus": "1,2,3", 
-    "slug": "blog", 
+    "slug": "about", 
     "gen_description": true
   }
 },
@@ -123,7 +123,7 @@
   "pk": 1, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<p>Blog</p>"
+    "content": "<p>About</p>"
   }
 },
 {
