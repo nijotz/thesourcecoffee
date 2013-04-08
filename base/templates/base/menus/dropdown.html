@@ -15,7 +15,7 @@
     <li class="dropdown{% if page.is_current_or_ascendant %} active{% endif %}"
         id="dropdown-menu-{{ page.html_id }}">
         <a href="{{ page.get_absolute_url }}">
-            {{ page.title }}
+            {{ page.title|upper }}
             {% if page.has_children_in_menu %}<span class="caret"></span>{% endif %}
         </a>
         {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
