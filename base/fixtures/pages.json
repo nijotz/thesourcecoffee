@@ -4,7 +4,7 @@
   "model": "pages.page", 
   "fields": {
     "status": 2, 
-    "_order": 0, 
+    "_order": 1, 
     "titles": "About", 
     "description": "Blog", 
     "parent": null, 
@@ -28,7 +28,7 @@
   "model": "pages.page", 
   "fields": {
     "status": 2, 
-    "_order": 1, 
+    "_order": 2, 
     "titles": "Sources", 
     "description": "Sources", 
     "parent": null, 
@@ -52,7 +52,7 @@
   "model": "pages.page", 
   "fields": {
     "status": 2, 
-    "_order": 2, 
+    "_order": 3, 
     "titles": "Pricing", 
     "description": "Pricing", 
     "parent": null, 
@@ -76,7 +76,7 @@
   "model": "pages.page", 
   "fields": {
     "status": 2, 
-    "_order": 3, 
+    "_order": 4, 
     "titles": "Contact", 
     "description": "Contact", 
     "parent": null, 
@@ -96,6 +96,30 @@
   }
 },
 {
+  "pk": 8, 
+  "model": "pages.page", 
+  "fields": {
+    "status": 2, 
+    "_order": 0, 
+    "titles": "Home", 
+    "description": "Home", 
+    "parent": null, 
+    "title": "Home", 
+    "short_url": null, 
+    "login_required": false, 
+    "site": 1, 
+    "in_sitemap": true, 
+    "keywords_string": "", 
+    "_meta_title": "", 
+    "expiry_date": null, 
+    "publish_date": "2013-04-08T21:56:08Z", 
+    "content_model": "richtextpage", 
+    "in_menus": "1,2,3", 
+    "slug": "/", 
+    "gen_description": true
+  }
+},
+{
   "pk": 1, 
   "model": "pages.richtextpage", 
   "fields": {
@@ -107,6 +131,13 @@
   "model": "pages.richtextpage", 
   "fields": {
     "content": "<p>Contact</p>"
+  }
+},
+{
+  "pk": 8, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<p>Home</p>"
   }
 },
 {
