@@ -5,18 +5,18 @@
   "fields": {
     "status": 2, 
     "_order": 0, 
-    "titles": "Blog", 
+    "titles": "About", 
     "description": "Blog", 
     "parent": null, 
-    "title": "Blog", 
+    "title": "About", 
     "short_url": null, 
     "login_required": false, 
     "site": 1, 
     "in_sitemap": true, 
     "keywords_string": "", 
-    "_meta_title": null, 
+    "_meta_title": "", 
     "expiry_date": null, 
-    "publish_date": null, 
+    "publish_date": "2013-04-08T21:49:39.289Z", 
     "content_model": "richtextpage", 
     "in_menus": "1,2,3", 
     "slug": "blog", 
@@ -24,74 +24,74 @@
   }
 },
 {
-  "pk": 2, 
+  "pk": 5, 
   "model": "pages.page", 
   "fields": {
     "status": 2, 
     "_order": 1, 
-    "titles": "Account", 
-    "description": "Account", 
+    "titles": "Sources", 
+    "description": "Sources", 
     "parent": null, 
-    "title": "Account", 
+    "title": "Sources", 
     "short_url": null, 
     "login_required": false, 
     "site": 1, 
-    "in_sitemap": false, 
+    "in_sitemap": true, 
     "keywords_string": "", 
-    "_meta_title": null, 
+    "_meta_title": "", 
     "expiry_date": null, 
-    "publish_date": "2013-03-13T22:56:14Z", 
-    "content_model": "link", 
+    "publish_date": "2013-04-08T21:50:16.006Z", 
+    "content_model": "richtextpage", 
     "in_menus": "1,2,3", 
-    "slug": "/account/", 
+    "slug": "sources", 
     "gen_description": true
   }
 },
 {
-  "pk": 3, 
+  "pk": 6, 
   "model": "pages.page", 
   "fields": {
     "status": 2, 
     "_order": 2, 
-    "titles": "Orders", 
-    "description": "Orders", 
+    "titles": "Pricing", 
+    "description": "Pricing", 
     "parent": null, 
-    "title": "Orders", 
+    "title": "Pricing", 
     "short_url": null, 
     "login_required": false, 
     "site": 1, 
-    "in_sitemap": false, 
+    "in_sitemap": true, 
     "keywords_string": "", 
-    "_meta_title": null, 
+    "_meta_title": "", 
     "expiry_date": null, 
-    "publish_date": "2013-03-13T23:01:51.704Z", 
-    "content_model": "link", 
+    "publish_date": "2013-04-08T21:51:19.513Z", 
+    "content_model": "richtextpage", 
     "in_menus": "1,2,3", 
-    "slug": "/orders/", 
+    "slug": "pricing", 
     "gen_description": true
   }
 },
 {
-  "pk": 4, 
+  "pk": 7, 
   "model": "pages.page", 
   "fields": {
     "status": 2, 
     "_order": 3, 
-    "titles": "Subscription", 
-    "description": "Subscription", 
+    "titles": "Contact", 
+    "description": "Contact", 
     "parent": null, 
-    "title": "Subscription", 
+    "title": "Contact", 
     "short_url": null, 
     "login_required": false, 
     "site": 1, 
-    "in_sitemap": false, 
+    "in_sitemap": true, 
     "keywords_string": "", 
-    "_meta_title": null, 
+    "_meta_title": "", 
     "expiry_date": null, 
-    "publish_date": "2013-03-15T22:28:00.667Z", 
-    "content_model": "link", 
+    "publish_date": "2013-04-08T21:51:42.594Z", 
+    "content_model": "richtextpage", 
     "in_menus": "1,2,3", 
-    "slug": "/subscription/", 
+    "slug": "contact", 
     "gen_description": true
   }
 },
@@ -103,18 +103,24 @@
   }
 },
 {
-  "pk": 2, 
-  "model": "pages.link", 
-  "fields": {}
+  "pk": 7, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<p>Contact</p>"
+  }
 },
 {
-  "pk": 3, 
-  "model": "pages.link", 
-  "fields": {}
+  "pk": 6, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<p>Pricing</p>"
+  }
 },
 {
-  "pk": 4, 
-  "model": "pages.link", 
-  "fields": {}
+  "pk": 5, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<p>Sources</p>"
+  }
 }
 ]
