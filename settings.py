@@ -117,7 +117,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_ID = 1
 
-SITE_TITLE = "The Source"
+SITE_TITLE = 'The Source Coffee Company'
 SITE_TAGLINE = "Roasting Coffee since 2013"
 
 # If you set this to False, Django will make some optimizations so as not
@@ -234,6 +234,8 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
+    "base",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -258,7 +260,6 @@ INSTALLED_APPS = (
     "class_fixtures",
     "south",
 
-    "base",
     "customers",
     "locations",
     "orders",
