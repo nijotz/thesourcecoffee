@@ -1,6 +1,8 @@
 {% load i18n future pages_tags %}
 
-{% if branch_level == 0 %}
+{# branch_level apparently gets changed with recursive calls to page_menu #}
+{% with branch=branch_level %}
+{% if branch == 0 %}
 <div id="nav">
   <ul id="navigation">
 {% endif %}
@@ -18,7 +20,11 @@
     <li class="dropdown{% if page.is_current_or_ascendant %} active{% endif %}"
         id="dropdown-menu-{{ page.html_id }}">
         <a href="{{ page.get_absolute_url }}">
+            {% if branch == 0 %}
             {{ page.title|upper }}
+            {% else %}
+            {{ page.title }}
+            {% endif %}
             {% if page.has_children_in_menu %}<span class="caret"></span>{% endif %}
         </a>
         <ul>
@@ -29,7 +35,8 @@
 
     {% endfor %}
 
-{% if branch_level == 0 %}
+{% if branch == 0 %}
   </ul>
 </div>
 {% endif %}
+{% endwith %}
