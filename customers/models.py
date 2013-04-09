@@ -13,23 +13,6 @@ stripe.api_version = getattr(settings, "STRIPE_API_VERSION", "2012-11-07")
 add_introspection_rules([], ["^django_localflavor_us\.models\.PhoneNumberField"])
 
 
-def convert_tstamp(response, field_name=None):
-    try:
-        if field_name and response[field_name]:
-            return datetime.fromtimestamp(
-                response[field_name],
-                timezone.utc
-            )
-        if not field_name:
-            return datetime.fromtimestamp(
-                response,
-                timezone.utc
-            )
-    except KeyError:
-        pass
-    return None
-
-
 class Customer(StripeObject):
     
     user = models.OneToOneField(User)
@@ -61,42 +44,3 @@ class Customer(StripeObject):
         self.card_last_4 = sc.active_card.last4
         self.card_kind = sc.active_card.type
         self.save()
-
-    def subscribe(self, plan, location):
-        sc = self.stripe_customer
-        sc.update_subscription(plan=plan.stripe_id)
-        self.sync_subscription(location)
-        self.send_invoice()
-
-    def sync_subscription(self, location):
-        stripe_sub = self.stripe_customer.subscription
-        if stripe_sub:
-            try:
-                sub = self.subscription
-                sub.plan = Plan.objects.get(stripe_id=stripe_sub.plan.id)
-                sub.current_period_start = convert_tstamp(stripe_sub.current_period_start)
-                sub.current_period_end = convert_tstamp(stripe_sub.current_period_end)
-                sub.status = stripe_sub.status
-                sub.start = convert_tstamp(stripe_sub.start)
-                sub.location = location
-                sub.save()
-            except Subscription.DoesNotExist:
-                sub = Subscription.objects.create(
-                    customer=self,
-                    plan=Plan.objects.get(stripe_id=stripe_sub.plan.id),
-                    location=location,
-                    current_period_start=convert_tstamp(stripe_sub.current_period_start),
-                    current_period_end=convert_tstamp(stripe_sub.current_period_end),
-                    status=stripe_sub.status,
-                    started=convert_tstamp(stripe_sub.start),
-                )
-
-            return sub
-
-    def send_invoice(self):
-        try:
-            invoice = stripe.Invoice.create(customer=self.stripe_id)
-            invoice.pay()
-            return True
-        except stripe.InvalidRequestError:
-            return False  # There was nothing to invoice

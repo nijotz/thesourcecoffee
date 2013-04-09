@@ -1,11 +1,29 @@
-from datetime import date, datetime, timedelta
+from datetime import datetime
 from django.db import models
+from django.utils import timezone
 import stripe
 from base.models import SiteSetting, StripeObject
 
 
 class LocationFullException(Exception):
     pass
+
+
+def convert_tstamp(response, field_name=None):
+    try:
+        if field_name and response[field_name]:
+            return datetime.fromtimestamp(
+                response[field_name],
+                timezone.utc
+            )
+        if not field_name:
+            return datetime.fromtimestamp(
+                response,
+                timezone.utc
+            )
+    except KeyError:
+        pass
+    return None
 
 
 class Plan(StripeObject):
@@ -37,16 +55,13 @@ class Plan(StripeObject):
         # dynamic default for interval
         self.interval = SiteSetting.objects.get(key='subscriptions.length').value
 
+        # dynamic default for stripe_id
+        self.stripe_id = str(self)
+
         # sync with stripe
-        if self.stripe_id != str(self):
-            try:
-                plan = stripe.Plan.retrieve(str(self))
-                plan.delete()
-            except stripe.InvalidRequestError:
-                pass
-
-            self.stripe_id = str(self)
-
+        try:
+            stripe.Plan.retrieve(str(self))
+        except stripe.InvalidRequestError:
             stripe.Plan.create(
                 amount=int(100 * self.price),
                 interval = 'month',
@@ -64,9 +79,9 @@ class Plan(StripeObject):
 
 
 class Subscription(models.Model):
-    customer = models.OneToOneField('customers.Customer', related_name="subscription", null=True)
+    customer = models.OneToOneField('customers.Customer', related_name="subscription")
     plan = models.ForeignKey('subscriptions.Plan', related_name='subscriptions')
-    location = models.ForeignKey('locations.Location', related_name='subscriptions')
+    #location = models.ForeignKey('locations.Location', related_name='subscriptions')
 
     # stripe fields
     started = models.DateTimeField()
@@ -81,9 +96,21 @@ class Subscription(models.Model):
 
     def save(self, *args, **kwargs):
 
+        # sync with stripe, this can override every field but customer
+        sc = self.customer.stripe_customer
+        sc.update_subscription(plan=self.plan.stripe_id)
+        stripe_sub = sc.subscription
+
+        if stripe_sub:
+            self.plan = Plan.objects.get(stripe_id=stripe_sub.plan.id)
+            self.current_period_start = convert_tstamp(stripe_sub.current_period_start)
+            self.current_period_end = convert_tstamp(stripe_sub.current_period_end)
+            self.status = stripe_sub.status
+            self.started = convert_tstamp(stripe_sub.start)
+
         # make sure location is not full
-        if self.location.capacity_remaining < self.plan.amount:
-            raise LocationFullException
+        #if self.location.capacity_remaining < self.plan.amount:
+        #    raise LocationFullException
 
         super(Subscription, self).save(*args, **kwargs)
 
