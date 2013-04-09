@@ -10,6 +10,11 @@ admin.autodiscover()
 # You can also change the ``home`` view to add your own functionality
 # to the project's homepage.
 
+ACCOUNT_URL = getattr(settings, "ACCOUNT_URL", "/account/")
+SIGNUP_URL = getattr(settings, "SIGNUP_URL",
+                     "/%s/signup/" % ACCOUNT_URL.strip("/"))
+_slash = "/" if settings.APPEND_SLASH else ""
+
 urlpatterns = patterns("",
 
     # Change the admin prefix here to use an alternate URL for the
@@ -18,6 +23,8 @@ urlpatterns = patterns("",
 
     ("^orders/", include('orders.urls')),
     ("^subscription/", include('subscriptions.urls')),
+    url("^%s%s$" % (SIGNUP_URL.strip("/"), _slash),
+        "base.views.signup", name="signup"),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.

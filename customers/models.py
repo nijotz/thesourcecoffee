@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
-from django_localflavor_us.models import PhoneNumberField
+from django_localflavor_us.models import PhoneNumberField, USStateField, USPostalCodeField
 from south.modelsinspector import add_introspection_rules
 import stripe
 from base.models import StripeObject
@@ -17,7 +17,12 @@ class Customer(StripeObject):
     
     user = models.OneToOneField(User)
     phone = PhoneNumberField()
+    street = models.CharField(max_length=256)
+    city = models.CharField(max_length=256)
+    state = USStateField()
+    code = models.CharField(max_length=10)
     #area = models.ForeignKey('locations.Area', null=True)
+    #subscription = models.OneToOneField('subscriptions.Subscription', related_name='customer')
 
     card_fingerprint = models.CharField(max_length=200, blank=True)
     card_last_4 = models.CharField(max_length=4, blank=True)
