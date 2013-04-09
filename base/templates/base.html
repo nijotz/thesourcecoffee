@@ -21,18 +21,9 @@
 
       {% if request.user.is_authenticated %}
           <p class="topheader">
-          {% trans "Logged in as: " %}
-          {% url "profile" request.user.username as profile_url %}
-          {% if profile_url %}
-              <a href="{{ profile_url }}">{{ request.user.username }}</a><br>
-              <a href="{% url "profile_update" %}"
-                  class="btn btn-small btn-account">{% trans "Update profile" %}</a>
-          {% else %}
-              <a href="{% url "profile_update" %}">{{ request.user.username }}</a>
-          {% endif %}
-          </p>
-          <p class="topheader"><a href="#">My Account</a></p>
-          <p class="topheader"><a href="#">Orders</a></p>
+          {{ request.user.username }}
+          <p class="topheader"><a href="{% url "profile_update" %}">My Account</a></p>
+          <p class="topheader"><a href="{% url "orders_list" %}">Orders</a></p>
           <p class="topheader">
           <a href="{% url "logout" %}?next={{ request.path }}"
               class="btn btn-small btn-danger btn-account">{% trans "Log out" %}</a>
