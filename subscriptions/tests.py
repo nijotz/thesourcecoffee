@@ -1,18 +1,20 @@
+from datetime import datetime
 from django.test import TestCase
 from mezzanine.accounts import get_profile_form
+import stripe
 from base.models import SiteSetting
 from customers.models import Customer
 from locations.models import Area, Location
+from orders.models import Order
 from subscriptions.models import Plan, Subscription, LocationFullException
 
 
 class SubscriptionTestCase(TestCase):
+    fixtures = ['base.site_settings']
 
     def setUp(self):
         super(SubscriptionTestCase, self).setUp()
 
-        SiteSetting.objects.create(key='subscriptions.length', value=3)
-        SiteSetting.objects.create(key='locations.capacity', value=100)
         self.area = Area.objects.create(name='Test Area')
 
         post = {
@@ -29,6 +31,15 @@ class SubscriptionTestCase(TestCase):
         form = customer_form(post)
         user = form.save()
         self.customer = user.customer
+
+        token = stripe.Token.create(
+            card={
+                'number': '4242424242424242',
+                'exp_month': '12',
+                'exp_year': datetime.now().year + 1,
+                'cvc': '123',
+            })
+        self.customer.update_card(token.id)
 
         self.location = Location.objects.create(area=self.area, address='Test')
         self.plan = Plan.objects.create(amount=3, price=20.00)
@@ -48,3 +59,8 @@ class SubscriptionTestCase(TestCase):
 
         capacity_setting.value = orig_capacity
         capacity_setting.save()
+
+    def test_orders_are_created(self):
+        sub = Subscription(plan=self.plan, customer=self.customer)
+        sub.save()
+        self.assertTrue(len(Order.objects.filter(subscription=sub)) > 0)
