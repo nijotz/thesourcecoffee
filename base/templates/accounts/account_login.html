@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{{ title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block body_id %}account{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<li>{{ title }}</li>
+{% endblock %}
+
+{% block main %}
+
+{% if request.user.is_authenticated %}
+    <p>{% trans "You're already logged in." %}</p>
+{% else %}
+  <fieldset>
+      <legend>{{ title }}</legend>
+      <form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+      {% fields_for form %}
+      <div class="form-actions">
+          <input class="btn btn-primary btn-large" type="submit" value="{{ title }}">
+      </div>
+      </form>
+  </fieldset>
+    {% url "signup" as signup_url %}
+    <p>{% blocktrans with request.GET.next as next %}If you don't have an account you can <a href="{{ signup_url }}?next={{ next }}">sign up</a> for one now.{% endblocktrans %}</p>
+    {% url "mezzanine_password_reset" as password_reset_url %}
+    {% url "profile_update" as profile_update_url %}
+    {% blocktrans %}<p>You can also <a href="{{ password_reset_url }}?next={{ profile_update_url }}">reset your password</a> if you've forgotten it.</p>{% endblocktrans %}</p>
+{% endif %}
+
+{% endblock %}
+
