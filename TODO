@@ -1,2 +1,2 @@
-Verify another customer id can't be submitted on subscription form
 Start pks at like 12345 vs 0. Looks better to have a customer number of 32356 vs 00001
+pep8 and pyflakes unittest
