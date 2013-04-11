@@ -86,7 +86,6 @@ class SubscriptionTestCase(TestCase):
             'city': 'City',
             'state': 'TX',
             'code': '12345',
-            'plan': self.plan.id,
         }
 
         token = stripe.Token.create(
@@ -97,6 +96,46 @@ class SubscriptionTestCase(TestCase):
                 'cvc': '123',
             })
         post['token'] = token.id
+
+        client = Client()
+        response = client.post(reverse('signup'), post)
+
+        errors = response.context['subscription_form'].errors
+        self.assertIn('plan', errors.keys())
+
+        required = False
+        for error in errors['plan']:
+            if 'required' in error:
+                required = True
+                break
+
+        self.assertEqual(required, True)
+
+
+    def test_signup(self):
+        post = {
+            'first_name': 'Test',
+            'last_name': 'User',
+            'username': 'TestUser1',
+            'email': 'testuser1@example.com',
+            'password1': 'testpass',
+            'password2': 'testpass',
+            'phone': '555-555-5555',
+            'street': '123 Easy St',
+            'city': 'City',
+            'state': 'TX',
+            'code': '12345',
+            'plan': self.plan.id,
+        }
+
+        token = stripe.Token.create(
+            card={
+                'number': '4242424242424242',
+                'exp_month': '12',
+                'exp_year': datetime.now().year + 1,
+                'cvc': '123',
+            })
+        post['stripeToken'] = token.id
 
         client = Client()
         response = client.post(reverse('signup'), post)
