@@ -12,7 +12,8 @@ from subscriptions.models import Plan, Subscription, LocationFullException
 
 
 class SubscriptionTestCase(TestCase):
-    fixtures = ['base.site_settings']
+    fixtures = ['base/fixtures/site_settings.json']
+
 
     def setUp(self):
         super(SubscriptionTestCase, self).setUp()
