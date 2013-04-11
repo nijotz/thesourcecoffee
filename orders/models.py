@@ -19,6 +19,11 @@ class Order(models.Model):
     # So that objects.all().select_subclassess() returns mail and pickup orders
     #objects = InheritanceManager()
 
+    def __unicode__(self):
+        return '{subscription} - {to_be_fulfilled}'.format(
+            subscription = self.subscription,
+            to_be_fulfilled = self.to_be_fulfilled)
+
     def save(self, *args, **kwargs):
 
         try:
