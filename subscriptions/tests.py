@@ -66,10 +66,12 @@ class SubscriptionTestCase(TestCase):
         capacity_setting.value = orig_capacity
         capacity_setting.save()
 
+
     def test_orders_are_created(self):
         sub = Subscription(plan=self.plan, customer=self.customer)
         sub.save()
         self.assertTrue(len(Order.objects.filter(subscription=sub)) > 0)
+
 
     def test_subscription_is_required_on_signup(self):
         post = {
