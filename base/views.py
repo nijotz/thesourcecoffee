@@ -23,7 +23,6 @@ def signup(request, template="accounts/account_signup.html"):
         with transaction.commit_on_success():
             save = transaction.savepoint()
             try:
-                import ipdb; ipdb.set_trace()
                 customer = customer_form.save(commit=False)
                 customer.update_card(request.POST['stripeToken'])
                 subscription = subscription_form.save(commit=False)
