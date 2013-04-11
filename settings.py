@@ -277,6 +277,7 @@ ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS = (
     "card_last_4",
     "card_kind",
 )
+ACCOUNTS_PROFILE_FORM_CLASS = 'customers.forms.CustomerForm'
 
 
 # List of processors used by RequestContext to populate the context.
