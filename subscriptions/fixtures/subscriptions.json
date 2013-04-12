@@ -1,0 +1,134 @@
+[
+{
+  "pk": 1, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 1.0, 
+    "interval": 3, 
+    "stripe_id": "1 lbs every 3 month(s) for $150.00", 
+    "price": "150.00", 
+    "public": true
+  }
+},
+{
+  "pk": 2, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 2.0, 
+    "interval": 3, 
+    "stripe_id": "2 lbs every 3 month(s) for $300.00", 
+    "price": "300.00", 
+    "public": true
+  }
+},
+{
+  "pk": 3, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 3.0, 
+    "interval": 3, 
+    "stripe_id": "3 lbs every 3 month(s) for $450.00", 
+    "price": "450.00", 
+    "public": true
+  }
+},
+{
+  "pk": 4, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 4.0, 
+    "interval": 3, 
+    "stripe_id": "4 lbs every 3 month(s) for $600.00", 
+    "price": "600.00", 
+    "public": true
+  }
+},
+{
+  "pk": 5, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 5.0, 
+    "interval": 3, 
+    "stripe_id": "5 lbs every 3 month(s) for $750.00", 
+    "price": "750.00", 
+    "public": true
+  }
+},
+{
+  "pk": 6, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 6.0, 
+    "interval": 3, 
+    "stripe_id": "6 lbs every 3 month(s) for $900.00", 
+    "price": "900.00", 
+    "public": true
+  }
+},
+{
+  "pk": 7, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 7.0, 
+    "interval": 3, 
+    "stripe_id": "7 lbs every 3 month(s) for $1,050.00", 
+    "price": "1050.00", 
+    "public": true
+  }
+},
+{
+  "pk": 8, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 8.0, 
+    "interval": 3, 
+    "stripe_id": "8 lbs every 3 month(s) for $1,200.00", 
+    "price": "1200.00", 
+    "public": true
+  }
+},
+{
+  "pk": 9, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 9.0, 
+    "interval": 3, 
+    "stripe_id": "9 lbs every 3 month(s) for $1,350.00", 
+    "price": "1350.00", 
+    "public": true
+  }
+},
+{
+  "pk": 10, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 10.0, 
+    "interval": 3, 
+    "stripe_id": "10 lbs every 3 month(s) for $1,500.00", 
+    "price": "1500.00", 
+    "public": true
+  }
+},
+{
+  "pk": 11, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.5, 
+    "interval": 3, 
+    "stripe_id": "8 ozs every 3 month(s) for $75.00", 
+    "price": "75.00", 
+    "public": true
+  }
+},
+{
+  "pk": 12, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.75, 
+    "interval": 3, 
+    "stripe_id": "12 ozs every 3 month(s) for $112.50", 
+    "price": "112.50", 
+    "public": true
+  }
+}
+]
