@@ -1,21 +1,19 @@
-def get_admin_site(BaseAdminSite):
-    class AdminSite(BaseAdminSite):
-        
-        def index(self, *args, **kwargs):
-            import ipdb; ipdb.set_trace()
-            response = super(AdminSite, self).index(*args, **kwargs)
-            #app_list = response.context_data['app_list']
-            #app_list = []
-            #response.context_data['app_list'] = []
-            return response
+from django.conf.urls import patterns, url
+import orders.views
 
-            try:
-                idx = app_list.index('orders')
-                orders_app = app_list[idx]
-                orders_app['models'].append('what')
-            except:
-                pass
-            raise(Exception)
-            return response
+
+def get_admin_site(BaseAdminSite):
+
+    class AdminSite(BaseAdminSite):
+
+        def get_urls(self, *args, **kwargs):
+
+            urlpatterns = super(AdminSite, self).get_urls(*args, **kwargs)
+            urlpatterns += patterns('',
+                url(r'^orders/fulfillment/',
+                    self.admin_view(orders.views.fulfillment),
+                    name='admin_orders_fulfillment')
+                )
+            return urlpatterns
 
     return AdminSite()

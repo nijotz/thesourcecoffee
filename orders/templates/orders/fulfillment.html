@@ -1,0 +1,27 @@
+{% extends "admin/base_site.html" %}
+
+{% load order_extras %}
+
+<!-- CONTENT -->
+{% block content %}
+  <div id="content-main">
+    <table border=1>
+    <tr>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>Fulfillment Date/Time</th>
+      <th>Amount</th>
+    </tr>
+
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.customer.user.get_full_name }}</td>
+      <td>{{ order.customer.user.email }}</td>
+      <td>{{ order.to_be_fulfilled }}</td>
+      <td>{{ order.subscription.plan.amount }} lbs</td>
+    </tr>
+    {% endfor %}
+
+    </table>
+  </div>
+{% endblock %}

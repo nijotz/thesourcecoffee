@@ -234,6 +234,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
+    "base",
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -259,7 +260,6 @@ INSTALLED_APPS = (
     "class_fixtures",
     "south",
 
-    "base",
     "customers",
     "locations",
     "orders",
