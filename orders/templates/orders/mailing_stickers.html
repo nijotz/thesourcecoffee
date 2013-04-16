@@ -1,0 +1,19 @@
+<table width=100% border=1>
+{% for customer in customers %}
+
+{% if not forloop.counter|divisibleby:"2" %}
+<tr>
+{% endif %}
+
+<td>
+{{ customer.user.get_full_name }}<br/>
+{{ customer.street }}<br/>
+{{ customer.city }}, {{ customer.state }} {{ customer.code }}
+</td>
+
+{% if not foorloop.counter|divisibleby:"2" %}
+</tr>
+{% endif %}
+
+{% endfor %}
+</table>
