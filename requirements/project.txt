@@ -9,3 +9,4 @@ https://github.com/django/django-localflavor-us/zipball/master
 git+https://github.com/jklaiho/django-class-fixtures#egg=django-class-fixtures
 pytz
 xhtml2pdf
+stripe
