@@ -1,16 +1,27 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
+from base.models import SiteSetting
+from customers.tests import CustomerTestCase
+from subscriptions.models import LocationFullException, Subscription
 
-Replace this with more appropriate tests for your application.
-"""
-
-from django.test import TestCase
+class LocationTestCase(CustomerTestCase):
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+    def setUp(self):
+        super(LocationTestCase, self).setUp()
+
+
+    def test_location_capacity(self):
+        return # location capacity will be implemented later
+        capacity_setting = SiteSetting.objects.get(key='locations.capacity')
+        orig_capacity = capacity_setting.value
+        capacity_setting.value = 1
+        capacity_setting.save()
+
+        with self.assertRaises(LocationFullException):
+            while True:
+                Subscription.objects.create(
+                    customer=self.customer,
+                    location=self.location,
+                    plan=self.plan)
+
+        capacity_setting.value = orig_capacity
+        capacity_setting.save()
