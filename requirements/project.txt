@@ -11,3 +11,4 @@ pytz
 xhtml2pdf
 stripe
 psycopg2
+gunicorn
