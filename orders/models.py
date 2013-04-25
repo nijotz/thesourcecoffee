@@ -24,6 +24,13 @@ class Order(models.Model):
             subscription = self.subscription,
             to_be_fulfilled = self.to_be_fulfilled)
 
+    def fulfill(self, tracking_number):
+        self.fulfilled = datetime.now()
+        mailorder = MailOrder(order_ptr_id=self.pk)
+        mailorder.__dict__.update(self.__dict__)
+        mailorder.tracking_number = tracking_number
+        mailorder.save()
+
     def save(self, *args, **kwargs):
 
         try:
@@ -36,7 +43,6 @@ class Order(models.Model):
 
 class MailOrder(Order):
     tracking_number = models.CharField(max_length=255)
-    date_sent = models.DateTimeField()
 
 
 #class PickupOrder(Order):

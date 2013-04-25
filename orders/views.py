@@ -1,12 +1,13 @@
 from datetime import date
 from io import BytesIO
 from annoying.decorators import render_to
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render
 import xhtml2pdf.pisa
 from customers.models import Customer
-from orders.models import Order
+from orders.models import MailOrder, Order
 
 
 @login_required
@@ -20,6 +21,14 @@ def list(request):
 @login_required
 @render_to('orders/fulfillment.html')
 def fulfillment(request):
+
+    if request.POST:
+        order = Order.objects.get(id=request.POST.get('order_id'))
+        if not order.fulfilled:
+            order.fulfill(tracking_number=request.POST.get('tracking_number'))
+        else:
+            messages.warning(request, 'Order already fulfilled')
+
     orders = Order.objects.filter(to_be_fulfilled__lte=date.today())
     return locals()
 
@@ -33,7 +42,7 @@ def mailing_stickers(request):
 
     buffer = BytesIO()
 
-    orders = Order.objects.filter(to_be_fulfilled__lte=date.today()).select_related('customer')
+    orders = MailOrder.objects.filter(to_be_fulfilled__lte=date.today()).select_related('customer')
     customers = [ o.customer for o in orders ]
 
     html = render(request, 'orders/mailing_stickers.html', locals())

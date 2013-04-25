@@ -2,7 +2,6 @@
 
 {% load order_extras %}
 
-<!-- CONTENT -->
 {% block content %}
   <div id="content-main">
     <table border=1>
@@ -11,6 +10,7 @@
       <th>E-mail</th>
       <th>Fulfillment Date/Time</th>
       <th>Amount</th>
+      <th>Fulfill</th>
     </tr>
 
     {% for order in orders %}
@@ -19,6 +19,19 @@
       <td>{{ order.customer.user.email }}</td>
       <td>{{ order.to_be_fulfilled }}</td>
       <td>{{ order.subscription.plan.amount }} lbs</td>
+      <td>
+        {% if not order.fulfilled %}
+        <form method="post">
+          {% csrf_token %}
+          <label for="tracking_number">Tracking Number</label>
+          <input name="tracking_number"/>
+          <input type="hidden" name="order_id" value="{{order.id}}"/>
+          <input type="submit" value="Fulfill"/>
+        </form>
+        {% else %}
+        Tracking Number: {{order.mailorder.tracking_number}}
+        {% endif %}
+      </td>
     </tr>
     {% endfor %}
 

@@ -50,6 +50,7 @@ def signup_test_customer(custom_data):
 
 class CustomerTestCase(TestCase):
     fixtures = [
+        'base/fixtures/admin.json',
         'base/fixtures/site_settings.json',
         'subscriptions/fixtures/subscriptions.json',]
 
