@@ -2,15 +2,16 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django_localflavor_us.models import PhoneNumberField, USStateField, USPostalCodeField
-from south.modelsinspector import add_introspection_rules
 import stripe
 from base.models import StripeObject
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_version = getattr(settings, "STRIPE_API_VERSION", "2012-11-07")
 
-# South needs to know about the PhoneNumberField
+# South needs to know about the PhoneNumberField and USSateField
+from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^django_localflavor_us\.models\.PhoneNumberField"])
+add_introspection_rules([], ["^django_localflavor_us\.models\.USStateField"])
 
 
 class Customer(StripeObject):
