@@ -52,3 +52,25 @@ def mailing_stickers(request):
     response.write(pdf)
 
     return response
+
+
+@user_passes_test(lambda u: u.is_superuser)
+@login_required
+def move_orders_back(request):
+
+    days = int(request.REQUEST.get('days')) or 1
+
+    def modify_time(obj, field):
+        new_time = getattr(obj, field, None)
+        if new_time:
+            new_time -= timedelta(days=days)
+            setattr(obj, field, new_time)
+            obj.save()
+
+    order_fields = ['to_be_fulfilled', 'fulfilled']
+    for order in Order.objects.all():
+        for field in order_fields:
+            modify_time(order, field)
+
+    messages.info(request, 'Orders moved backed in time {} day'.format(days))
+    return redirect(reverse('admin:index'))
