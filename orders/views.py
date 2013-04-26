@@ -1,11 +1,13 @@
-from datetime import date
+from datetime import date, timedelta
 from io import BytesIO
 from annoying.decorators import render_to
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import xhtml2pdf.pisa
+from base.models import SiteSetting
 from customers.models import Customer
 from orders.models import MailOrder, Order
 
@@ -22,6 +24,8 @@ def list(request):
 @render_to('orders/fulfillment.html')
 def fulfillment(request):
 
+    maximum = SiteSetting.objects.get(key='max_fulfillment_day').value
+
     if request.POST:
         order = Order.objects.get(id=request.POST.get('order_id'))
         if not order.fulfilled:
@@ -29,7 +33,19 @@ def fulfillment(request):
         else:
             messages.warning(request, 'Order already fulfilled')
 
-    orders = Order.objects.filter(to_be_fulfilled__lte=date.today())
+    unfilled_orders = Order.objects.filter(to_be_fulfilled__lte=date.today())
+    unfilled_orders.order_by('to_be_fulfilled')
+
+    total = 0
+    orders = []
+    for order in unfilled_orders:
+        amount = order.subscription.plan.amount
+        if total + amount < maximum:
+            orders.append(order)
+            total += amount
+        else:
+            break
+
     return locals()
 
 

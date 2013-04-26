@@ -3,6 +3,7 @@ from django.contrib.auth import (authenticate, login as auth_login,
                                                logout as auth_logout)
 from django.contrib.messages import info, error
 from django.db import IntegrityError, transaction
+from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from customers.forms import CustomerForm
 from subscriptions.forms import SubscriptionForm

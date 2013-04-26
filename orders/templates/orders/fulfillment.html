@@ -6,6 +6,7 @@
   <div id="content-main">
     <table border=1>
     <tr>
+      <th>Order #</th>
       <th>Name</th>
       <th>E-mail</th>
       <th>Fulfillment Date/Time</th>
@@ -15,6 +16,7 @@
 
     {% for order in orders %}
     <tr>
+      <td>{{ order.pk }}</td>
       <td>{{ order.customer.user.get_full_name }}</td>
       <td>{{ order.customer.user.email }}</td>
       <td>{{ order.to_be_fulfilled }}</td>
