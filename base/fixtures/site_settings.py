@@ -16,3 +16,8 @@ SiteSetting.objects.create(
     key='subscriptions.number_of_orders',
     description='Number of orders received per subscription period',
     value=12)
+
+SiteSetting.objects.create(
+    key='orders.max_fulfillment_day',
+    description='Maximum number of pounds that can be fulfilled in one day',
+    value=80)
