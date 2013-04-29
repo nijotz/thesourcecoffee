@@ -6,7 +6,7 @@ from customers.models import Customer
 from subscriptions.models import Plan
 
 
-def signup_test_customer(custom_data):
+def signup_test_customer(custom_data={}):
     plan = Plan.objects.all()[0]
 
     num = Customer.objects.all().count()
