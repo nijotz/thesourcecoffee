@@ -32,7 +32,7 @@
   "fields": {
     "key": "orders.max_fulfillment_day", 
     "value": 80, 
-    "description": "Maximum number of pounds that can be fulfilled in one day",
+    "description": "Maximum number of pounds that can be fulfilled in one day"
   }
 }
 ]
