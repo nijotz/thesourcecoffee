@@ -14,7 +14,7 @@
     <div id="header">
 
       <div id="logo">
-        <object data="{{STATIC_URL}}images/logo.svg" type="image/svg+xml" width="300" height="150"></object>
+        <img src="{{STATIC_URL}}images/logo_horizontal.png" width="300" height="150"></img>
       </div>
 
       <div id="login">
@@ -46,14 +46,14 @@
       </div>
 
       <div id="social">
-        <object data="{{STATIC_URL}}images/facebook.svg" type="image/svg+xml" width="50" height="50"><a href="#"></a></object>
-        <object data="{{STATIC_URL}}images/twitter.svg" type="image/svg+xml" width="50" height="50"><a href="#"></a></object>
+        <a href="http://www.facebook.com/thesourcecoffeecompany"><img src="{{STATIC_URL}}images/facebook.png" width="50" height="50"></img></a>
+        <a href="http://www.twitter.com/thesourcecoffee"><img src="{{STATIC_URL}}images/twitter.png" width="50" height="50"></img></a>
       </div>
 
-      <form action="#" id="search_box">
+      <div id="search_box">
       <input type="text" id="search" name="search" placeholder="Search">
-      <button type="submit" class="search_btn"><object data="{{STATIC_URL}}images/search_button.svg" type="image/svg+xml" width="17" height="17"></object></button>
-      </form>
+      <button type="submit" class="search_btn"><img src="{{STATIC_URL}}images/search_button.png" width="25" height="25" style="margin-top:5px;"></img></button>
+      </div>
 
     </div><!---End header-->
 
