@@ -74,6 +74,5 @@ class OrderTestCase(CustomerTestCase):
         self.client.login(username='admin', password='default')
         response = self.client.get(self.fulfillment_url)
         self.future_patcher.stop()
-        import ipdb; ipdb.set_trace()
+
         self.assertTrue(len(unfilled_orders) > len(response.context['orders']))
-        self.client.login(username='admin', password='default')
