@@ -24,7 +24,7 @@ def list(request):
 @render_to('orders/fulfillment.html')
 def fulfillment(request):
 
-    maximum = SiteSetting.objects.get(key='max_fulfillment_day').value
+    maximum = SiteSetting.objects.get(key='orders.max_fulfillment_day').value
 
     if request.POST:
         order = Order.objects.get(id=request.POST.get('order_id'))
@@ -43,8 +43,6 @@ def fulfillment(request):
         if total + amount < maximum:
             orders.append(order)
             total += amount
-        else:
-            break
 
     return locals()
 
