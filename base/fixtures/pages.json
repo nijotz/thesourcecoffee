@@ -6,7 +6,7 @@
     "status": 2, 
     "_order": 1, 
     "titles": "About", 
-    "description": "About", 
+    "description": "ABOUT THE SOURCE\n\u00a0", 
     "parent": null, 
     "title": "About", 
     "short_url": null, 
@@ -54,7 +54,7 @@
     "status": 2, 
     "_order": 3, 
     "titles": "Pricing", 
-    "description": "Pricing", 
+    "description": "\u00a0", 
     "parent": null, 
     "title": "Pricing", 
     "short_url": null, 
@@ -78,7 +78,7 @@
     "status": 2, 
     "_order": 4, 
     "titles": "Contact", 
-    "description": "Contact", 
+    "description": "CONTACT THE SOURCE\nPlease feel free to fill out the form below with your questions and comments, we'd love to hear from you!", 
     "parent": null, 
     "title": "Contact", 
     "short_url": null, 
@@ -102,7 +102,7 @@
     "status": 2, 
     "_order": 0, 
     "titles": "Home", 
-    "description": "Home", 
+    "description": "Welcome to The Source. \u00a0We strive to provide you with the best luxury coffee the world has to offer. \u00a0We know that the best coffee is non-commodity varieties, grown by small farmers who make the effort to grow the finest coffee in the world. \u00a0Our goal is to connect you to them - to get your coffee from The Source.", 
     "parent": null, 
     "title": "Home", 
     "short_url": null, 
@@ -120,31 +120,110 @@
   }
 },
 {
+  "pk": 10, 
+  "model": "pages.page", 
+  "fields": {
+    "status": 2, 
+    "_order": 0, 
+    "titles": "Sources / Guatamala - La Perla", 
+    "description": "LA PERLA\n\n\n\nFarm: Finca La Perla\n\n\n\n\n\n\nVarietal: Bourbon Caturra\n\n\n\n\n\n\nProcessing: Fully Washed and dried on patio\n\n\n\n\n\n\nAltitude: 1,100-1,800m\n\n\n\n\n\n\nOwner: Arenas family\n\n\n\n\n\n\nTown/City: Chaj\u00fal\n\n\n\n\n\n\nRegion: El Quich\u00e9\n\n\u00a0\nRoast: Full City\nAroma: Citrus\nBody: Medium\nFlavors: Orange, Plum, Caramel\n\n\nFinca La Perla lies amid the steep green hills of the \u2018Ixil Triangle\u2019 high in Guatemala\u2019s western highlands, an isolated area famed for the strength of its indigenous culture and the beauty of its landscape. \u2018La Perla\u2019 means \"Sleeping Woman\" in Ixil, a Mayan language spoken widely locally (Spanish remains a second language at best in this hard to reach area).", 
+    "parent": 5, 
+    "title": "Guatamala - La Perla", 
+    "short_url": null, 
+    "login_required": false, 
+    "site": 1, 
+    "in_sitemap": true, 
+    "keywords_string": "", 
+    "_meta_title": "", 
+    "expiry_date": null, 
+    "publish_date": "2013-04-30T00:14:06Z", 
+    "content_model": "richtextpage", 
+    "in_menus": "1,2,3", 
+    "slug": "sources/guatamala-la-perla", 
+    "gen_description": true
+  }
+},
+{
+  "pk": 11, 
+  "model": "pages.page", 
+  "fields": {
+    "status": 2, 
+    "_order": 1, 
+    "titles": "Sources / Nicaragua - El Cairo", 
+    "description": "\n\n\nFarm: Finca El Cairo\n\n\n\n\n\n\nProcessing: Fully Washed and dried on patio\n\n\n\n\n\n\nAltitude: 1,200 metres above sea level\n\n\n\n\n\n\nOwner: Justo Pastor Montecinos Sierra\n\n\n\n\n\n\nTown/City: Comarca los Planes, nr. Dipilto\n\n\n\n\n\n\nRegion: Nueva Segovia\n\n\u00a0\n\nThe Montecinos Sierra family has been farming at Finca El Cairo since 1964. The farm lies at some 1,200 metres above sea level in the mountainous Nueva Segovia region in northern Nicaragua, not far from the border with Honduras.", 
+    "parent": 5, 
+    "title": "Nicaragua - El Cairo", 
+    "short_url": null, 
+    "login_required": false, 
+    "site": 1, 
+    "in_sitemap": true, 
+    "keywords_string": "", 
+    "_meta_title": "", 
+    "expiry_date": null, 
+    "publish_date": "2013-04-30T00:16:29.959Z", 
+    "content_model": "richtextpage", 
+    "in_menus": "1,2,3", 
+    "slug": "sources/nicaragua-el-cairo", 
+    "gen_description": true
+  }
+},
+{
+  "pk": 12, 
+  "model": "pages.page", 
+  "fields": {
+    "status": 2, 
+    "_order": 0, 
+    "titles": "Contact / FAQ", 
+    "description": "Q: What does my subscription support?", 
+    "parent": 7, 
+    "title": "FAQ", 
+    "short_url": null, 
+    "login_required": false, 
+    "site": 1, 
+    "in_sitemap": true, 
+    "keywords_string": "", 
+    "_meta_title": "", 
+    "expiry_date": null, 
+    "publish_date": "2013-04-30T19:40:41.922Z", 
+    "content_model": "richtextpage", 
+    "in_menus": "1,2,3", 
+    "slug": "contact/faq", 
+    "gen_description": true
+  }
+},
+{
   "pk": 1, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<p>About</p>"
+    "content": "<h1>ABOUT THE SOURCE</h1>\n<p>\u00a0</p>\n<h1>VISION</h1>\n<p>The Source Coffee Company was founded to promote the connection between indigenous small-scale coffee farmers and specialty coffee consumers. \u00a0We envision a world where the coffee farmers we purchase from are paid the real value of their crops and ensured a better than fair trade price. \u00a0Instead of coffee being a commodity traded by futures brokers on wall street, let it become a method of communication and empowerment for small-scale indigenuous family coffee farmers.</p>\n<p>\u00a0</p>\n<h1>MISSION</h1>\n<p>The Source Coffee Company enables small indigenous coffee farmers worldwide to rise out of poverty and directly connect to the consumers who value their crops. \u00a0We accomplish this by buying our coffees directly from the farmer and paying better than fair trade prices. \u00a0We also donate a percentage of any profits made to our non-profit arm which accumulates these profits for a micro-loan fund to finance small farmers to improve their farms and overall quality of life. \u00a0</p>\n<h1>VALUES</h1>"
   }
 },
 {
   "pk": 7, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<p>Contact</p>"
+    "content": "<h1>CONTACT THE SOURCE</h1>\n<p class=\"content\">Please feel free to fill out the form below with your questions and comments, we'd love to hear from you!</p>\n<form>Name</form><form><input type=\"text\"></form><form>Message</form><form><input type=\"text\"></form>"
+  }
+},
+{
+  "pk": 12, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<p>Q: What does my subscription support?</p>\n<p>A: Depending on your level of subscription, we move a percentage of it into our non-profit micro-loan fund that helps indigenous farmers raise themselves out of poverty. \u00a0</p>"
   }
 },
 {
   "pk": 8, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<p>Home</p>"
+    "content": "<p class=\"content\">Welcome to The Source. \u00a0We strive to provide you with the best luxury coffee the world has to offer. \u00a0We know that the best coffee is non-commodity varieties, grown by small farmers who make the effort to grow the finest coffee in the world. \u00a0Our goal is to connect you to them - to get your coffee from The Source.</p>"
   }
 },
 {
   "pk": 6, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<p>Pricing</p>"
+    "content": "<p>\u00a0</p>\n<p>\u00a0</p>\n<p>\u00a0</p>\n<p class=\"content\">\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 2 oz Trial \u00a0 \u00a0 \u00a0 \u00a08 oz subscription \u00a0 \u00a0 \u00a0 \u00a0 12 oz subscription \u00a0 \u00a0 \u00a0 \u00a0 16 oz subscription</p>"
   }
 },
 {
@@ -152,6 +231,20 @@
   "model": "pages.richtextpage", 
   "fields": {
     "content": "<p>Sources</p>"
+  }
+},
+{
+  "pk": 10, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<h1><span>LA PERLA</span></h1>\n<div class=\"field field-type-text field-field-farm\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Farm: Finca La Perla</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-varietal\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Varietal: Bourbon Caturra</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-processing\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Processing: Fully Washed and dried on patio</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-coffeeprofile-altitude\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Altitude: 1,100-1,800m</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-owner\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Owner: Arenas family</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-city-town\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Town/City: Chaj\u00fal</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-coffeeprofile-region\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Region: El Quich\u00e9</div>\n</div>\n<div class=\"field-label-inline-first\">\u00a0</div>\n<div class=\"field-label-inline-first\">Roast: Full City</div>\n<div class=\"field-label-inline-first\">Aroma: Citrus</div>\n<div class=\"field-label-inline-first\">Body: Medium</div>\n<div class=\"field-label-inline-first\">Flavors: Orange, Plum, Caramel</div>\n</div>\n</div>\n<p class=\"content\">Finca La Perla lies amid the steep green hills of the \u2018Ixil Triangle\u2019 high in Guatemala\u2019s western highlands, an isolated area famed for the strength of its indigenous culture and the beauty of its landscape. \u2018La Perla\u2019 means \"Sleeping Woman\" in Ixil, a Mayan language spoken widely locally (Spanish remains a second language at best in this hard to reach area).</p>\n<p class=\"content\">Coffee has been growing at La Perla since 1940 and the farm now produces 6,000 to 7,000 quintales of parchment each year. The coffee grows between 1,100-1,800 metres above sea level and is planted in a loose soil with a high content of clay and sand over a limestone base. The Arenas family pays scrupulous attention to detail at every stage of the coffee process. The beans are harvested by hand only when perfectly ripe, then wet milled and dried either in the sun or in mechanical dryers, depending on the weather.</p>\n<p class=\"content\">La Perla won a Presidential award at the 2006 Cup of Excellence competition and has made the auction final 4 times (2001, 2002, 2006 and 2008).</p>\n<p class=\"content\">Around 15% (493 hectares) of this vast farm\u2019s 3,285 rugged, rolling hectares are planted with coffee \u2013 of the Caturra and Bourbon variety. A further 990 hectares are set aside as native forest reserves, which are a haven for animals, birds and native plant species. The farm\u2019s rain-drenched hills are also the source of several natural springs, and its Ixtupil and Sacsiwan rivers provide more than enough water to irrigate the entire farm.</p>\n<p class=\"content\">The climate in the area is steamy, hot and humid, with 197 to 217 inches of rain each year. These conditions also support a wide selection of other crops, including cardamom, macadamia nuts and grains.</p>\n<p class=\"content\">The farm\u2019s land is scattered with small settlements, which are home to between 2,500 and 3,000 local Mayan people. Most work on the farm throughout the year, as well as tending to their own plots of land, where they grow staple foodstuffs for consumption at home. Some 500 workers have formed a solidarity association whose activities have helped to raise standards of living within the farm community.</p>\n<p class=\"content\">The commitment of its workers permitted La Perla to continue to produce during the civil war (circa 1960-1996 \u2013 the longest civil war in the history of the American continent), despite the fact that the farm was located in the heartland of the conflict between the Army and guerrilla groups, which used the surrounding mountains as a base. Over the period of the armed conflict thousands of civilians in the Ixil Triangle area were killed, tortured or disappeared as the Guatemalan Army pursued a \u2018scorched-earth\u2019 policy to destroy villages. [A UN-sponsored report published in 1999 estimated that the state was responsible for 93% of the human rights violations committed during the war, the guerrillas for 3%. An estimated 83% of the victims were Mayan.]</p>\n<p class=\"content\">At the end of the armed conflict, the farm worked hard to reintegrate those most affected by the violence: the refugees who fled to save their families. La Perla provided work, reconstructed entire villages, and promoted health campaigns, such as vaccinations, that facilitated the repatriation of many whose lives were adversely affected by the conflict.</p>"
+  }
+},
+{
+  "pk": 11, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<div class=\"field field-type-text field-field-farm\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Farm: Finca El Cairo</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-processing\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Processing: Fully Washed and dried on patio</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-coffeeprofile-altitude\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Altitude: 1,200 metres above sea level</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-owner\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Owner: Justo Pastor Montecinos Sierra</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-city-town\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Town/City: Comarca los Planes, nr. Dipilto</div>\n</div>\n</div>\n</div>\n<div class=\"field field-type-text field-field-coffeeprofile-region\">\n<div class=\"field-items\">\n<div class=\"field-item odd\">\n<div class=\"field-label-inline-first\">Region: Nueva Segovia</div>\n</div>\n<div class=\"field-label-inline-first\">\u00a0</div>\n<div class=\"field-label-inline-first\">\n<p>The Montecinos Sierra family has been farming at Finca El Cairo since 1964. The farm lies at some 1,200 metres above sea level in the mountainous Nueva Segovia region in northern Nicaragua, not far from the border with Honduras.</p>\n<p>The farm extends over around 21 hectares, all of which are under coffee. The Montecinos family implemented a major replanting progamme in the late 1970s, and Finca El Cairo is now planted out with only Caturra varietal trees.</p>\n<p>Finca El Cairo employs around 20 permanent workers, who carry out all pre-harvest tasks on the farm such as pruning (March) and fertilizing (May). The harvest usually begins in November and lasts until the end of January, during which the workforce swells to as many as 65 workers. The cherries are picked by hand when fully ripe, pulped on the same day and fully washed. The coffee is then dried in the sun on the farm\u2019s patios until it reaches optimum humidity.</p>\n</div>\n</div>\n</div>"
   }
 }
 ]
