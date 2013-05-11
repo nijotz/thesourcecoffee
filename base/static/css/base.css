@@ -92,6 +92,21 @@ padding-right:0;
 margin-right:0;
 }
 
+input#search
+{
+padding:0;
+margin:0;
+}
+
+button.search_btn
+{
+	background-color:transparent;
+	border:0;
+	padding:0;
+	margin-left:-7px;
+	margin-top:20px;
+}
+
 #nav
 {
 height:60px;
@@ -182,7 +197,6 @@ border-bottom-style:solid;
 {
 min-height:500px;
 min-width:972px;
-border: solid 2px #5D5D5D;
 padding:5px;
 }
 
