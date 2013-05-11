@@ -95,16 +95,16 @@ margin-right:0;
 input#search
 {
 padding:0;
-margin:0;
+margin-top:9px;
 }
 
 button.search_btn
 {
+	float:right;
 	background-color:transparent;
 	border:0;
 	padding:0;
-	margin-left:-7px;
-	margin-top:20px;
+	margin:0;
 }
 
 #nav
