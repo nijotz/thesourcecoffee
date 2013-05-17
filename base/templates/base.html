@@ -25,21 +25,18 @@
           <p class="topheader"><a href="{% url "profile_update" %}">My Account</a></p>
           <p class="topheader"><a href="{% url "orders_list" %}">Orders</a></p>
           <p class="topheader">
-          <a href="{% url "logout" %}?next={{ request.path }}"
-              class="btn btn-small btn-danger btn-account">{% trans "Log out" %}</a>
+          <a href="{% url "logout" %}?next={{ request.path }}">{% trans "Log out" %}</a>
           </p>
           {% if request.user.is_superuser %}
           <p class="topheader"><a href="{% url "admin:index" %}">Admin</a></p>
           {% endif %}
       {% else %}
           <p class="topheader">
-          <a href="{% url "login" %}?next={{ request.path }}"
-              class="btn btn-small btn-account">{% trans "Log in" %}</a>
+          <a href="{% url "login" %}?next={{ request.path }}">{% trans "Log in" %}</a>
           </p>
           {% trans "or" %}
           <p class="topheader">
-          <a href="{% url "signup" %}?next={{ request.path }}"
-              class="btn btn-small btn-account">{% trans "Sign up" %}</a>
+          <a href="{% url "signup" %}?next={{ request.path }}">{% trans "Sign up" %}</a>
           </p>
       {% endif %}
 

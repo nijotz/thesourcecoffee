@@ -10,14 +10,11 @@
 <li>{{ title }}</li>
 {% endblock %}
 {% block main %}
-<form method="post"{% if customer_form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+<form class="signup" method="post"{% if customer_form.is_multipart %} enctype="multipart/form-data"{% endif %}>
 {% fields_for customer_form %}
 {% fields_for subscription_form %}
 <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
           data-key="{{stripe_key}}">
 </script>
-<div class="form-actions">
-    <input class="btn btn-primary btn-large" type="submit" value="{{ title }}">
-</div>
 </form>
 {% endblock %}
