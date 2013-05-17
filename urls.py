@@ -23,8 +23,7 @@ urlpatterns = patterns("",
 
     ("^orders/", include('orders.urls')),
     ("^subscription/", include('subscriptions.urls')),
-    url("^%s%s$" % (SIGNUP_URL.strip("/"), _slash),
-        "base.views.signup", name="signup"),
+    ("^account/", include('customers.urls')),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.

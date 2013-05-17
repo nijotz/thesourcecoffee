@@ -1,8 +1,19 @@
-from customers.tests import signup_test_customer
+from annoying.decorators import render_to
+from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth import (authenticate, login as auth_login,
+                                               logout as auth_logout)
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.messages import info, error
 from django.core.urlresolvers import reverse
+from django.db import IntegrityError, transaction
 from django.shortcuts import redirect
+from django.utils.translation import ugettext_lazy as _
+from mezzanine.utils.views import render
+from mezzanine.utils.urls import login_redirect
+from customers.forms import CustomerForm
+from customers.tests import signup_test_customer
+from subscriptions.forms import SubscriptionForm
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -11,3 +22,54 @@ def add_test_customer(request):
     signup_test_customer(request.POST)
     messages.info(request, 'Test customer added')
     return redirect(reverse('admin:index'))
+
+
+@login_required
+@render_to('customers/account_home.html')
+def home(request):
+    return locals()
+
+
+@render_to('customers/account_signup.html')
+def signup(request):
+
+    stripe_key = settings.STRIPE_PUBLIC_KEY
+
+    subscription_form = SubscriptionForm(request.POST or None)
+    customer_form = CustomerForm(request.POST or None)
+
+    if request.method == "POST" and subscription_form.is_valid() and \
+        customer_form.is_valid():
+
+        with transaction.commit_on_success():
+            save = transaction.savepoint()
+            try:
+                customer = customer_form.save(commit=False)
+                customer.update_card(request.POST['stripeToken'])
+                subscription = subscription_form.save(commit=False)
+                subscription.customer = customer
+                customer.save()
+                subscription.save()
+                transaction.savepoint_commit(save)
+
+                if not customer.user.is_active:
+                    send_verification_mail(request, customer.user, "signup_verify")
+                    info(request, _("A verification email has been sent with "
+                                    "a link for activating your account."))
+                    return redirect(request.GET.get("next", "/"))
+                else:
+                    info(request, _("Successfully signed up"))
+                    auth_login(request, customer.user)
+                    return login_redirect(request)
+
+            except Exception as e:
+                error(request, e)
+                transaction.savepoint_rollback(save)
+
+    context = {
+        'customer_form': customer_form,
+        'subscription_form': subscription_form,
+        'stripe_key': stripe_key,
+    }
+
+    return context

@@ -107,6 +107,13 @@ button.search_btn
 	margin:0;
 }
 
+#cust_nav
+{
+  float: left;
+  min-height: 500px;
+  width: 180px;
+}
+
 #nav
 {
 height:60px;

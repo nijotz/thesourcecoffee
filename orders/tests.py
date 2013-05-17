@@ -34,7 +34,7 @@ class OrderTestCase(CustomerTestCase):
             'password': self.customer.password_text
         }
         client.post(reverse('login'), post)
-        response = client.get(reverse('orders_list'))
+        response = client.get(reverse('orders'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.context['orders']) > 0)
 
