@@ -20,7 +20,7 @@
       <form class="login" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
       {% fields_for form %}
       <div class="form-actions">
-          <input class="btn btn-primary btn-large" type="submit" value="{{ title }}">
+          <input class="login_btn" type="submit" value="{{ title }}">
       </div>
       </form>
   </fieldset>
