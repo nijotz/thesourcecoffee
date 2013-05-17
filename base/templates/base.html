@@ -24,7 +24,7 @@
       {% if request.user.is_authenticated %}
           <p class="topheader">
           {{ request.user.username }}
-          <p class="topheader"><a href="{% url "account_home" %}">My Account</a></p>
+          <p class="topheader"><a href="{% url "profile_update" %}">My Account</a></p>
           <p class="topheader">
           <a href="{% url "logout" %}?next={{ request.path }}">{% trans "Log out" %}</a>
           </p>
