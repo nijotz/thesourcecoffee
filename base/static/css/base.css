@@ -47,6 +47,9 @@ height:150px;
 min-width:972px;
 background-color:#21211E;
 overflow:hidden;
+font-family: 'dinmedium', 'serif';
+color:#939597;
+font-size:14px;
 }
 
 #logo
@@ -66,7 +69,7 @@ padding-top:30px;
 p.topheader
 {
 font-family: 'dinmedium', 'Georgia', 'serif';
-font-size:12px;
+font-size:14px;
 line-height:50%;
 }
 
@@ -94,8 +97,9 @@ margin-right:0;
 
 input#search
 {
-padding:0;
 margin-top:9px;
+padding:0;
+margin:0;
 }
 
 button.search_btn
@@ -104,7 +108,6 @@ button.search_btn
 	background-color:transparent;
 	border:0;
 	padding:0;
-	margin:0;
 }
 
 #cust_nav
@@ -207,31 +210,77 @@ min-width:972px;
 padding:5px;
 }
 
-h1 {
+form
+{
+font-family:'dinmedium', 'serif';
+color:#5D5D5D;
+font-size: 20px;
+}
+
+form#payment-form
+{
+font-family:'dinmedium', 'serif';
+color:#5D5D5D;
+font-size: 20px;
+}
+
+.btn
+{
+font-family:'dinmedium', 'serif';
+background-color:#B9842B;
+color:#5D5D5D;
+font-size: 20px;
+}
+
+h1 
+{
 font-family: 'dinbold', 'dinmedium', 'serif';
 color:#939597;
-font-size:16px;
-text-decoration:underline;
+font-size:48px;
+text-decoration:none;
 }
 
 h2 {
 font-family: 'dinbold', 'dinmedium', 'serif';
 color:#939597;
-font-size:12px;
-text-decoration:underline;
+font-size:32px;
+text-decoration:none;
 }
 
 h3 {
 font-family: 'dinbold', 'dinmedium', 'serif';
 color:#939597;
-font-size:10px;
-text-decoration:underline;
+font-size:24px;
+text-decoration:none;
+}
+
+h4 {
+font-family: 'dinbold', 'dinmedium', 'serif';
+color:#939597;
+font-size:20px;
+text-decoration:none;
 }
 
 p.content {
 font-family: 'dinmedium', 'serif';
 color:#5D5D5D;
-font-size: 14px;
+font-size: 20px;
+}
+
+p.content a
+{
+font-family: 'dinmedium', 'serif';
+color:#B9842B;
+font-size: 20px;
+text-decoration:none;
+}
+
+p.content a active
+{
+font-family: 'dinmedium', 'serif';
+color:#939597;
+font-size: 20px;
+text-decoration:none;
 }
 
 #footer
