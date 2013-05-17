@@ -259,6 +259,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
 
     "class_fixtures",
+    "mezzanine_slides",
     "south",
 
     "locations",

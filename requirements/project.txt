@@ -12,3 +12,4 @@ xhtml2pdf
 stripe
 psycopg2
 gunicorn
+mezzanine-slides

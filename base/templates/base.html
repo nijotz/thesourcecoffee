@@ -4,7 +4,23 @@
 <head>
 <meta charset="UTF-8">
 <title>The Source Coffee Company</title>
+
+{% compress css %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/base.css">
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/responsiveslides.css">
+{% endcompress %}
+
+{% compress js %}
+<script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
+<script src="{{ STATIC_URL }}js/responsiveslides.min.js"></script>
+{% endcompress %}
+
+<script>
+$(function() {
+    $('.rslides').responsiveSlides();
+});
+</script>
+
 </head>
 
 <body>
@@ -57,6 +73,8 @@
 
     {% block main_menu %}
     {% page_menu "base/menus/dropdown.html" %}
+
+    {% block slides %}{% endblock %}
 
     <div id="media">
       {% block main %}{% endblock %}
