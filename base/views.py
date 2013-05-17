@@ -11,7 +11,7 @@ from mezzanine.utils.views import render
 from mezzanine.utils.urls import login_redirect
 
 
-def signup(request, template="accounts/account_signup.html"):
+def signup(request, template="customers/account_signup.html"):
 
     stripe_key = settings.STRIPE_PUBLIC_KEY
 

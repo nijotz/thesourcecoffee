@@ -58,6 +58,8 @@ class CustomerTestCase(TestCase):
 
         super(CustomerTestCase, self).setUp()
 
+        self.client = Client()
+
         (response, post) = signup_test_customer(custom_data)
 
         self.customer = Customer.objects.get(user__email=post['email'])
@@ -65,7 +67,10 @@ class CustomerTestCase(TestCase):
 
         self.assertEqual(response.status_code, 302)
 
-
     def test_signup(self):
         # setUp is signup
         return
+
+    def test_my_account(self):
+        response = self.client.get(reverse('profile_update'))
+        self.assertEqual(response.status_code, 200)
