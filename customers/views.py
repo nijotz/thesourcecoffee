@@ -30,7 +30,7 @@ def home(request):
     return locals()
 
 
-@render_to('customers/account_signup.html')
+@render_to('customers/signup.html')
 def signup(request):
 
     stripe_key = settings.STRIPE_PUBLIC_KEY
