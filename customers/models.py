@@ -15,7 +15,7 @@ add_introspection_rules([], ["^django_localflavor_us\.models\.USStateField"])
 
 
 class Customer(StripeObject):
-    
+
     user = models.OneToOneField(User)
     phone = PhoneNumberField()
     street = models.CharField(max_length=256)
