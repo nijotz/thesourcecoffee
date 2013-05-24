@@ -39,7 +39,7 @@ $(function() {
 
       {% if request.user.is_authenticated %}
           <p class="topheader">
-          {{ request.user.username }}
+          Hi, {{ request.user.first_name }}!
           <p class="topheader"><a href="{% url "profile_update" %}">My Account</a></p>
           <p class="topheader">
           <a href="{% url "logout" %}?next={{ request.path }}">{% trans "Log out" %}</a>
