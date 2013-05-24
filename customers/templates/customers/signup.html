@@ -10,11 +10,104 @@
 <li>{{ title }}</li>
 {% endblock %}
 {% block main %}
-<form class="signup" method="post"{% if customer_form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-{% fields_for customer_form %}
-{% fields_for subscription_form %}
-<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-          data-key="{{stripe_key}}">
+
+<form class="signup" method="post">
+
+<div id="check1">
+
+<h2>Step 1: Enter your information</h2>
+<p class="content">Is this a gift? <input type="checkbox"></input>
+<p class="content">Enter the address you wish to receive your coffee at below:</p>
+<div id="check11">
+
+{% for field in customer_form %}
+
+{% if forloop.counter == 6 %}
+</div> <!--- End first column --->
+<div id="check12">
+{% endif %}
+
+{% if field.is_hidden %}
+{{ field }}
+{% else %}
+<div class="control-group input_{{ field.id_for_label }} {{ field.field.type }}
+    {% if field.errors %} error{% endif %}">
+    {{ field.label_tag }}
+    <div class="controls">
+        {{ field }}
+        {% if field.errors %}
+        <span class="help-inline">
+            {% for e in field.errors %}
+            {% if not forloop.first %} / {% endif %}{{ e }}
+            {% endfor %}
+        </span>
+        {% else %}
+        <span class="help-inline">{{ field.help_text }}</span>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% if forloop.last and forloop.counter >= 6 %}
+</div> <!--- End second column --->
+{% endif %}
+
+{% endfor %}
+
+<div id="extra">
+  <p class="content">
+  <br/><br/>
+  Your email address will be your username for login purposes.
+  <br/><br/>
+  Please note that for now we can only ship to valid USPS addresses in the United States.
+  <br/><br/>
+  Your subscription will begin the Monday of the week after you place your order and your first shipment should arrive soon after!
+  </p>
+</div>
+</div> <!--- End of check1 --->
+
+<div id="check2">
+  <h2>Step 2: Choose your plan</h2>
+  <div class="control-group input_id_plan">
+  <div class="center">
+  <input type="submit" value="2oz Trial" class="btn"></input>
+  <input type="submit" value="8oz" class="btn"></input>
+  <input type="submit" value="12oz" class="btn"></input>
+  <input type="submit" value="16oz" class="btn"></input>
+  </div>
+  <p class="content">
+  How long do you want your subscription to last?
+  </p>
+  <div class="center">
+  <input type="submit" value="Monthly" class="btn"></input>
+  <input type="submit" value="3 months" class="btn"></input>
+  <input type="submit" value="1 year" class="btn"></input>
+  </div>
+  <p class="content">
+  *Please note that 3 month and 1 year subscriptions will only be cancelled after the subscription period has elapsed!*
+  </p>
+  </div>
+
+<div class="control-group input_id_code">
+    <label for="id_code" class="signup">Have a gift code?</label>
+    <div class="controls">
+        <input id="id_code" name="code" type="text" />
+        <span class="help-inline"></span>
+    <input type="submit" class="btn" value="Apply Code"></input>
+    </div>
+</div>
+
+<h3>Grand Total:$80</h3>
+<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="pk_test_byUXCM2Jh3dR4GG5SbML95zn">
 </script>
+<br/>
+
+<p class="content">
+Your card will be charged when your subscription begins.  After that, it will be charged every month/3 months/year unless you cancel your subscription.
+<br/><br/>
+Our subscriptions are securely processed with Stripe&copy;.
+</p>
+
+</div> <!---End check2--->
 </form>
 {% endblock %}
