@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block main_menu %}
-  <div id="media">
     <div id="cust_nav">
-      <ul id="navigation">
+      <ul id="cust_navigation">
         <li><a href="{% url 'home' %}">HOME</a></li>
         <li><a href="{% url 'profile_update' %}">MY ACCOUNT</a></li>
         <li><a href="#">SUBSCRIPTION</a></li>
@@ -11,6 +10,7 @@
         <li><a href="#">BREWING TIPS</a></li>
       </ul>
     </div>
+	<div id="media">
     {% block main %}
     {% endblock %}
   </div>
