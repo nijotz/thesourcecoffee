@@ -291,7 +291,44 @@ min-height:500px;
 min-width:972px;
 padding:5px;
 }
- 
+
+#check1
+{
+float:left;
+width:485px;
+height:750px;
+border:2px solid #B9842B;
+margin-right:30px;
+padding:10px
+}
+
+#check11
+{
+float:left;
+width:50%;
+
+}
+
+#check12
+{
+float:right;
+width:50%;
+}
+
+#extra
+{
+clear:both;
+}
+
+#check2
+{
+float:left;
+width:485px;
+height:750px;
+border:2px solid #B9842B;
+padding:10px;
+}
+
 form
 {
 font-family:'dinmedium', 'serif';
@@ -349,14 +386,14 @@ text-decoration:none;
 p.content {
 font-family: 'dinmedium', 'serif';
 color:#5D5D5D;
-font-size: 20px;
+font-size: 18px;
 }
 
 p.content a
 {
 font-family: 'dinmedium', 'serif';
 color:#B9842B;
-font-size: 20px;
+font-size: 18px;
 text-decoration:none;
 }
 
@@ -364,7 +401,7 @@ p.content a active
 {
 font-family: 'dinmedium', 'serif';
 color:#939597;
-font-size: 20px;
+font-size: 18px;
 text-decoration:none;
 }
 
