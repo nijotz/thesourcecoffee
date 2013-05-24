@@ -5,8 +5,8 @@ from subscriptions.forms import SubscriptionForm
 from subscriptions.models import Subscription
 
 @login_required
-@render_to('subscriptions/list.html')
-def list(request):
+@render_to('subscriptions/index.html')
+def index(request):
 
     customer = request.user.customer
 

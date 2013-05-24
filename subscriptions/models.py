@@ -36,18 +36,11 @@ class Plan(StripeObject):
         unique_together = ('amount', 'price', 'interval')
 
     def __unicode__(self):
-        if self.amount < 1:
-            amount = self.amount * 16
-            unit = 'ozs'
-        else:
-            amount = self.amount
-            unit = 'lbs'
 
-        return '{amount:g} {unit} every {interval} month(s) for ${price:,.2f}'\
+        return '{amount_str} every {interval_str} for ${price:,.2f}'\
             .format(
-                amount=amount,
-                unit=unit,
-                interval=self.interval,
+                amount=self.amount_str,
+                interval=self.interval_str,
                 price=self.price)
 
     def save(self, *args, **kwargs):
@@ -76,6 +69,30 @@ class Plan(StripeObject):
         plan = stripe.Plan.retrieve(self.stripe_id)
         plan.delete()
         super(Plan, self).save(*args, **kwargs)
+
+    @property
+    def amount_str(self):
+        if self.amount < 1:
+            amount = self.amount * 16
+            unit = 'ozs'
+        else:
+            amount = self.amount
+            unit = 'lbs'
+
+        if amount == 1:
+            unit = unit.rstrip('s')
+
+        return '{amount:g} {unit}'.format(**locals())
+
+    @property
+    def interval_str(self):
+        interval = self.interval
+        unit = 'months'
+
+        if interval == 1:
+            unit = unit.rstrip('s')
+
+        return '{interval:g} {unit}'.format(**locals())
 
 
 class Subscription(models.Model):
