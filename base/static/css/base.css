@@ -329,6 +329,29 @@ border:2px solid #B9842B;
 padding:10px;
 }
 
+#changesub
+{
+float:left;
+width:485px;
+height:675px;
+border:2px solid #B9842B;
+margin-right:30px;
+padding:10px
+}
+
+
+ label.signup
+{
+font-family: 'dinmedium', 'serif';
+color:#5D5D5D;
+font-size: 20px;
+}
+
+div.center
+{
+text-align:center;
+}
+
 form
 {
 font-family:'dinmedium', 'serif';
@@ -436,6 +459,7 @@ padding:5px;
 height:50px;
 min-width:972px;
 padding-bottom:15px;
+clear:both;
 }
 
 p#foot
