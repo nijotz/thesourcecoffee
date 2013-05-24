@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block main_menu %}
+  <div id="content_wrap">
     <div id="cust_nav">
       <ul id="cust_navigation">
         <li><a href="{% url 'home' %}">HOME</a></li>
@@ -10,8 +11,10 @@
         <li><a href="#">BREWING TIPS</a></li>
       </ul>
     </div>
-	<div id="media">
-    {% block main %}
-    {% endblock %}
+
+    <div id="media">
+      {% block main %}
+      {% endblock %}
+    </div>
   </div>
 {% endblock %}
