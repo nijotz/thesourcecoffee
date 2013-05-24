@@ -39,8 +39,8 @@ class Plan(StripeObject):
 
         return '{amount_str} every {interval_str} for ${price:,.2f}'\
             .format(
-                amount=self.amount_str,
-                interval=self.interval_str,
+                amount_str=self.amount_str,
+                interval_str=self.interval_str,
                 price=self.price)
 
     def save(self, *args, **kwargs):
