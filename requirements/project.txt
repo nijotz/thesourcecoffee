@@ -1,4 +1,4 @@
-Mezzanine==1.4.3
+Mezzanine==1.4.7
 django-annoying
 django-debug-toolbar
 django-model-utils
