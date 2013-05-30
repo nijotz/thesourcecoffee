@@ -15,8 +15,18 @@ def index(request):
     except Subscription.DoesNotExist:
         subscription = None
 
-    if subscription:
-        return locals()
+    msg = ''
+
+    if request.method == 'POST' and subscription:
+        action = request.POST.get('action')
+        if action == 'pause':
+            subscription.pause()
+        elif action == 'cancel':
+            subscription.cancel()
+        elif action == 'change':
+            return HttpResponseRedirect(reverse('subscriptions.views.update'))
+
+    return locals()
 
     msg = ''
     data_key = settings.STRIPE_PUBLIC_KEY

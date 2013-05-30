@@ -14,9 +14,12 @@ Current subscription length: {{ subscription.plan.interval_str }}
 <br/><br/>
 Would you like to:
 <br/>
-<input class="btn" type="submit" value="Pause Subscription"></input> 
-<input class="btn" type="submit" value="Change Subscription"></input> 
-<input class="btn" type="submit" value="Cancel Subscrption"> </input>
+<form method="post">
+{% csrf_token %}
+<button class="btn" name="action" value="pause">Pause Subscription</button>
+<button class="btn" name="action" value="change">Change Subscription</button>
+<button class="btn" name="action" value="cancel">Cancel Subscrption</button>
+</form>
 {% endif %}
 
 {% endblock %}
