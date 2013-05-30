@@ -10,19 +10,20 @@ class LocationFullException(Exception):
 
 
 def convert_tstamp(response, field_name=None):
-    try:
-        if field_name and response[field_name]:
-            return datetime.fromtimestamp(
-                response[field_name],
-                timezone.utc
-            )
-        if not field_name:
-            return datetime.fromtimestamp(
-                response,
-                timezone.utc
-            )
-    except KeyError:
-        pass
+    if response is not None:
+        try:
+            if field_name and response[field_name]:
+                return datetime.fromtimestamp(
+                    response[field_name],
+                    timezone.utc
+                )
+            if not field_name:
+                return datetime.fromtimestamp(
+                    response,
+                    timezone.utc
+                )
+        except KeyError:
+            pass
     return None
 
 
