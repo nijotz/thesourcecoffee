@@ -21,7 +21,7 @@ class Customer(StripeObject):
     street = models.CharField(max_length=256)
     city = models.CharField(max_length=256)
     state = USStateField()
-    code = models.CharField(max_length=10)
+    zipcode = models.CharField(max_length=10)
     #area = models.ForeignKey('locations.Area', null=True)
     #subscription = models.OneToOneField('subscriptions.Subscription', related_name='customer')
 
