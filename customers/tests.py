@@ -23,7 +23,7 @@ def signup_test_customer(custom_data={}):
         'street': '123 Easy St',
         'city': 'City',
         'state': 'TX',
-        'code': '12345',
+        'zipcode': '12345',
         'plan': plan.id,
     }
 
