@@ -8,7 +8,7 @@
 <table>
 <tr>
 <th>
-Order Type
+Order #
 </th>
 <th>
 Order Fulfillment Date/Time
@@ -17,32 +17,26 @@ Order Fulfillment Date/Time
 Order Subscription
 </th>
 <th>
-Misc
+Tracking Number
 </th>
 </tr>
 {% for order in orders %}
 <tr class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
 <td>
-{{ order|classname }}
+{{ order.id }}
 </td>
 <td>
 {{ order.fulfilled|default:"Not fulfilled" }}
 </td>
 <td>
-{{ order.subscription }}
+{{ order.subscription.plan }}
 </td>
-
-{% if order|classname == "PickupOrder" %}
 <td>
-{{ order.location }}
-</td>
-
-{% elif order|classname == "MailOrder" %}
-<td>
+{% if order.fulfilled %}
 Tracking: {{ order.tracking_number }}
 Sent: {{ order.date_sent }}
-</td>
 {% endif %}
+</td>
 
 </tr>
 {% endfor %}

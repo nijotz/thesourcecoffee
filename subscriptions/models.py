@@ -37,7 +37,7 @@ class Plan(StripeObject):
 
     def __unicode__(self):
 
-        return '{amount_str} every {interval_str} for ${price:,.2f}'\
+        return '{amount_str} for {interval_str} at ${price:,.2f}'\
             .format(
                 amount_str=self.amount_str,
                 interval_str=self.interval_str,
