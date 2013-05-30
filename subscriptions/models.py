@@ -124,12 +124,20 @@ class Subscription(models.Model):
             self.current_period_end = convert_tstamp(stripe_sub.current_period_end)
             self.status = stripe_sub.status
             self.started = convert_tstamp(stripe_sub.start)
+            self.canceled = convert_tstamp(stripe_sub.canceled_at)
 
         # make sure location is not full
         #if self.location.capacity_remaining < self.plan.amount:
         #    raise LocationFullException
 
         super(Subscription, self).save(*args, **kwargs)
+
+    def cancel(self):
+        #TODO: potential double-click problem / race condition
+        if self.customer.stripe_customer.subscription:
+            self.customer.stripe_customer.cancel_subscription()
+            self.canceled = datetime.utcnow()
+            self.save()
 
     @property
     def period_is_current(self):
