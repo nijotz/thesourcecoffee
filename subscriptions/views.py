@@ -1,6 +1,8 @@
 from annoying.decorators import render_to
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from subscriptions.forms import SubscriptionForm
 from subscriptions.models import Subscription
 
@@ -27,6 +29,21 @@ def index(request):
             return HttpResponseRedirect(reverse('subscriptions.views.update'))
 
     return locals()
+
+
+@login_required
+@render_to('subscriptions/update.html')
+def update(request):
+
+    customer = request.user.customer
+
+    try:
+        subscription = customer.subscription
+    except Subscription.DoesNotExist:
+        subscription = None
+
+    if subscription:
+        return locals()
 
     msg = ''
     data_key = settings.STRIPE_PUBLIC_KEY
