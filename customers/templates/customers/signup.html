@@ -1,15 +1,28 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags %}
+{% load i18n mezzanine_tags jsonify %}
 
 {% block meta_title %}{{ title }}{% endblock %}
 {% block title %}{{ title }}{% endblock %}
 
 {% block extra_js %}
 {{ block.super }}
+
 <script>
 $(function() {
 $('#amount_radios').buttonset();
 $('#interval_radios').buttonset();
+});
+</script>
+
+<script>
+$(function(){
+  $("input[type='radio']").change(function() {
+    var plans = {{plans|jsonify}};
+    var amount = $('input:checked[name="amount"]').val();
+    var interval = $('input:checked[name="interval"]').val();
+    var price = plans[amount][interval];
+    $('#signup_total').html('Grand Total: $' + price.toString());
+  });
 });
 </script>
 {% endblock %}
@@ -124,7 +137,7 @@ $('#interval_radios').buttonset();
     </div>
 </div>
 
-<h3>Grand Total:$80</h3>
+<h3 id="signup_total">Grand Total:$80</h3>
 <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="pk_test_byUXCM2Jh3dR4GG5SbML95zn">
 </script>
 <br/>

@@ -72,10 +72,26 @@ def signup(request):
                 error(request, e)
                 transaction.savepoint_rollback(save)
 
+    # get plan prices in a jsonifiable format
+    plans = {}
+    for plan in Plan.objects.all():
+        amount = plan.amount
+        interval = plan.interval
+        price = plan.price
+
+        if not plans.get(amount):
+            plans[amount] = {}
+
+        if not plans[amount].get(interval):
+            plans[amount][interval] = {}
+
+        plans[amount][interval] = price
+
     context = {
         'customer_form': customer_form,
         'subscription_form': subscription_form,
         'stripe_key': stripe_key,
+        'plans': plans
     }
 
     return context

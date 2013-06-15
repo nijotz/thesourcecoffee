@@ -3,6 +3,7 @@ django-annoying
 django-debug-toolbar
 django-model-utils
 django-json-field
+django-jsonify
 fabric
 south
 https://github.com/django/django-localflavor-us/zipball/master

@@ -267,6 +267,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
 
     "class_fixtures",
+    "jsonify",
     "mezzanine_slides",
     "south",
 
