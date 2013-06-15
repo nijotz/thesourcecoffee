@@ -11,9 +11,9 @@
 <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
 
 {% compress css %}
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/base.css">
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/slidesjs.css">
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mezzanine/css/smoothness/jquery-ui-1.9.1.custom.min.css"></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/base.css">
 
 {% block extra_css %}{% endblock %}
 {% endcompress %}
