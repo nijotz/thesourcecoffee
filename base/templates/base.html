@@ -12,7 +12,7 @@
 
 {% compress css %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/base.css">
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/responsiveslides.css">
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/slidesjs.css">
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mezzanine/css/smoothness/jquery-ui-1.9.1.custom.min.css"></script>
 
 {% block extra_css %}{% endblock %}
@@ -21,10 +21,27 @@
 {% compress js %}
 <script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
 <script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_UI_FILENAME }}"></script>
-<script src="{{ STATIC_URL }}js/responsiveslides.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.slides.js"></script>
 <script>
 $(function() {
-    $('.rslides').responsiveSlides();
+    $('.slides').slidesjs({
+      width: 940,
+      height: 310,
+      play: {
+        active: true,
+        effect: "slide",
+        interval: 5000,
+        auto: true,
+        swap: true,
+        pauseOnHover: true,
+        restartDelay: 2500
+      },
+      effect: {
+        slide: {
+          speed: 1000,
+        }
+      }
+    });
 });
 </script>
 
@@ -85,7 +102,9 @@ $(function() {
     {% block main_menu %}
     {% page_menu "pages/menus/dropdown.html" %}
 
+    <!-- begin slides -->
     {% block slides %}{% endblock %}
+    <!-- end slides -->
 
     <div id="media">
       {% block main %}{% endblock %}
