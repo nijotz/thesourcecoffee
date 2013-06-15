@@ -3,12 +3,24 @@
 
 {% block meta_title %}{{ title }}{% endblock %}
 {% block title %}{{ title }}{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+$(function() {
+$('#amount_radios').buttonset();
+$('#interval_radios').buttonset();
+});
+</script>
+{% endblock %}
+
 {% block body_id %}account{% endblock %}
 
 {% block breadcrumb_menu %}
 {{ block.super }}
 <li>{{ title }}</li>
 {% endblock %}
+
 {% block main %}
 
 <form class="signup" method="post">
@@ -80,20 +92,23 @@
   <h2>Step 2: Choose your plan</h2>
   <div class="control-group input_id_plan">
   <div class="center">
-  {% for value, text in subscription_form.fields.amount.choices %}
-  <input id="amount_{{value}}" type="radio" value="{{value}}" name="amount"/><label for="amount_{{value}}">{{text}}</label>
-  {% endfor %}
+    <div id="amount_radios">
+    {% for value, text in subscription_form.fields.amount.choices %}
+    <input id="amount_{{value}}" type="radio" value="{{value}}" name="amount"/>
+    <label for="amount_{{value}}">{{text}}</label>
+    {% endfor %}
+    </div>
   </div>
   <p class="content">
   How long do you want your subscription to last?
   </p>
   <div class="center">
-  {% for value, text in subscription_form.fields.interval.choices %}
-  <input id="interval_{{value}}" type="radio" value="{{value}}" name="interval"/><label for="interval_{{value}}">{{text}}</label>
-  {% endfor %}
-  <!-- <input id="interval_1" type="radio" value="1"/><label for="interval_1">Monthly</label>
-  <input id="interval_3" type="radio" value="3"/><label for="interval_3">3 months</label>
-  <input id="interval_12" type="radio" value="12"/><label for="interval_12">1 year</label>-->
+    <div id="interval_radios">
+    {% for value, text in subscription_form.fields.interval.choices %}
+    <input id="interval_{{value}}" type="radio" value="{{value}}" name="interval"/>
+    <label for="interval_{{value}}">{{text}}</label>
+    {% endfor %}
+    </div>
   </div>
   <p class="content">
   *Please note that 3 month and 1 year subscriptions will only be cancelled after the subscription period has elapsed!*
