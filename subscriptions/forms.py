@@ -6,7 +6,7 @@ PLAN_AMOUNT_CHOICES = (
     (0.125, '2oz Trial'),
     (0.5, '8oz'),
     (0.75, '12oz'),
-    (1, '16oz'),
+    (1.0, '16oz'),
 )
 
 PLAN_INTERVAL_CHOICES = (
