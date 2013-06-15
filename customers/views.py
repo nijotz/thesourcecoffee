@@ -1,19 +1,18 @@
 from annoying.decorators import render_to
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import (authenticate, login as auth_login,
-                                               logout as auth_logout)
+from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.messages import info, error
 from django.core.urlresolvers import reverse
-from django.db import IntegrityError, transaction
+from django.db import transaction
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
-from mezzanine.utils.views import render
 from mezzanine.utils.urls import login_redirect
 from customers.forms import CustomerForm
 from customers.tests import signup_test_customer
 from subscriptions.forms import SubscriptionForm
+from subscriptions.models import Plan, Subscription
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -46,10 +45,17 @@ def signup(request):
             try:
                 customer = customer_form.save(commit=False)
                 customer.update_card(request.POST['stripeToken'])
-                subscription = subscription_form.save(commit=False)
-                subscription.customer = customer
                 customer.save()
-                subscription.save()
+
+                if subscription_form.is_valid():
+                    plan = Plan.objects.get(
+                        amount=subscription_form.cleaned_data['amount'],
+                        interval=subscription_form.cleaned_data['interval'])
+                    subscription = Subscription(
+                        customer=customer,
+                        plan=plan)
+                    subscription.save()
+
                 transaction.savepoint_commit(save)
 
                 if not customer.user.is_active:

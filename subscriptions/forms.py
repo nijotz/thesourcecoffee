@@ -1,21 +1,25 @@
 from django import forms
-from django.db.models import Q
-from locations.models import Location
 from subscriptions.models import Plan, Subscription
 
-class SubscriptionForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
+SUBSCRIPTION_AMOUNT_CHOICES = (
+    (0.125, '2oz Trial'),
+    (0.5, '8oz'),
+    (0.75, '12oz'),
+    (1, '16oz'),
+)
 
-        super(SubscriptionForm, self).__init__(*args, **kwargs)
+SUBSCRIPTION_INTERVAL_CHOICES = (
+    (1, 'Monthly'),
+    (3, '3 months'),
+    (12, '1 year'),
+)
 
-        plans = Plan.objects.filter(public=True)
-        self.fields['plan'].queryset = plans
+class SubscriptionForm(forms.Form):
 
-        #locations = Location.objects.filter(area=customer.area)
-        #self.fields['location'].queryset = locations
-
-    class Meta:
-        model = Subscription
-        #fields = ('plan', 'location')
-        fields = ('plan',)
+    amount = forms.ChoiceField(
+        widget=forms.widgets.RadioSelect,
+        choices=SUBSCRIPTION_AMOUNT_CHOICES)
+    interval = forms.ChoiceField(
+        widget=forms.widgets.RadioSelect,
+        choices=SUBSCRIPTION_INTERVAL_CHOICES)

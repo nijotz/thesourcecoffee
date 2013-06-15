@@ -28,10 +28,10 @@ def convert_tstamp(response, field_name=None):
 
 
 class Plan(StripeObject):
-    amount = models.FloatField()
+    amount = models.FloatField() # pounds
     price = models.DecimalField(decimal_places=2, max_digits=7)
     public = models.BooleanField(default=True)
-    interval = models.IntegerField()
+    interval = models.IntegerField() # months
 
     class Meta:
         unique_together = ('amount', 'price', 'interval')
@@ -45,9 +45,6 @@ class Plan(StripeObject):
                 price=self.price)
 
     def save(self, *args, **kwargs):
-
-        # dynamic default for interval
-        self.interval = SiteSetting.objects.get(key='subscriptions.length').value
 
         # dynamic default for stripe_id
         self.stripe_id = str(self)

@@ -13,6 +13,16 @@
 
 <form class="signup" method="post">
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% csrf_token %}
+
 <div id="check1">
 
 <h2>Step 1: Enter your information</h2>
@@ -23,7 +33,7 @@
 {% for field in customer_form %}
 
 {% if forloop.counter == 6 %}
-</div> <!--- End first column --->
+</div> <!-- End first column -->
 <div id="check12">
 {% endif %}
 
@@ -49,7 +59,7 @@
 {% endif %}
 
 {% if forloop.last and forloop.counter >= 6 %}
-</div> <!--- End second column --->
+</div> <!-- End second column -->
 {% endif %}
 
 {% endfor %}
@@ -64,24 +74,26 @@
   Your subscription will begin the Monday of the week after you place your order and your first shipment should arrive soon after!
   </p>
 </div>
-</div> <!--- End of check1 --->
+</div> <!-- End of check1 -->
 
 <div id="check2">
   <h2>Step 2: Choose your plan</h2>
   <div class="control-group input_id_plan">
   <div class="center">
-  <input type="submit" value="2oz Trial" class="btn"></input>
-  <input type="submit" value="8oz" class="btn"></input>
-  <input type="submit" value="12oz" class="btn"></input>
-  <input type="submit" value="16oz" class="btn"></input>
+  {% for value, text in subscription_form.fields.amount.choices %}
+  <input id="amount_{{value}}" type="radio" value="{{value}}" name="amount"/><label for="amount_{{value}}">{{text}}</label>
+  {% endfor %}
   </div>
   <p class="content">
   How long do you want your subscription to last?
   </p>
   <div class="center">
-  <input type="submit" value="Monthly" class="btn"></input>
-  <input type="submit" value="3 months" class="btn"></input>
-  <input type="submit" value="1 year" class="btn"></input>
+  {% for value, text in subscription_form.fields.interval.choices %}
+  <input id="interval_{{value}}" type="radio" value="{{value}}" name="interval"/><label for="interval_{{value}}">{{text}}</label>
+  {% endfor %}
+  <!-- <input id="interval_1" type="radio" value="1"/><label for="interval_1">Monthly</label>
+  <input id="interval_3" type="radio" value="3"/><label for="interval_3">3 months</label>
+  <input id="interval_12" type="radio" value="12"/><label for="interval_12">1 year</label>-->
   </div>
   <p class="content">
   *Please note that 3 month and 1 year subscriptions will only be cancelled after the subscription period has elapsed!*
@@ -108,6 +120,6 @@ Your card will be charged when your subscription begins.  After that, it will be
 Our subscriptions are securely processed with Stripe&copy;.
 </p>
 
-</div> <!---End check2--->
+</div> <!-- End check2 -->
 </form>
 {% endblock %}
