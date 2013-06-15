@@ -358,7 +358,7 @@ color:#5D5D5D;
 font-size: 20px;
 }
 
-.btn .ui-button
+.btn, .ui-button
 {
 font-family:'dinmedium', 'serif';
 background-color:#E0AA5B;
