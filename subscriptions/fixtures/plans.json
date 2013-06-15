@@ -1,0 +1,134 @@
+[
+{
+  "pk": 1, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.125, 
+    "interval": 1, 
+    "stripe_id": "2 ozs for 1 month at $18.75", 
+    "price": "18.75", 
+    "public": true
+  }
+},
+{
+  "pk": 2, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.125, 
+    "interval": 3, 
+    "stripe_id": "2 ozs for 3 months at $18.75", 
+    "price": "18.75", 
+    "public": true
+  }
+},
+{
+  "pk": 3, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.125, 
+    "interval": 12, 
+    "stripe_id": "2 ozs for 12 months at $18.75", 
+    "price": "18.75", 
+    "public": true
+  }
+},
+{
+  "pk": 4, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.5, 
+    "interval": 1, 
+    "stripe_id": "8 ozs for 1 month at $30.00", 
+    "price": "30.00", 
+    "public": true
+  }
+},
+{
+  "pk": 5, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.5, 
+    "interval": 3, 
+    "stripe_id": "8 ozs for 3 months at $80.00", 
+    "price": "80.00", 
+    "public": true
+  }
+},
+{
+  "pk": 6, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.5, 
+    "interval": 12, 
+    "stripe_id": "8 ozs for 12 months at $300.00", 
+    "price": "300.00", 
+    "public": true
+  }
+},
+{
+  "pk": 7, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.75, 
+    "interval": 1, 
+    "stripe_id": "12 ozs for 1 month at $40.00", 
+    "price": "40.00", 
+    "public": true
+  }
+},
+{
+  "pk": 8, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.75, 
+    "interval": 3, 
+    "stripe_id": "12 ozs for 3 months at $100.00", 
+    "price": "100.00", 
+    "public": true
+  }
+},
+{
+  "pk": 9, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 0.75, 
+    "interval": 12, 
+    "stripe_id": "12 ozs for 12 months at $400.00", 
+    "price": "400.00", 
+    "public": true
+  }
+},
+{
+  "pk": 10, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 1.0, 
+    "interval": 1, 
+    "stripe_id": "1 lb for 1 month at $50.00", 
+    "price": "50.00", 
+    "public": true
+  }
+},
+{
+  "pk": 11, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 1.0, 
+    "interval": 3, 
+    "stripe_id": "1 lb for 3 months at $130.00", 
+    "price": "130.00", 
+    "public": true
+  }
+},
+{
+  "pk": 12, 
+  "model": "subscriptions.plan", 
+  "fields": {
+    "amount": 1.0, 
+    "interval": 12, 
+    "stripe_id": "1 lb for 12 months at $500.00", 
+    "price": "500.00", 
+    "public": true
+  }
+}
+]
