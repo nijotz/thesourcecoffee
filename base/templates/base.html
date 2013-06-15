@@ -1,26 +1,35 @@
 <!DOCTYPE html>
+
 <html lang='en' xml:lang='en' xmlns="http://www.w3.org/1999/xhtml">
 {% load pages_tags mezzanine_tags i18n future %}
 <head>
-<meta charset="UTF-8">
-<title>The Source Coffee Company</title>
+
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
 
 {% compress css %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/base.css">
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/responsiveslides.css">
+{% block extra_css %}{% endblock %}
 {% endcompress %}
 
 {% compress js %}
 <script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
 <script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_UI_FILENAME }}"></script>
 <script src="{{ STATIC_URL }}js/responsiveslides.min.js"></script>
-{% endcompress %}
-
 <script>
 $(function() {
     $('.rslides').responsiveSlides();
 });
 </script>
+
+{% block extra_js %}{% endblock %}
+{% endcompress %}
+
+{% block extra_head %}{% endblock %}
 
 </head>
 
