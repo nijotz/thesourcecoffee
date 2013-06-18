@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from subscriptions.forms import SubscriptionForm
-from subscriptions.models import Subscription
+from subscriptions.models import Plan, Subscription
 
 @login_required
 @render_to('subscriptions/index.html')
@@ -36,27 +36,22 @@ def index(request):
 def update(request):
 
     customer = request.user.customer
-
-    try:
-        subscription = customer.subscription
-    except Subscription.DoesNotExist:
-        subscription = None
-
-    if subscription:
-        return locals()
-
-    msg = ''
+    plans = Plan.objects.jsonify_for_form()
     data_key = settings.STRIPE_PUBLIC_KEY
 
     if request.method == 'POST':
-        form = SubscriptionForm(customer, request.POST)
-        if form.is_valid():
+        subscription_form = SubscriptionForm(request.POST)
+        if subscription_form.is_valid():
+            plan = Plan.objects.get(
+                amount=subscription_form.cleaned_data['amount'],
+                interval=subscription_form.cleaned_data['interval'])
             customer.update_card(request.POST.get('stripeToken'))
-            customer.subscribe(
-                form.cleaned_data['plan'],
-                form.cleaned_data['location'])
-            del form
+            customer.subscription.plan = plan
+            customer.subscription.save()
     else:
-        form = SubscriptionForm(customer)
+        subscription = customer.subscription
+        subscription_form = SubscriptionForm({
+            'amount':subscription.plan.amount,
+            'interval':subscription.plan.interval})
 
     return locals()

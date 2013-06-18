@@ -2,7 +2,7 @@ from datetime import datetime
 from django.db import models
 from django.utils import timezone
 import stripe
-from base.models import SiteSetting, StripeObject
+from base.models import StripeObject
 
 
 class LocationFullException(Exception):
@@ -27,11 +27,34 @@ def convert_tstamp(response, field_name=None):
     return None
 
 
+class PlanManager(models.Manager):
+
+    # Used for calculating prices using javascript in the subscription form
+    def jsonify_for_form(self):
+        plans = {}
+        for plan in self.all():
+            amount = plan.amount
+            interval = plan.interval
+            price = plan.price
+
+            if not plans.get(amount):
+                plans[amount] = {}
+
+            if not plans[amount].get(interval):
+                plans[amount][interval] = {}
+
+            plans[amount][interval] = price
+
+        return plans
+
+
 class Plan(StripeObject):
     amount = models.FloatField() # pounds
     price = models.DecimalField(decimal_places=2, max_digits=7)
     public = models.BooleanField(default=True)
     interval = models.IntegerField() # months
+
+    objects = PlanManager()
 
     class Meta:
         unique_together = ('amount', 'price', 'interval')

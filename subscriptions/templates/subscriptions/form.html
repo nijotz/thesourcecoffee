@@ -1,25 +1,46 @@
-<div id="check2">
-  <h2>Step 2: Choose your plan</h2>
-  <div class="control-group input_id_plan">
-  <div class="center">
-  <script type="text/javascript">
-  $(function() {
-  $( "input[name=amount]" ).buttonset();
-  $( "input[name=interval]" ).buttonset();
-  });
-  </script>
-  <input type="radio" name="amount" id="amount_2" value="2"/><label for="2">2oz Trial</label>
-  <input type="radio" name="amount" id="amount_8" value="8oz"><label for="2">8oz Trial</label>
-  <input type="radio" name="amount" id="amount_12" value="12oz"><label for="2">12 Trial</label>
-  <input type="radio" name="amount" id="amount_16" value="16oz"><label for="2">16 Trial</label>
+{% load jsonify %}
+
+<script type="text/javascript">
+$(function() {
+  $('#amount_radios').buttonset();
+  $('#interval_radios').buttonset();
+});
+
+function update_total() {
+  var plans = {{plans|jsonify}};
+  var amount = $('input:checked[name="amount"]').val();
+  var interval = $('input:checked[name="interval"]').val();
+  var price = plans[amount][interval];
+  $('#signup_total').html('Grand Total: $' + price.toString());
+}
+
+$(function(){
+  $("input[type='radio']").change(function() { update_total(); });
+});
+
+$(function(){
+  update_total();
+});
+</script>
+
+<div class="control-group input_id_plan">
+<div class="center">
+  <div id="amount_radios">
+    {% for value, text in subscription_form.fields.amount.choices %}
+    <input {% if subscription_form.amount.value == value %}checked="checked"{%endif%} id="amount_{{value}}" type="radio" value="{{value}}" name="amount"/>
+    <label for="amount_{{value}}">{{text}}</label>
+    {% endfor %}
   </div>
   <p class="content">
   How long do you want your subscription to last?
   </p>
   <div class="center">
-  <input type="radio" name="interval" id="interval_1" value="1"/><label for="interval_1">Monthly</label>
-  <input type="radio" name="interval" id="interval_3" value="3"><label for="interval_3">3 months</label>
-  <input type="radio" name="interval" id="interval_12" value="12"><label for="interval_12">1 year</label>
+    <div id="interval_radios">
+    {% for value, text in subscription_form.fields.interval.choices %}
+      <input {% if subscription_form.interval.value == value %}checked="checked"{%endif%} id="interval_{{value}}" type="radio" value="{{value}}" name="interval"/>
+      <label for="interval_{{value}}">{{text}}</label>
+    {% endfor %}
+    </div>
   </div>
   <p class="content">
   *Please note that 3 month and 1 year subscriptions will only be cancelled after the subscription period has elapsed!*
@@ -35,6 +56,6 @@
     </div>
 </div>
 
-<h3>Grand Total:$80</h3>
+<h3 id="signup_total">Grand Total:</h3>
 <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="pk_test_byUXCM2Jh3dR4GG5SbML95zn">
 </script>

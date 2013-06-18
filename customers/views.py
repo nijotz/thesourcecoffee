@@ -73,19 +73,7 @@ def signup(request):
                 transaction.savepoint_rollback(save)
 
     # get plan prices in a jsonifiable format
-    plans = {}
-    for plan in Plan.objects.all():
-        amount = plan.amount
-        interval = plan.interval
-        price = plan.price
-
-        if not plans.get(amount):
-            plans[amount] = {}
-
-        if not plans[amount].get(interval):
-            plans[amount][interval] = {}
-
-        plans[amount][interval] = price
+    plans = Plan.objects.jsonify_for_form()
 
     context = {
         'customer_form': customer_form,
