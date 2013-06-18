@@ -39,6 +39,7 @@ def update(request):
     plans = Plan.objects.jsonify_for_form()
     data_key = settings.STRIPE_PUBLIC_KEY
 
+    subscription_form = None
     if request.method == 'POST':
         subscription_form = SubscriptionForm(request.POST)
         if subscription_form.is_valid():
@@ -48,7 +49,12 @@ def update(request):
             customer.update_card(request.POST.get('stripeToken'))
             customer.subscription.plan = plan
             customer.subscription.save()
-    else:
+            # This fixes the bug where, when the form was submitted, the values
+            # were unicode strings instead of ints and radio checking in the
+            # template would not work because of type mismatch
+            subscription_form = None
+
+    if not subscription_form:
         subscription = customer.subscription
         subscription_form = SubscriptionForm({
             'amount':subscription.plan.amount,
