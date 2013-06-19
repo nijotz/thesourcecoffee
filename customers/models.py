@@ -14,16 +14,18 @@ add_introspection_rules([], ["^django_localflavor_us\.models\.PhoneNumberField"]
 add_introspection_rules([], ["^django_localflavor_us\.models\.USStateField"])
 
 
-class Customer(StripeObject):
-
-    user = models.OneToOneField(User)
-    phone = PhoneNumberField()
+class Address(models.Model):
     street = models.CharField(max_length=256)
     city = models.CharField(max_length=256)
     state = USStateField()
     zipcode = models.CharField(max_length=10)
-    #area = models.ForeignKey('locations.Area', null=True)
-    #subscription = models.OneToOneField('subscriptions.Subscription', related_name='customer')
+    phone = PhoneNumberField()
+
+
+class Customer(StripeObject):
+
+    user = models.OneToOneField(User)
+    address = models.OneToOneField(null=True)
 
     card_fingerprint = models.CharField(max_length=200, blank=True)
     card_last_4 = models.CharField(max_length=4, blank=True)
