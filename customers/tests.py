@@ -43,7 +43,7 @@ def signup_test_customer(custom_data={}):
     post['stripeToken'] = token.id
 
     client = Client()
-    response = client.post(reverse('signup'), post)
+    response = client.post(reverse('customers_signup'), post)
 
     return (response, post)
 
