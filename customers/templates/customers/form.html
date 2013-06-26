@@ -17,6 +17,7 @@
 {# TODO: refactor, same form on signup #}
 <div id="check1">
 <div id="check11">
+{% csrf_token %}
 {% for field in form %}
 
 {% if forloop.counter == 6 %}
