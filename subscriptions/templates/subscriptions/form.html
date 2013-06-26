@@ -15,7 +15,17 @@ function update_total() {
 }
 
 $(function(){
-  $("input[type='radio']").change(function() { update_total(); });
+  $("input[type='radio']").change(function(obj) {
+    if ($('input:checked[name="amount"]').val() == 0.125) {
+      $('input[name="interval"]').button({disabled:true});
+      $('input[name="interval"]').prop('checked', false);
+      $('#interval_radios').buttonset('refresh');
+    }
+    else {
+      $('input[name="interval"]').button({disabled:false});
+    }
+    update_total();
+  });
 });
 
 $(function(){
