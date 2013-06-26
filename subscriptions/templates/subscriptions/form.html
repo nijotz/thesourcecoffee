@@ -6,12 +6,23 @@ $(function() {
   $('#interval_radios').buttonset();
 });
 
-function update_total() {
-  var plans = {{plans|jsonify}};
-  var amount = $('input:checked[name="amount"]').val();
-  var interval = $('input:checked[name="interval"]').val();
-  var price = plans[amount][interval];
-  $('#signup_total').html('Grand Total: $' + price.toString());
+function update_total(price) {
+  if (!price) {
+    var plans = {{plans|jsonify}};
+    var amount = $('input:checked[name="amount"]').val();
+    if (!amount) {
+      price = 'Select an amount';
+    } else {
+      var interval = $('input:checked[name="interval"]').val();
+      if (!interval) {
+        price = 'Select an interval';
+      } else {
+        price = plans[amount][interval];
+        price = '$' + price.toString();
+      }
+    }
+  }
+  $('#signup_total').html('Grand Total: ' + price);
 }
 
 $(function(){
@@ -20,11 +31,12 @@ $(function(){
       $('input[name="interval"]').button({disabled:true});
       $('input[name="interval"]').prop('checked', false);
       $('#interval_radios').buttonset('refresh');
+      update_total('Free!');
     }
     else {
       $('input[name="interval"]').button({disabled:false});
+      update_total();
     }
-    update_total();
   });
 });
 
