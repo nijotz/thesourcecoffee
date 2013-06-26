@@ -24,12 +24,12 @@ def add_test_customer(request):
 
 
 @login_required
-@render_to('customers/customers_home.html')
+@render_to('customers/home.html')
 def home(request):
     return locals()
 
 
-@render_to('customers/customers_signup.html')
+@render_to('customers/signup.html')
 def signup(request):
 
     stripe_key = settings.STRIPE_PUBLIC_KEY
