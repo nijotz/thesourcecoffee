@@ -24,7 +24,7 @@ def add_test_customer(request):
 
 
 @login_required
-@render_to('customers/account_home.html')
+@render_to('customers/customer_home.html')
 def home(request):
     return locals()
 
