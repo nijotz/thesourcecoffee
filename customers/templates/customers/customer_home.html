@@ -2,15 +2,15 @@
 {% block main %}
 <div id="media">
   <ul id="splash">
-    <li><a href="#"><img src="{{STATIC_URL}}/images/icon_1.png"/>Manage My Account</a></li>
-    <li><a href="#"><img src="{{STATIC_URL}}/images/icon_2.png"/>Review Subscription</a></li>
-    <li><a href="#"><img src="{{STATIC_URL}}/images/icon_3.png"/>Order History</a></li>
+    <li><a href="{% url 'profile_update' %}"><img src="{{STATIC_URL}}/images/icon_1.png"/>Manage My Account</a></li>
+    <li><a href="{% url 'subscription' %}"><img src="{{STATIC_URL}}/images/icon_2.png"/>Review Subscription</a></li>
+    <li><a href="{% url 'orders' %}"><img src="{{STATIC_URL}}/images/icon_3.png"/>Order History</a></li>
   </ul>
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <ul id="splash">
     <li><a href="#"><img src="{{STATIC_URL}}/images/icon_4.png"/>Invites and Rewards</a></li>
     <li><a href="#"><img src="{{STATIC_URL}}/images/icon_5.png"/>Brewing Tips</a></li>
-    <li><a href="#"><img src="{{STATIC_URL}}/images/icon_6.png"/>Log Off</a></li>
+    <li><a href="{% url 'logout' %}"><img src="{{STATIC_URL}}/images/icon_6.png"/>Log Off</a></li>
   </ul>
 </div>
 {% endblock %}
