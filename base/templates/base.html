@@ -101,9 +101,13 @@ $(function() {
 
     </div><!---End header-->
 
+	<div id="navwrapper">
+	
     {% block main_menu %}
     {% page_menu "pages/menus/dropdown.html" %}
 
+	</div>
+	
     <!-- begin slides -->
     {% block slides %}{% endblock %}
     <!-- end slides -->
@@ -114,7 +118,7 @@ $(function() {
     {% endblock %}
 
     <div id="footer">
-      <p id="foot">&copy; 2013 The Source Coffee Company. All rights reserved.</p>
+      <p id="foot">&copy; 2013 The Source Coffee Company. All rights reserved. <a href="http://www.thesourcecoffee.com/privacy">Privacy Policy</a></p>
     </div>
 
 </div> <!--End container-->

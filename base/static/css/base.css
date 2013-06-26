@@ -1,9 +1,11 @@
 html, body
 {
 min-height:100%;
-width:100%;
+width:96%;
+background-color:#000000;
+padding-left:2%;
+padding-right:2%;
 margin:0;
-color: #939597;
 }
 
 @font-face {
@@ -33,12 +35,19 @@ color: #939597;
 #container
 {
 min-height:100%;
+height:100%;
 max-width:100%;
 background-color:#21211E;
-padding-left:5%;
-padding-right:5%;
+padding-left:3%;
+padding-right:3%;
 padding-bottom:10px;
-overflow:hidden;
+-webkit-box-shadow: 3px 0px 10px 0px rgba(250, 250, 250, 0.5);
+box-shadow: 3px 0px 10px 0px rgba(250, 250, 250, 0.5);
+-moz-box-shadow: 3px 0px 10px 0px rgba(250, 250, 250, 0.5);
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#FFFFFF')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#FFFFFF');
 }
 
 #header
@@ -87,9 +96,11 @@ color:#5D5D5D;
 {
 float:left;
 margin-left:12%;
-height:110px;
+max-height:51px;
 width:13%;
+min-width:178px;
 padding-top:40px;
+overflow:hidden;
 }
 
 #search_box
@@ -119,11 +130,30 @@ input.search_btn
 	cursor:pointer;
 }
 
+#navwrapper
+{
+height:70px;
+min-width:972px;
+width:108%;
+margin-left:-4%;
+top:0;
+margin-bottom:20px;
+background-color:#4d4d45;
+}
+
 #nav
 {
-height:60px;
+height:70px;
+background-color:#4d4d45;
 min-width:972px;
-max-width:95%;
+padding-left:5%;
+-webkit-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+-moz-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 #navigation {
@@ -289,6 +319,7 @@ width:180px;
 
  #media
 {
+padding-top:20px;
 min-height:500px;
 min-width:972px;
 padding:5px;
@@ -341,6 +372,34 @@ margin-right:30px;
 padding:10px
 }
 
+div.subcost
+{
+border:2px solid #B9842B;
+width:300px;
+height:300px;
+float:left;
+margin-right:10px;
+background-color:#4D4D4D;
+-webkit-border-radius: 17px;
+-moz-border-radius: 17px;
+border-radius: 17px;
+-webkit-box-shadow:  1px 1px 3px 1px rgba(250, 250, 250, 0.5);
+box-shadow:  1px 1px 3px 1px rgba(250, 250, 250, 0.5);
+-moz-box-shadow:  1px 1px 3px 1px rgba(250, 250, 250, 0.5);
+}
+
+p.costs
+{
+font-family:'dinmedium', 'serif';
+color:#21211E;
+font-size:16px;
+text-decoration:none;
+text-align:center;
+margin:0;
+padding-left:3px;
+padding-right:3px;
+}
+
 
  label.signup
 {
@@ -359,22 +418,33 @@ form
 font-family:'dinmedium', 'serif';
 color:#5D5D5D;
 font-size: 20px;
+margin-bottom:5px;
+}
+
+div.form-actions
+{
+padding-top:10px;
 }
 
 .btn
 {
 font-family:'dinmedium', 'serif';
-background-color:#E0AA5B;
-color:#5D5D5D;
-font-size: 16px;
-font-weight:normal;
--moz-border-radius:6px;
--webkit-border-radius:6px;
-border-radius:6px;
-margin-top:10px;
--moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
--webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+color: rgb(255, 255, 255);
+font-size: 20px;
+padding: 8px;
+text-shadow: -2px -1px 8px rgba(30, 30, 30, 0.73);
+-webkit-border-radius: 51px;
+-moz-border-radius: 51px;
+border-radius: 51px;
+background: rgb(185, 133, 43);
+background: -moz-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -webkit-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -o-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -ms-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: linear-gradient(0deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+-webkit-box-shadow: 3px 2px 7px rgba(50, 50, 50, 0.87);
+-moz-box-shadow:    3px 2px 7px rgba(50, 50, 50, 0.87);
+box-shadow:         3px 2px 7px rgba(50, 50, 50, 0.87);
 border:none;
 cursor:pointer;
 }
@@ -419,6 +489,16 @@ text-decoration:none;
 margin-top:0px;
 }
 
+h2 a
+{
+font-family:'dinmedium', 'serif';
+color:#B9842B;
+font-size:32px;
+text-decoration:none;
+margin-top:0px;
+}
+}
+
 h3 {
 font-family:'dinmedium', 'serif';
 color:#939597;
@@ -434,6 +514,26 @@ font-size:20px;
 text-decoration:none;
 margin-top:0px;
 }
+
+h5{
+font-family:'dinmedium', 'serif';
+color:#B9842B;
+font-size:24px;
+text-decoration:none;
+margin:0;
+margin-top:10px;
+}
+
+h6{
+font-family:'dinmedium', 'serif';
+color:#E8E8E9;
+font-size:24px;
+text-decoration:none;
+margin:0;
+margin-top:10px;
+margin-bottom:10px;
+}
+
 
 p.content {
 font-family: 'dinmedium', 'serif';
@@ -457,11 +557,37 @@ font-size: 18px;
 text-decoration:none;
 }
 
+p.right
+{
+float:right;
+-webkit-box-shadow:  5px 0px 10px 0px rgba(0, 0, 0, 0.5);
+box-shadow:  5px 0px 10px 0px rgba(0, 0, 0, 0.5);
+-moz-box-shadow:  5px 0px 10px 0px rgba(0, 0, 0, 0.5);
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
 table
 {
-border-collapse:collapse;
 max-width:100%;
+border-collapse:collapse;
 }
+
+table th:empty
+{
+background:transparent;
+    border:none;
+	}
+	
+td.none
+{
+background:transparent;
+    border:none;
+	text-align:center;
+	}
+
 
 th
 {
@@ -483,15 +609,17 @@ text-decoration:none;
 padding:5px;
 }
 
-th.price1
+
+th.price
 {
 border:2px solid #B9842B;
 font-family: 'dinbold', 'dinmedium', 'serif';
-color:#939597;
-font-size:16px;
+color:#B9842B;
+font-size:20px;
 text-decoration:none;
 padding:5px;
 text-align:center;
+background-color:#4D4D4D;
 }
 
 td.price1
@@ -499,18 +627,6 @@ td.price1
 border:2px solid #B9842B;
 font-family:'dinmedium', 'serif';
 color:#939597;
-font-size:16px;
-text-decoration:none;
-padding:5px;
-text-align:center;
-}
-
-th.price2
-{
-border:2px solid #B9842B;
-font-family: 'dinbold', 'dinmedium', 'serif';
-background-color:#5D5D5D;
-color:#21211E;
 font-size:16px;
 text-decoration:none;
 padding:5px;
@@ -571,6 +687,17 @@ p#foot
 padding:10px 10px 10px 10px;
 font-family: 'dinmedium', 'serif';
 margin-top:10px;
-font-size:12px;
+font-size:14px;
 color:#42403E;
+}
+
+
+p#foot a
+{
+padding:10px 10px 10px 10px;
+font-family: 'dinmedium', 'serif';
+margin-top:10px;
+font-size:14px;
+color:#B9842B;
+text-decoration:none;
 }
