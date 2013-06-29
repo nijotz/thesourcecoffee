@@ -24,6 +24,12 @@ def add_test_customer(request):
 
 
 @login_required
+@render_to('customers/tips.html')
+def tips(request):
+    return locals()
+
+
+@login_required
 @render_to('customers/home.html')
 def home(request):
     return locals()

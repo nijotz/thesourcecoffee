@@ -273,6 +273,7 @@ INSTALLED_APPS = (
 
     "locations",
     "orders",
+    "rewards",
     "subscriptions",
 )
 
