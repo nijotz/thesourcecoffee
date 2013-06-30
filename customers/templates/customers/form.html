@@ -1,59 +1,83 @@
-{# this should be included not extending and should be used for signup as well #}
-{% extends "customers/base.html" %}
-{% load i18n mezzanine_tags %}
+{% load jsonify %}
 
-{% block meta_title %}{{ title }}{% endblock %}
-{% block title %}{{ title }}{% endblock %}
-{% block body_id %}account{% endblock %}
+<script type="text/javascript">
+$(function() {
+  $('#amount_radios').buttonset();
+  $('#interval_radios').buttonset();
+});
 
-{% block breadcrumb_menu %}
-{{ block.super }}
-<li>{{ title }}</li>
-{% endblock %}
+function update_total(price) {
+  if (!price) {
+    var plans = {{plans|jsonify}};
+    var amount = $('input:checked[name="amount"]').val();
+    if (!amount) {
+      price = 'Select an amount';
+    } else {
+      var interval = $('input:checked[name="interval"]').val();
+      if (!interval) {
+        price = 'Select an interval';
+      } else {
+        price = plans[amount][interval];
+        price = '$' + price.toString();
+      }
+    }
+  }
+  $('#signup_total').html('Grand Total: ' + price);
+}
 
-{% block main %}
-<h2>Manage Account</h2>
-<form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-{# TODO: refactor, same form on signup #}
-<div id="check1">
-<div id="check11">
-{% csrf_token %}
-{% for field in form %}
+$(function(){
+  $("input[type='radio']").change(function(obj) {
+    if ($('input:checked[name="amount"]').val() == 0.125) {
+      $('input[name="interval"]').button({disabled:true});
+      $('input[name="interval"]').prop('checked', false);
+      $('#interval_radios').buttonset('refresh');
+      update_total('Free!');
+    }
+    else {
+      $('input[name="interval"]').button({disabled:false});
+      update_total();
+    }
+  });
+});
 
-{% if forloop.counter == 6 %}
-</div> <!--- End first column --->
-<div id="check12">
-{% endif %}
+$(function(){
+  update_total();
+});
+</script>
 
-{% if field.is_hidden %}
-{{ field }}
-{% else %}
-<div class="control-group input_{{ field.id_for_label }} {{ field.field.type }}
-    {% if field.errors %} error{% endif %}">
-    {{ field.label_tag }}
+<div class="control-group input_id_plan">
+<div class="center">
+  <div id="amount_radios">
+    {% for value, text in subscription_form.fields.amount.choices %}
+    <input {% if subscription_form.amount.value == value %}checked="checked"{%endif%} id="amount_{{value}}" type="radio" value="{{value}}" name="amount"/>
+    <label for="amount_{{value}}">{{text}}</label>
+    {% endfor %}
+  </div>
+  <p class="shadow">
+  How long do you want your subscription to last?
+  </p>
+  <div class="center">
+    <div id="interval_radios">
+    {% for value, text in subscription_form.fields.interval.choices %}
+      <input {% if subscription_form.interval.value == value %}checked="checked"{%endif%} id="interval_{{value}}" type="radio" value="{{value}}" name="interval"/>
+      <label for="interval_{{value}}">{{text}}</label>
+    {% endfor %}
+    </div>
+  </div>
+  <p class="shadow">
+  *Please note that 3 month and 1 year subscriptions will only be cancelled after the subscription period has elapsed!*
+  </p>
+  </div>
+
+<div class="control-group input_id_code">
+    <label for="id_code" class="signup">Have a gift code?</label>
     <div class="controls">
-        {{ field }}
-        {% if field.errors %}
-        <span class="help-inline">
-            {% for e in field.errors %}
-            {% if not forloop.first %} / {% endif %}{{ e }}
-            {% endfor %}
-        </span>
-        {% else %}
-        <span class="help-inline">{{ field.help_text }}</span>
-        {% endif %}
+        <input id="id_code" name="code" type="text" />
+        <span class="help-inline"></span>
+    <input type="submit" class="btn" value="Apply Code"></input>
     </div>
 </div>
-{% endif %}
 
-{% if forloop.last and forloop.counter >= 6 %}
-</div> <!--- End second column --->
-{% endif %}
-
-{% endfor %}
-<div class="form-actions">
-    <input class="btn btn-primary btn-large" type="submit" value="{{ title }}">
-</div>
-</form>
-</div> <!--- End of check1 --->
-{% endblock %}
+<h3 id="signup_total">Grand Total:</h3>
+<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="pk_test_byUXCM2Jh3dR4GG5SbML95zn">
+</script>
