@@ -16,11 +16,14 @@ $(function() {
     clip = new ZeroClipboard($("#copy_text_btn"), {
         moviePath: "{{STATIC_URL}}flash/ZeroClipboard.swf"
     });
-    clip.on( 'load', function ( client, args ) {
+    clip.on("load", function ( client, args ) {
         var button = $("#copy_text_btn");
         var flash = $("#global-zeroclipboard-html-bridge");
         flash.css("width", button.width()*2);
         flash.css("height", button.height()*2);
+    });
+    clip.on("complete", function(client, args) {
+        $("#invite_code_url").val("Copied!");
     });
     $(window).resize(function() {
         clip.reposition();
