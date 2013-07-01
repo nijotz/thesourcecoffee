@@ -1,9 +1,9 @@
+from base.models import StripeObject
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django_localflavor_us.models import PhoneNumberField, USStateField, USPostalCodeField
 import stripe
-from base.models import StripeObject
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_version = getattr(settings, "STRIPE_API_VERSION", "2012-11-07")
@@ -41,6 +41,15 @@ class Customer(StripeObject):
     @property
     def stripe_customer(self):
         return stripe.Customer.retrieve(self.stripe_id)
+
+    def invite_code(self):
+        # Avoid circular import
+        from rewards.models import InviteCode
+        code = InviteCode.objects.filter(customer=self)
+        if code.exists():
+            return code.get()
+
+        return InviteCode.objects.create(customer=self)
 
     def update_card(self, token):
         sc = self.stripe_customer
