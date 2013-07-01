@@ -13,8 +13,7 @@ class Reward(models.Model):
     order = models.ForeignKey(Order)
 
     def __unicode__(self):
-        return "{0} invited {1}, received {2}".format(rewardee, invitee,
-            order)
+        return unicode(self.order)
 
 class InviteCode(models.Model):
     customer = models.OneToOneField(Customer, related_name="+",

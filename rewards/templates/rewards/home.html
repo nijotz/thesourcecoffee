@@ -10,6 +10,7 @@
 </style>
 {% endcompress %}
 {% compress js %}
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/contrib/ZeroClipboard.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -51,34 +52,8 @@ $(function() {
             <div class="invitewrap">
             <h2>Social Media</h2>
             <div id='fb-root'></div>
-    <script src='http://connect.facebook.net/en_US/all.js'></script>
     <p class="shadow"><a onclick='postToFeed(); return false;'>Share Via Facebook</a></p>
     <p id='msg'></p>
-
-    <script>
-      FB.init({appId: "510565695683050", status: true, cookie: true});
-
-      function postToFeed() {
-
-        // calling the API ...
-        var obj = {
-          method: 'feed',
-          redirect_uri: 'http://thesourcecoffee.com',
-          link: 'https://developers.facebook.com/docs/reference/dialogs/',
-          picture: 'http://fbrell.com/f8.jpg',
-          name: 'Facebook Dialogs',
-          caption: 'Reference Documentation',
-          description: 'Using Dialogs to interact with people.'
-        };
-
-        function callback(response) {
-          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
-        }
-
-        FB.ui(obj, callback);
-      }
-
-    </script>
             </div>
 
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -93,9 +68,46 @@ $(function() {
 
             <div class="invitewrap">
         <h2>Your Rewards</h2>
-            <p class="shadow">You have no rewards yet.</p>
+        {% with customer=request.user.customer %}
+            {% if customer.rewardee_set.count == 0 %}
+                <p class="shadow">You have no rewards yet.</p>
+            {% else %}
+            <ul id="rewards_list">
+                {% for reward in customer.rewardee_set.all %}
+                <li><p class="shadow">{{ reward }}</p></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
         </div>
         </div>
 
 
 {% endblock %}
+{% block footer_js %}{{ block.super }}
+{% compress js %}
+<script type="text/javascript">
+  FB.init({appId: "510565695683050", status: true, cookie: true});
+  function postToFeed() {
+
+    // calling the API ...
+    var obj = {
+      method: 'feed',
+      redirect_uri: 'http://thesourcecoffee.com',
+      link: 'https://developers.facebook.com/docs/reference/dialogs/',
+      picture: 'http://fbrell.com/f8.jpg',
+      name: 'Facebook Dialogs',
+      caption: 'Reference Documentation',
+      description: 'Using Dialogs to interact with people.'
+    };
+
+    function callback(response) {
+      document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+    }
+
+    FB.ui(obj, callback);
+  }
+</script>
+{% endcompress %}
+{% endblock %}
+
