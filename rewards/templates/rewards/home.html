@@ -11,7 +11,7 @@
             </p>
             <div class="invitewrap">
             <p class="shadow">Your personal invite link:</p>
-            <input type="text" size="50" class="shadow"></input>
+            <input type="text" size="50" class="shadow" value="https://{{ request.get_host}}{% url "signup" %}?code={{request.user.customer.invite_code}}"></input>
             <br/><br/>
             <input type="submit" class="btn" value="Copy to clipboard"></input>
             </div>
