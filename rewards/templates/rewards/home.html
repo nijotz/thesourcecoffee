@@ -3,27 +3,27 @@
 {% block main %}
 
 <div class="loggedin">
-		<h2>Invites and Rewards</h2>
-			<p class="content">
-			Since we are a small company we rely mostly on word of mouth relationships and we value your recommendation.
-			Copy the link below and send it to your friends via facebook, email, etc. and earn a free shipment when they sign up for a subscription! 
-			You can also earn free goodies for signing up more than 5 people!
-			</p>
-			<div class="invitewrap">
-			<p class="shadow">Your personal invite link:</p>
-			<input type="text" size="50" class="shadow"></input>
-			<br/><br/>
-			<input type="submit" class="btn" value="Copy to clipboard"></input>
-			</div>
-			
-			<div class="invitewrap">
-			<h2>Social Media</h2>
-			<div id='fb-root'></div>
+        <h2>Invites and Rewards</h2>
+            <p class="content">
+            Since we are a small company we rely mostly on word of mouth relationships and we value your recommendation.
+            Copy the link below and send it to your friends via facebook, email, etc. and earn a free shipment when they sign up for a subscription! 
+            You can also earn free goodies for signing up more than 5 people!
+            </p>
+            <div class="invitewrap">
+            <p class="shadow">Your personal invite link:</p>
+            <input type="text" size="50" class="shadow"></input>
+            <br/><br/>
+            <input type="submit" class="btn" value="Copy to clipboard"></input>
+            </div>
+
+            <div class="invitewrap">
+            <h2>Social Media</h2>
+            <div id='fb-root'></div>
     <script src='http://connect.facebook.net/en_US/all.js'></script>
     <p class="shadow"><a onclick='postToFeed(); return false;'>Share Via Facebook</a></p>
     <p id='msg'></p>
 
-    <script> 
+    <script>
       FB.init({appId: "510565695683050", status: true, cookie: true});
 
       function postToFeed() {
@@ -47,23 +47,23 @@
       }
 
     </script>
-			</div>
-			
-			<br/><br<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-			
-			<div class="invitewrap">
-			<h2>Email</h2>
-			<p class="shadow">You can also enter friends' email addresses below, separated by a comma to invite them.</p>
-			<textarea cols="40" id="id_field_3" rows="10"></textarea>
-			<br/><br/>
-			<input type="submit" class="btn" value="Invite via Email"></input>
-			</div>
-			
-			<div class="invitewrap">
-		<h2>Your Rewards</h2>
-			<p class="shadow">You have no rewards yet.</p>
-		</div>
-		</div>
+            </div>
+
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+            <div class="invitewrap">
+            <h2>Email</h2>
+            <p class="shadow">You can also enter friends' email addresses below, separated by a comma to invite them.</p>
+            <textarea cols="40" id="id_field_3" rows="10"></textarea>
+            <br/><br/>
+            <input type="submit" class="btn" value="Invite via Email"></input>
+            </div>
+
+            <div class="invitewrap">
+        <h2>Your Rewards</h2>
+            <p class="shadow">You have no rewards yet.</p>
+        </div>
+        </div>
 
 
 {% endblock %}
