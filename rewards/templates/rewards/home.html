@@ -1,5 +1,34 @@
 {% extends "customers/base.html" %}
+{% load mezzanine_tags %}
 
+{% block extra_js %} {{block.super}}
+{% compress css %}
+<style type="text/css">
+#invite_code_url {
+    width: 100%;
+}
+</style>
+{% endcompress %}
+{% compress js %}
+<script type="text/javascript" src="{{STATIC_URL}}js/contrib/ZeroClipboard.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    clip = new ZeroClipboard($("#copy_text_btn"), {
+        moviePath: "{{STATIC_URL}}flash/ZeroClipboard.swf"
+    });
+    clip.on( 'load', function ( client, args ) {
+        var button = $("#copy_text_btn");
+        var flash = $("#global-zeroclipboard-html-bridge");
+        flash.css("width", button.width()*2);
+        flash.css("height", button.height()*2);
+    });
+    $(window).resize(function() {
+        clip.reposition();
+    });
+});
+</script>
+{% endcompress %}
+{% endblock %}
 {% block main %}
 
 <div class="loggedin">
@@ -11,9 +40,9 @@
             </p>
             <div class="invitewrap">
             <p class="shadow">Your personal invite link:</p>
-            <input type="text" size="50" class="shadow" value="https://{{ request.get_host}}{% url "signup" %}?code={{request.user.customer.invite_code}}"></input>
+            <input id="invite_code_url" disabled="true" type="text" size="50" class="shadow" value="https://{{ request.get_host}}{% url "signup" %}?code={{request.user.customer.invite_code}}"></input>
             <br/><br/>
-            <input type="submit" class="btn" value="Copy to clipboard"></input>
+            <input id="copy_text_btn" data-clipboard-target="invite_code_url" data-clipboard-text="https://{{ request.get_host}}{% url "signup" %}?code={{request.user.customer.invite_code}}" type="submit" class="btn" value="Copy to clipboard"></input>
             </div>
 
             <div class="invitewrap">
