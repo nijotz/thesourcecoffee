@@ -11,9 +11,10 @@ class Migration(SchemaMigration):
         # Adding model 'Reward'
         db.create_table(u'rewards_reward', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('rewardee', self.gf('django.db.models.fields.related.ForeignKey')(related_name='rewardee_set', to=orm['customers.Customer'])),
             ('invitee', self.gf('django.db.models.fields.related.ForeignKey')(related_name='invitee_set', to=orm['customers.Customer'])),
-            ('order', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['orders.Order'])),
+            ('order', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['orders.Order'], null=True)),
         ))
         db.send_create_signal(u'rewards', ['Reward'])
 
@@ -101,9 +102,10 @@ class Migration(SchemaMigration):
         },
         u'rewards.reward': {
             'Meta': {'object_name': 'Reward'},
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'invitee': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'invitee_set'", 'to': u"orm['customers.Customer']"}),
-            'order': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['orders.Order']"}),
+            'order': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['orders.Order']", 'null': 'True'}),
             'rewardee': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'rewardee_set'", 'to': u"orm['customers.Customer']"})
         },
         u'subscriptions.plan': {

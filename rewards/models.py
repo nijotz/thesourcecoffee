@@ -8,9 +8,10 @@ from rewards.utils import base62encode
 CUSTOMER_PK_OFFSET = 10000000
 
 class Reward(models.Model):
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     rewardee = models.ForeignKey(Customer, related_name="rewardee_set")
     invitee = models.ForeignKey(Customer, related_name="invitee_set")
-    order = models.ForeignKey(Order)
+    order = models.ForeignKey(Order, null=True)
 
     def __unicode__(self):
         return unicode(self.order)

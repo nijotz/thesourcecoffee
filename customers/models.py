@@ -51,6 +51,28 @@ class Customer(StripeObject):
 
         return InviteCode.objects.create(customer=self)
 
+    def grant_reward(self, invitee_subscription):
+        invitee = invitee_subscription.customer
+        plan = self.subscription.plan
+        if plan.interval > 1:
+            # The invitee probably signed up for 3 months or a year. Hooray,
+            # then the customer gets a reward right away!
+            order = Order.objects.create(subscription=self.subscription)
+            return Reward.objects.create(rewardee=self, invitee=invitee,
+                order=order)
+        elif plan.interval == 1:
+            # They're on a month-to-month plan and need to be treated a bit
+            # differently. If this customer has at least a month of orders
+            # then we can credit them right away.
+            return Reward.objects.create(rewardee=self, invitee=invitee,
+                order=None)
+        else:
+            #I don't even know. plan.interval of 0?
+            return None
+        # Something weird happened. The customer didn't have a plan.inter
+        return None
+
+
     def update_card(self, token):
         sc = self.stripe_customer
         sc.card = token

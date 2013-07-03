@@ -80,6 +80,14 @@ def signup(request):
 
             transaction.savepoint_commit(save)
 
+            form_invite_code = reward_code.cleaned_data['invite_code']
+            if form_invite_code != '' and form_invite_code != None:
+                inv_code_instance = InviteCode.objects.filter(
+                    code=form_invite_code)
+                if inv_code_instance.exists():
+                    inv = inv_code_instance.get()
+                    inv.customer.grant_reward(subscription)
+
             if not customer.user.is_active:
                 send_verification_mail(request, customer.user, "signup_verify")
                 info(request, _("A verification email has been sent with "
