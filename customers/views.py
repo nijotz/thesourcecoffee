@@ -11,6 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.urls import login_redirect
 from customers.forms import CustomerForm
 from customers.tests import signup_test_customer
+from rewards.forms import RewardCodeForm
 from subscriptions.forms import SubscriptionForm
 from subscriptions.models import Plan, Subscription
 
@@ -46,15 +47,19 @@ def signup(request):
     # get plan prices in a jsonifiable format
     plans = Plan.objects.jsonify_for_form()
 
+    invite_code = request.GET.get('code', '')
+    reward_code_form = RewardCodeForm(request.POST or None,
+        initial={'invite_code': invite_code})
     context = {
         'customer_form': customer_form,
         'subscription_form': subscription_form,
+        'reward_code_form': reward_code_form,
         'stripe_key': stripe_key,
         'plans': plans
     }
 
     if not (request.method == "POST" and subscription_form.is_valid() and
-        customer_form.is_valid()):
+        customer_form.is_valid() and reward_code_form.is_valid()):
         return context
 
     with transaction.commit_on_success():
