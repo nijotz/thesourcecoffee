@@ -64,6 +64,13 @@ class Customer(StripeObject):
             # doen't have one.
             return None
 
+        try:
+            already_invited = invitee.reward_resulting_from_my_invitation
+        except Reward.DoesNotExist, e:
+            pass
+        else:
+            return 'Already invited.' # This person was already invited.
+
         if plan.interval > 1:
             # The invitee probably signed up for 3 months or a year. Hooray,
             # then the customer gets a reward right away!
