@@ -12,8 +12,8 @@ class Migration(SchemaMigration):
         db.create_table(u'rewards_reward', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('rewardee', self.gf('django.db.models.fields.related.ForeignKey')(related_name='rewardee_set', to=orm['customers.Customer'])),
-            ('invitee', self.gf('django.db.models.fields.related.ForeignKey')(related_name='invitee_set', to=orm['customers.Customer'])),
+            ('rewardee', self.gf('django.db.models.fields.related.ForeignKey')(related_name='rewards', to=orm['customers.Customer'])),
+            ('invitee', self.gf('django.db.models.fields.related.OneToOneField')(related_name='reward_resulting_from_my_invitation', unique=True, to=orm['customers.Customer'])),
             ('order', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['orders.Order'], null=True)),
         ))
         db.send_create_signal(u'rewards', ['Reward'])
@@ -104,9 +104,9 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Reward'},
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'invitee': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'invitee_set'", 'to': u"orm['customers.Customer']"}),
+            'invitee': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'reward_resulting_from_my_invitation'", 'unique': 'True', 'to': u"orm['customers.Customer']"}),
             'order': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['orders.Order']", 'null': 'True'}),
-            'rewardee': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'rewardee_set'", 'to': u"orm['customers.Customer']"})
+            'rewardee': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'rewards'", 'to': u"orm['customers.Customer']"})
         },
         u'subscriptions.plan': {
             'Meta': {'unique_together': "(('amount', 'price', 'interval'),)", 'object_name': 'Plan'},

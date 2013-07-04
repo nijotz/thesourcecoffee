@@ -1,4 +1,5 @@
 from base.models import StripeObject
+from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -51,13 +52,23 @@ class Customer(StripeObject):
 
         return InviteCode.objects.create(customer=self)
 
-    def grant_reward(self, invitee_subscription):
-        invitee = invitee_subscription.customer
-        plan = self.subscription.plan
+    def grant_reward(self, invitee):
+        from subscriptions.models import Subscription
+        from rewards.models import Reward
+        from orders.models import Order
+        try:
+            invitee_subscription = invitee.subscription
+            plan = self.subscription.plan
+        except Subscription.DoesNotExist, e:
+            # Either this customer doesn't have a plan or the invtee
+            # doen't have one.
+            return None
+
         if plan.interval > 1:
             # The invitee probably signed up for 3 months or a year. Hooray,
             # then the customer gets a reward right away!
-            order = Order.objects.create(subscription=self.subscription)
+            order = Order.objects.create(subscription=self.subscription,
+                to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
             return Reward.objects.create(rewardee=self, invitee=invitee,
                 order=order)
         elif plan.interval == 1:
@@ -66,10 +77,8 @@ class Customer(StripeObject):
             # then we can credit them right away.
             return Reward.objects.create(rewardee=self, invitee=invitee,
                 order=None)
-        else:
-            #I don't even know. plan.interval of 0?
-            return None
-        # Something weird happened. The customer didn't have a plan.inter
+
+        # Something weird happened.
         return None
 
 

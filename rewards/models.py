@@ -9,12 +9,26 @@ CUSTOMER_PK_OFFSET = 10000000
 
 class Reward(models.Model):
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    rewardee = models.ForeignKey(Customer, related_name="rewardee_set")
-    invitee = models.ForeignKey(Customer, related_name="invitee_set")
+    rewardee = models.ForeignKey(Customer, related_name="rewards")
+    # Don't know what to call this on the Customer side...
+    invitee = models.OneToOneField(Customer, related_name="reward_resulting_from_my_invitation")
     order = models.ForeignKey(Order, null=True)
 
     def __unicode__(self):
-        return unicode(self.order)
+        order_str = "Invited {0}. Rewarded ".format(unicode(self.invitee))
+        fulfilled_on = self.order.fulfilled
+
+        if self.order is not None:
+            unicode_order = unicode(self.rewardee.subscription.plan.amount_str)
+            if fulfilled_on is not None:
+                unicode_order += ", fulfilled on {0}.".format(
+                    fulfilled_on.date())
+            else:
+                unicode_order += ", to be fulfilled."
+        else:
+            unicode_order = u'order is pending.'
+
+        return order_str + unicode_order
 
 class InviteCode(models.Model):
     customer = models.OneToOneField(Customer, related_name="+",

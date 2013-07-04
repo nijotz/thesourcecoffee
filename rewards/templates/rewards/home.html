@@ -69,12 +69,12 @@ $(function() {
             <div class="invitewrap">
         <h2>Your Rewards</h2>
         {% with customer=request.user.customer %}
-            {% if customer.rewardee_set.count == 0 %}
+            {% if customer.rewards.count == 0 %}
                 <p class="shadow">You have no rewards yet.</p>
             {% else %}
             <ul id="rewards_list">
-                {% for reward in customer.rewardee_set.all %}
-                <li><p class="shadow">{{ reward }}</p></li>
+                {% for reward in customer.rewards.all %}
+                <li><p class="reward_text shadow">{{ reward }}</p></li>
                 {% endfor %}
             </ul>
             {% endif %}
