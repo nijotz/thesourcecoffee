@@ -35,4 +35,13 @@
     "description": "Maximum number of pounds that can be fulfilled in one day"
   }
 }
+{
+  "pk": 5,
+  "model": "base.sitesetting",
+  "fields": {
+    "key": "rewards.invite_email_subject",
+    "value": "A friend has invited you to The Source Coffee!",
+    "description": "The subject line for the invite email sent via the rewards app."
+  }
+}
 ]
