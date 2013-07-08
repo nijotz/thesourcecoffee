@@ -61,7 +61,7 @@ $(function() {
             <div class="invitewrap">
                 <h2>Email</h2>
                 {% if email_list_form.list_of_emails.errors %}
-                    <p class="error">{{email_list_form.list_of_emails.errors}}</p>
+                    <p class="error shadow">{{email_list_form.list_of_emails.errors}}</p>
                 {% endif %}
                 <form method="POST">{% csrf_token %}
                     <p class="shadow">{{email_list_form.list_of_emails.label_tag}}</p>

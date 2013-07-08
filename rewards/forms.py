@@ -16,7 +16,7 @@ class EmailListForm(forms.Form):
             try:
                 validate_email(email)
             except ValidationError, e:
-                raise ValidationError("Not all emails were valid.")
+                raise ValidationError("Not all email addresses were valid.")
 
         self.cleaned_data["list_of_emails"] = emails
 
