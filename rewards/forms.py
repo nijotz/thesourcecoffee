@@ -18,7 +18,7 @@ class EmailListForm(forms.Form):
             except ValidationError, e:
                 raise ValidationError("Not all email addresses were valid.")
 
-        self.cleaned_data["list_of_emails"] = emails
+        return emails
 
 class RewardCodeForm(forms.Form):
     invite_code = forms.CharField(max_length=10,
