@@ -109,12 +109,11 @@ $(function() {
 
     </div><!---End header-->
 
-  <div id="navwrapper">
 
     {% block main_menu %}
+    <div id="navwrapper">
     {% page_menu "pages/menus/dropdown.html" %}
-
-  </div>
+    </div>
 
     <!-- begin slides -->
     {% block slides %}{% endblock %}
