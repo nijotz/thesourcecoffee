@@ -18,8 +18,29 @@ from subscriptions.models import Plan, Subscription
 @user_passes_test(lambda u: u.is_superuser)
 @login_required
 def add_test_customer(request):
-    signup_test_customer(request.POST)
-    messages.info(request, 'Test customer added')
+    (response, post) = signup_test_customer(request.POST)
+
+    def errors_or_none(form):
+        try:
+            return response.context[form].errors
+        except:
+            return None
+
+    customer_form_errors = errors_or_none('customer_form')
+    subscription_form_errors = errors_or_none('subscription_form')
+
+    if response.status_code not in [200, 302]:
+        messages.error(request, 'Error: status_code %s' % response.status_code)
+
+    elif customer_form_errors:
+        messages.error(request, 'Error: customer_form errors %s' %
+            str(dict(customer_form_errors)))
+    elif subscription_form_errors:
+        messages.error(request, 'Error: subscription_form errors %s' %
+            str(dict(subscription_form_errors)))
+    else:
+        messages.info(request, 'Test customer added')
+
     return redirect(reverse('admin:index'))
 
 
