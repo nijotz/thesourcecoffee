@@ -117,7 +117,7 @@ class Plan(StripeObject):
 
 
 class Subscription(models.Model):
-    customer = models.OneToOneField('customers.Customer', related_name="subscription")
+    customer = models.OneToOneField('customers.Customer', related_name="_subscription")
     plan = models.ForeignKey('subscriptions.Plan', related_name='subscriptions')
     #location = models.ForeignKey('locations.Location', related_name='subscriptions')
 
