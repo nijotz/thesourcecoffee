@@ -116,6 +116,7 @@ class Customer(StripeObject):
                         to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
                     reward.order = order
                     reward.save()
+
     @property
     def is_month_to_month(self):
         try:
