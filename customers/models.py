@@ -57,15 +57,13 @@ class Customer(StripeObject):
         from rewards.models import Reward
         from orders.models import Order
         try:
-            invitee_subscription = invitee.subscription
             subscription = self.subscription
             if subscription is not None:
                 plan = subscription.plan
             else:
                 return None
         except Subscription.DoesNotExist, e:
-            # Either this customer doesn't have a plan or the invtee
-            # doen't have one.
+            # NO PLAN
             return None
 
         try:
@@ -75,23 +73,64 @@ class Customer(StripeObject):
         else:
             return 'Already invited.' # This person was already invited.
 
+        # Not month to month
         if plan.interval > 1:
-            # The invitee probably signed up for 3 months or a year. Hooray,
-            # then the customer gets a reward right away!
             order = Order.objects.create(subscription=self.subscription,
                 to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
             return Reward.objects.create(rewardee=self, invitee=invitee,
                 order=order)
         elif plan.interval == 1:
-            # They're on a month-to-month plan and need to be treated a bit
-            # differently. If this customer has at least a month of orders
-            # then we can credit them right away.
+            # See if the rewardee has at least a month of orders
+            if self.has_enough_orders_for_m2m_reward:
+                order = Order.objects.create(subscription=self.subscription,
+                    to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
+                return Reward.objects.create(rewardee=self, invitee=invitee,
+                    order=order)
+
             return Reward.objects.create(rewardee=self, invitee=invitee,
                 order=None)
 
         # Something weird happened.
         return None
 
+    def make_sure_rewards_have_orders(self):
+        '''
+        This function is called during fulfillment to see if this customer
+        needs to have any rewards updated because they are month to month.
+        See github issue 4 for more information.
+        '''
+        from orders.models import Order
+        rewards_without_orders = self.rewards.filter(order__isnull=True)
+
+        if (rewards_without_orders.exists()
+            and self.has_enough_orders_for_m2m_reward):
+            try:
+                sub = self.subscription
+            except:
+                pass
+            else:
+                # If they're eligible, we should create orders for all of
+                # their rewards.
+                for reward in rewards_without_orders:
+                    order = Order.objects.create(subscription=sub,
+                        to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
+                    reward.order = order
+                    reward.save()
+    @property
+    def is_month_to_month(self):
+        try:
+            plan = self.subscription.plan
+        except:
+            return False
+
+        if plan.interval == 1:
+            return True
+
+        return False
+
+    @property
+    def has_enough_orders_for_m2m_reward(self):
+        assert False == 'TODO'
 
     def update_card(self, token):
         sc = self.stripe_customer
