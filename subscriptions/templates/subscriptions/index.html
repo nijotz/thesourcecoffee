@@ -2,14 +2,18 @@
 
 {% block main %}
 
-{% if subscription %}
 
 <div class="loggedin">
 <div class="invitewrap">
 
 <h2>Subscription</h2>
+
 <p class="shadow">
+{% if subscription.active %}
 Awesome, you have an active subscription!
+{% elif subscription.paused %}
+Your subscription is currently paused.
+{% endif %}
 <br/><br/>
 Current subscription size: {{ subscription.plan.amount_str }}
 <br/><br/>
@@ -17,17 +21,20 @@ Current subscription length: {{ subscription.plan.interval_str }}
 <br/><br/>
 What would you like to do?
 <br/>
+
 <form method="post">
 {% csrf_token %}
+
+{% if subscription.active %}
 <button class="btn" name="action" value="pause">Pause Subscription</button>
+{% elif subscription.paused %}
+<button class="btn" name="action" value="unpause">Unpause Subscription</button>
+{% endif %}
 <br /><br />
 <button class="btn" name="action" value="change">Change Subscription</button>
-<br /><br />
-<button class="btn" name="action" value="cancel">Cancel Subscrption</button>
 </form>
-</div>
-</div>
 
-{% endif %}
+</div>
+</div>
 
 {% endblock %}

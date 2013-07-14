@@ -36,9 +36,15 @@ def fulfillment(request):
     unfilled_orders = Order.objects.filter(to_be_fulfilled__lte=date.today())
     unfilled_orders.order_by('to_be_fulfilled')
 
+    # Limit to what can be fulfilled per day
     total = 0
     orders = []
     for order in unfilled_orders:
+
+        # Filter out orders that are for a paused subscription
+        if not order.subscription.active:
+            continue
+
         amount = order.subscription.plan.amount
         if total + amount < maximum:
             orders.append(order)

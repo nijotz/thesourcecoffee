@@ -23,8 +23,11 @@ def index(request):
         action = request.POST.get('action')
         if action == 'pause':
             subscription.pause()
-        elif action == 'cancel':
-            subscription.cancel()
+        if action == 'unpause':
+            subscription.unpause()
+        #TODO
+        #elif action == 'cancel':
+        #    subscription.cancel()
         elif action == 'change':
             return HttpResponseRedirect(reverse('subscriptions.views.update'))
 

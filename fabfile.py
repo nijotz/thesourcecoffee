@@ -234,7 +234,7 @@ def db_pass():
     """
     Prompts for the database password if unknown.
     """
-    if not env.db_pass:
+    if env.db_pass is None:
         env.db_pass = getpass("Enter the database password: ")
     return env.db_pass
 

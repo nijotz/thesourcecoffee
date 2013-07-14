@@ -24,7 +24,8 @@ def signup_test_customer(custom_data={}):
         'city': 'City',
         'state': 'TX',
         'zipcode': '12345',
-        'plan': plan.id,
+        'interval': plan.interval,
+        'amount': plan.amount,
     }
 
     post.update(custom_data)

@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django_localflavor_us.models import PhoneNumberField, USStateField, USPostalCodeField
+from subscriptions.models import Subscription
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -53,7 +54,6 @@ class Customer(StripeObject):
         return InviteCode.objects.create(customer=self)
 
     def grant_reward(self, invitee):
-        from subscriptions.models import Subscription
         from rewards.models import Reward
         from orders.models import Order
         try:
@@ -97,3 +97,10 @@ class Customer(StripeObject):
         self.card_last_4 = sc.active_card.last4
         self.card_kind = sc.active_card.type
         self.save()
+
+    @property
+    def subscription(self):
+        try:
+            return self._subscription
+        except Subscription.DoesNotExist:
+            return None
