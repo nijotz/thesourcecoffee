@@ -58,7 +58,11 @@ class Customer(StripeObject):
         from orders.models import Order
         try:
             invitee_subscription = invitee.subscription
-            plan = self.subscription.plan
+            subscription = self.subscription
+            if subscription is not None:
+                plan = subscription.plan
+            else:
+                return None
         except Subscription.DoesNotExist, e:
             # Either this customer doesn't have a plan or the invtee
             # doen't have one.
