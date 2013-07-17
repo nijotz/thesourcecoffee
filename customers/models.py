@@ -26,7 +26,7 @@ class Address(models.Model):
 class Customer(StripeObject):
 
     user = models.OneToOneField(User)
-    address = models.OneToOneField(null=True)
+    address = models.OneToOneField(Address, null=True)
 
     card_fingerprint = models.CharField(max_length=200, blank=True)
     card_last_4 = models.CharField(max_length=4, blank=True)

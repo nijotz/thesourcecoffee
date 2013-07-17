@@ -6,12 +6,7 @@ from customers.models import Customer
 class CustomerAdmin(admin.ModelAdmin):
     list_display = (
         'user_url',
-        'stripe_url',
-        'phone',
-        'street',
-        'city',
-        'state',
-        'zipcode')
+        'stripe_url',)
 
     def stripe_url(self, customer):
         return "<a href='https://manage.stripe.com/test/customers/{0}'>{0}</a>".format(
