@@ -24,7 +24,8 @@ def signup_test_customer(custom_data={}):
         'city': 'City',
         'state': 'TX',
         'zipcode': '12345',
-        'plan': plan.id,
+        'interval': plan.interval,
+        'amount': plan.amount,
     }
 
     post.update(custom_data)
@@ -43,7 +44,7 @@ def signup_test_customer(custom_data={}):
     post['stripeToken'] = token.id
 
     client = Client()
-    response = client.post(reverse('signup'), post)
+    response = client.post(reverse('customers_signup'), post)
 
     return (response, post)
 

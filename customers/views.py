@@ -18,13 +18,40 @@ from subscriptions.models import Plan, Subscription
 @user_passes_test(lambda u: u.is_superuser)
 @login_required
 def add_test_customer(request):
-    signup_test_customer(request.POST)
-    messages.info(request, 'Test customer added')
+    (response, post) = signup_test_customer(request.POST)
+
+    def errors_or_none(form):
+        try:
+            return response.context[form].errors
+        except:
+            return None
+
+    customer_form_errors = errors_or_none('customer_form')
+    subscription_form_errors = errors_or_none('subscription_form')
+
+    if response.status_code not in [200, 302]:
+        messages.error(request, 'Error: status_code %s' % response.status_code)
+
+    elif customer_form_errors:
+        messages.error(request, 'Error: customer_form errors %s' %
+            str(dict(customer_form_errors)))
+    elif subscription_form_errors:
+        messages.error(request, 'Error: subscription_form errors %s' %
+            str(dict(subscription_form_errors)))
+    else:
+        messages.info(request, 'Test customer added')
+
     return redirect(reverse('admin:index'))
 
 
 @login_required
-@render_to('customers/account_home.html')
+@render_to('customers/tips.html')
+def tips(request):
+    return locals()
+
+
+@login_required
+@render_to('customers/home.html')
 def home(request):
     return locals()
 
@@ -37,41 +64,6 @@ def signup(request):
     subscription_form = SubscriptionForm(request.POST or None)
     customer_form = CustomerForm(request.POST or None)
 
-    if request.method == "POST" and subscription_form.is_valid() and \
-        customer_form.is_valid():
-
-        with transaction.commit_on_success():
-            save = transaction.savepoint()
-            try:
-                customer = customer_form.save(commit=False)
-                customer.update_card(request.POST['stripeToken'])
-                customer.save()
-
-                if subscription_form.is_valid():
-                    plan = Plan.objects.get(
-                        amount=subscription_form.cleaned_data['amount'],
-                        interval=subscription_form.cleaned_data['interval'])
-                    subscription = Subscription(
-                        customer=customer,
-                        plan=plan)
-                    subscription.save()
-
-                transaction.savepoint_commit(save)
-
-                if not customer.user.is_active:
-                    send_verification_mail(request, customer.user, "signup_verify")
-                    info(request, _("A verification email has been sent with "
-                                    "a link for activating your account."))
-                    return redirect(request.GET.get("next", "/"))
-                else:
-                    info(request, _("Successfully signed up"))
-                    auth_login(request, customer.user)
-                    return login_redirect(request)
-
-            except Exception as e:
-                error(request, e)
-                transaction.savepoint_rollback(save)
-
     # get plan prices in a jsonifiable format
     plans = Plan.objects.jsonify_for_form()
 
@@ -81,5 +73,41 @@ def signup(request):
         'stripe_key': stripe_key,
         'plans': plans
     }
+
+    if not (request.method == "POST" and subscription_form.is_valid() and
+        customer_form.is_valid()):
+        return context
+
+    with transaction.commit_on_success():
+        save = transaction.savepoint()
+        try:
+            customer = customer_form.save(commit=False).customer
+            customer.update_card(request.POST['stripeToken'])
+            customer.save()
+
+            if subscription_form.is_valid():
+                plan = Plan.objects.get(
+                    amount=subscription_form.cleaned_data['amount'],
+                    interval=subscription_form.cleaned_data['interval'])
+                subscription = Subscription(
+                    customer=customer,
+                    plan=plan)
+                subscription.save()
+
+            transaction.savepoint_commit(save)
+
+            if not customer.user.is_active:
+                send_verification_mail(request, customer.user, "signup_verify")
+                info(request, _("A verification email has been sent with "
+                                "a link for activating your account."))
+                return redirect(request.GET.get("next", "/"))
+            else:
+                info(request, _("Successfully signed up"))
+                auth_login(request, customer.user)
+                return login_redirect(request)
+
+        except Exception as e:
+            error(request, e)
+            transaction.savepoint_rollback(save)
 
     return context

@@ -1,13 +1,11 @@
-{% extends "customers/account_home.html" %}
+{% extends "customers/home.html" %}
 
 {% block main %}
-
-<form method="post">
+<div class="loggedin">
+<form class="update" method="post">
 {% csrf_token %}
-<div id="check2">
   <h2>Update your subscription</h2>
   {% include "subscriptions/form.html" %}
-</div>
 </form>
-
+</div>
 {% endblock %}

@@ -4,6 +4,7 @@ from django.db import models
 from django_localflavor_us.models import PhoneNumberField, USStateField, USPostalCodeField
 import stripe
 from base.models import StripeObject
+from subscriptions.models import Subscription
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_version = getattr(settings, "STRIPE_API_VERSION", "2012-11-07")
@@ -52,3 +53,10 @@ class Customer(StripeObject):
         self.card_last_4 = sc.active_card.last4
         self.card_kind = sc.active_card.type
         self.save()
+
+    @property
+    def subscription(self):
+        try:
+            return self._subscription
+        except Subscription.DoesNotExist:
+            return None

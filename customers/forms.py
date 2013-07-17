@@ -1,9 +1,5 @@
-from django.forms.models import inlineformset_factory
-from django.forms.widgets import TextInput
 from django_localflavor_us import forms
 from mezzanine.accounts.forms import ProfileForm
-from customers.models import Customer
-from subscriptions.models import Subscription
 
 class CustomerForm(ProfileForm):
 
@@ -13,4 +9,4 @@ class CustomerForm(ProfileForm):
     
     def save(self, *args, **kwargs):
         user = super(CustomerForm, self).save(*args, **kwargs)
-        return user.customer
+        return user

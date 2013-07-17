@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style type="text/css">
+#container
+{
+padding-left:0px;
+padding-right:0px;
+}
+#header
+{
+padding-left:3%;
+padding-right:3%;
+}
+#footer
+{
+border-top:2px solid #B9842B;
+padding-left:3%;
+padding-right:3%;
+}
+</style>
+{% endblock %}
+
+{% block main_menu %}
+
+<div id="bar">
+
+</div>
+
+  <div id="content_wrap">
+
+    <div id="cust_nav">
+      <ul id="cust_navigation">
+        <li><a href="{% url 'customers_home' %}">ACCOUNT HOME</a></li>
+        <li><a href="{% url 'profile_update' %}">MY PROFILE</a></li>
+        <li><a href="{% url 'subscription' %}">SUBSCRIPTION</a></li>
+        <li><a href="{% url 'orders' %}">ORDERS</a></li>
+        <li><a href="{% url 'rewards_home' %}">INVITES AND REWARDS</a></li>
+        <li><a href="{% url 'customers_tips' %}">BREWING TIPS</a></li>
+      </ul>
+    </div>
+
+    {% block main %}
+    {% endblock %}
+
+  </div>
+{% endblock %}

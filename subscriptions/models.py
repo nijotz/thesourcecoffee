@@ -117,9 +117,13 @@ class Plan(StripeObject):
 
 
 class Subscription(models.Model):
-    customer = models.OneToOneField('customers.Customer', related_name="subscription")
+    customer = models.OneToOneField('customers.Customer', related_name="_subscription")
     plan = models.ForeignKey('subscriptions.Plan', related_name='subscriptions')
-    #location = models.ForeignKey('locations.Location', related_name='subscriptions')
+
+    # Stripe supports all status except paused. Store here so stripe sync
+    # doesn't overwrite a paused status and use a status property to return
+    # the true status
+    paused = models.BooleanField(default=False)
 
     # stripe fields
     started = models.DateTimeField()
@@ -127,7 +131,8 @@ class Subscription(models.Model):
     ended = models.DateTimeField(null=True)
     current_period_start = models.DateTimeField(null=True)
     current_period_end = models.DateTimeField(null=True)
-    status = models.CharField(max_length=25)  # trialing, active, past_due, canceled, or unpaid
+    # trialing, active, past_due, canceled, or unpaid
+    stripe_status = models.CharField(max_length=25)
 
     def __unicode__(self):
         return '%s - %s' % (self.customer, self.plan)
@@ -143,7 +148,7 @@ class Subscription(models.Model):
             self.plan = Plan.objects.get(stripe_id=stripe_sub.plan.id)
             self.current_period_start = convert_tstamp(stripe_sub.current_period_start)
             self.current_period_end = convert_tstamp(stripe_sub.current_period_end)
-            self.status = stripe_sub.status
+            self.stripe_status = stripe_sub.status
             self.started = convert_tstamp(stripe_sub.start)
             self.canceled = convert_tstamp(stripe_sub.canceled_at)
 
@@ -157,17 +162,32 @@ class Subscription(models.Model):
         #TODO: potential double-click problem / race condition
         if self.customer.stripe_customer.subscription:
             self.customer.stripe_customer.cancel_subscription()
-            self.canceled = datetime.utcnow()
+            self.canceled = datetime.utcnow().replace(tzinfo=timezone.utc)
             self.save()
 
     @property
+    def status(self):
+        if self.paused:
+            return 'paused'
+        return self.stripe_status
+
+    @property
     def period_is_current(self):
-        return self.current_period_end > datetime.utcnow()
+        return self.current_period_end > \
+            datetime.utcnow().replace(tzinfo=timezone.utc)
 
     @property
     def status_is_current(self):
-        return self.status in ["trialing", "active", "canceled"]
+        return self.status in ["trialing", "active"]
 
     @property
     def active(self):
         return self.period_is_current and self.status_is_current
+
+    def pause(self):
+        self.paused = True
+        self.save()
+
+    def unpause(self):
+        self.paused = False
+        self.save()
