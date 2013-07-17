@@ -23,7 +23,7 @@ Order Subscription
 Tracking Number
 </th>
 </tr>
-{% for order in orders %}
+{% for order in fulfilled_orders %}
 <tr class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
 <td>
 {{ order.id }}
@@ -40,10 +40,46 @@ Tracking: {{ order.tracking_number }}
 Sent: {{ order.date_sent }}
 {% endif %}
 </td>
-
+</tr>
+{% empty %}
+<tr>
+<td colspan=4>
+No fulfilled orders
+</td>
 </tr>
 {% endfor %}
+
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<br/>
+<br/>
+<td colspan="4">
+<b>Next Order</b>
+</td>
+</tr>
+
+<tr>
+<td>
+{{ next_order.id }}
+</td>
+<td>
+{{ next_order.to_be_fulfilled }}
+</td>
+<td>
+{{ order.subscription.plan }}
+</td>
+</tr>
 </table>
+
 </div>
 </div>
 {% endblock %}

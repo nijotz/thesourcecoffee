@@ -15,7 +15,9 @@ from orders.models import MailOrder, Order
 @login_required
 @render_to('orders/list.html')
 def list(request):
-    orders = request.user.customer.orders.all()
+    orders = request.user.customer.orders
+    fulfilled_orders = orders.exclude(fulfilled=None)
+    next_order = orders.filter(fulfilled=None).order_by('to_be_fulfilled')[0]
     return locals()
 
 
