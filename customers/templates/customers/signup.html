@@ -11,6 +11,26 @@
 <li>{{ title }}</li>
 {% endblock %}
 
+{% block extra_js %}
+<script type="text/javascript">
+$(function() {
+  function update_gift_form() {
+    if ( $('#gift_checkbox').prop('checked') ) {
+      $('#check11').hide();
+      $('#check12').hide();
+    } else {
+      $('#check11').show();
+      $('#check12').show();
+    }
+  }
+
+  $('#gift_checkbox').on("click", function() {
+    update_gift_form();
+  });
+});
+</script>
+{% endblock %}
+
 {% block main %}
 
 <form class="signup" method="post">
@@ -20,7 +40,7 @@
 <div id="check1">
 
 <h2>Step 1: Enter your information</h2>
-<p class="content">Is this a gift? <input type="checkbox" />
+<p class="content">Is this a gift? <input id="gift_checkbox" type="checkbox" />
 <p class="content">Enter the address you wish to receive your coffee at below:</p>
 <div id="check11">
 
