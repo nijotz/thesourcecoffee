@@ -9,7 +9,7 @@ from django.db import transaction
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.urls import login_redirect
-from customers.forms import AddressForm, CustomerForm
+from customers.forms import CustomerForm
 from customers.tests import signup_test_customer
 from subscriptions.forms import SubscriptionForm
 from subscriptions.models import Plan, Subscription
@@ -63,7 +63,6 @@ def signup(request):
 
     subscription_form = SubscriptionForm(request.POST or None)
     customer_form = CustomerForm(request.POST or None)
-    address_form = AddressForm(request.POST)
 
     # get plan prices in a jsonifiable format
     plans = Plan.objects.jsonify_for_form()
