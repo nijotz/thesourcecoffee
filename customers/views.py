@@ -78,8 +78,33 @@ def gift(request, context):
             description='{plan} for {giftee} from {gifter}'.format(**data)
         )
 
+    # Gather e-mail info
+    gifter_subject = SiteSetting.objects.get(key="gifts.gifter_email_subject")
+    gifter_html = loader.render_to_string("gifts/gifter_email.html", context_instance=context)
+    gifter_text = loader.render_to_string("gifts/gifter_email.txt", context_instance=context)
+    gifter_email = data['gifter']
+
+    giftee_subject = SiteSetting.objects.get(key="gifts.giftee_email_subject")
+    giftee_html = loader.render_to_string("gifts/giftee_email.html", context_instance=context)
+    giftee_text = loader.render_to_string("gifts/giftee_email.txt", context_instance=context)
+    giftee_email = data['giftee']
+
     # Email gifter
+    email = EmailMultiAlternatives(
+        gifter_subject,
+        gifter_text,
+        [gifter_email,])
+    email.attach_alternative(gifter_html, "text/html")
+    email.send(fail_silently=False)
+
     # Email giftee
+    email = EmailMultiAlternatives(
+        giftee_subject,
+        giftee_text,
+        [giftee_email,])
+    email.attach_alternative(giftee_html, "text/html")
+    email.send(fail_silently=False)
+
     # Redirect to page with message
     return redirect(reverse('gifts_sent'))
 
