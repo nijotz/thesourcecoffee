@@ -13,21 +13,21 @@
 
 {% block extra_js %}
 <script type="text/javascript">
-$(function() {
-  function update_gift_form() {
-    if ( $('#gift_checkbox').prop('checked') ) {
-      $('#check11').hide();
-      $('#check12').hide();
-    } else {
-      $('#check11').show();
-      $('#check12').show();
+  $(function() {
+    function update_gift_form() {
+      if ( $('#gift_checkbox').prop('checked') ) {
+        $('#check11').hide();
+        $('#check12').hide();
+      } else {
+        $('#check11').show();
+        $('#check12').show();
+      }
     }
-  }
 
-  $('#gift_checkbox').on("click", function() {
-    update_gift_form();
+    $('#gift_checkbox').on("click", function() {
+      update_gift_form();
+    });
   });
-});
 </script>
 {% endblock %}
 
@@ -42,41 +42,8 @@ $(function() {
 <h2>Step 1: Enter your information</h2>
 <p class="content">Is this a gift? <input id="gift_checkbox" type="checkbox" />
 <p class="content">Enter the address you wish to receive your coffee at below:</p>
-<div id="check11">
 
-{% for field in customer_form %}
-
-{% if forloop.counter == 6 %}
-</div> <!-- End first column -->
-<div id="check12">
-{% endif %}
-
-{% if field.is_hidden %}
-{{ field }}
-{% else %}
-<div class="control-group input_{{ field.id_for_label }} {{ field.field.type }}
-    {% if field.errors %} error{% endif %}">
-    {{ field.label_tag }}
-    <div class="controls">
-        {{ field }}
-        {% if field.errors %}
-        <span class="help-inline">
-            {% for e in field.errors %}
-            {% if not forloop.first %} / {% endif %}{{ e }}
-            {% endfor %}
-        </span>
-        {% else %}
-        <span class="help-inline">{{ field.help_text }}</span>
-        {% endif %}
-    </div>
-</div>
-{% endif %}
-
-{% if forloop.last and forloop.counter >= 6 %}
-</div> <!-- End second column -->
-{% endif %}
-
-{% endfor %}
+{% include "customers/form_fields.html" %}
 
 <div id="extra"></div>
   <p class="content">
@@ -87,8 +54,7 @@ $(function() {
   <br/><br/>
   Your subscription will begin the Monday of the week after you place your order and your first shipment should arrive soon after!
   </p>
-
-</div> <!-- End of check1 -->
+</div>
 
 <div id="check2">
 <h2>Step 2: Choose your plan</h2>

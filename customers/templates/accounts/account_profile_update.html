@@ -1,1 +1,29 @@
-{% extends "customers/form.html" %}
+{# this should be included not extending and should be used for signup as well #}
+{% extends "customers/base.html" %}
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{{ title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block body_id %}account{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<li>{{ title }}</li>
+{% endblock %}
+
+{% block main %}
+<h2>Manage Account</h2>
+<form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+
+<div id="check1">
+
+{% include "customers/form_fields.html" %}
+
+<div class="form-actions">
+    <input class="btn btn-primary btn-large" type="submit" value="{{ title }}">
+</div>
+
+</div> <!-- End of check1 -->
+
+</form>
+{% endblock %}
