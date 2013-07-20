@@ -271,8 +271,10 @@ INSTALLED_APPS = (
     "mezzanine_slides",
     "south",
 
+    "gifts",
     "locations",
     "orders",
+    "promotions",
     "rewards",
     "subscriptions",
 )

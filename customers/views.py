@@ -9,11 +9,16 @@ from django.db import transaction
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.urls import login_redirect
+import stripe
 from customers.forms import CustomerForm
 from customers.tests import signup_test_customer
+from gifts.forms import GiftSubscriptionForm
+from gifts.models import GiftSubscription
 from subscriptions.forms import SubscriptionForm
 from subscriptions.models import Plan, Subscription
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_version = getattr(settings, "STRIPE_API_VERSION", "2012-11-07")
 
 @user_passes_test(lambda u: u.is_superuser)
 @login_required
@@ -56,28 +61,70 @@ def home(request):
     return locals()
 
 
+def gift(request, context):
+    with transaction.commit_on_success():
+        data = {
+            'plan': context['plan'],
+            'giftee': context['gift_form'].cleaned_data['giftee'],
+            'gifter': context['gift_form'].cleaned_data['gifter'],
+        }
+
+        GiftSubscription(**data).save()
+
+        stripe.Charge.create(
+            amount=int(context['plan'].price * 100),
+            currency='usd',
+            card=request.POST['stripeToken'],
+            description='{plan} for {giftee} from {gifter}'.format(**data)
+        )
+
+    # Email gifter
+    # Email giftee
+    # Redirect to page with message
+    return redirect(reverse('gifts_sent'))
+
+
+@render_to('customers/gifts_sent')
+def gifts_sent(request):
+    return {}
+
+
 @render_to('customers/signup.html')
 def signup(request):
 
+    # Necessary data for page
     stripe_key = settings.STRIPE_PUBLIC_KEY
-
     subscription_form = SubscriptionForm(request.POST or None)
     customer_form = CustomerForm(request.POST or None)
-
-    # get plan prices in a jsonifiable format
+    gift_form = GiftSubscriptionForm(request.POST or None)
     plans = Plan.objects.jsonify_for_form()
 
     context = {
         'customer_form': customer_form,
         'subscription_form': subscription_form,
+        'gift_form': gift_form,
         'stripe_key': stripe_key,
-        'plans': plans
+        'plans': plans,
+        'gift': request.POST.get('gift'),
     }
 
-    if not (request.method == "POST" and subscription_form.is_valid() and
-        customer_form.is_valid()):
-        return context
+    # Validate forms, handle gift if necessary
+    if request.method == "POST":
+        if subscription_form.is_valid():
+            context['plan'] = Plan.objects.get(
+                amount=subscription_form.cleaned_data['amount'],
+                interval=subscription_form.cleaned_data['interval'])
+            plan = context['plan']
+        else:
+            return context
 
+        if context['gift'] and gift_form.is_valid():
+            return gift(request, context)
+
+        if not customer_form.is_valid():
+            return context
+
+    # Attempt normal subscription signup
     with transaction.commit_on_success():
         save = transaction.savepoint()
         try:
@@ -85,14 +132,8 @@ def signup(request):
             customer.update_card(request.POST['stripeToken'])
             customer.save()
 
-            if subscription_form.is_valid():
-                plan = Plan.objects.get(
-                    amount=subscription_form.cleaned_data['amount'],
-                    interval=subscription_form.cleaned_data['interval'])
-                subscription = Subscription(
-                    customer=customer,
-                    plan=plan)
-                subscription.save()
+            subscription = Subscription(customer=customer, plan=plan)
+            subscription.save()
 
             transaction.savepoint_commit(save)
 

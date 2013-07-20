@@ -23,8 +23,6 @@ class Customer(StripeObject):
     city = models.CharField(max_length=256)
     state = USStateField()
     zipcode = models.CharField(max_length=10)
-    #area = models.ForeignKey('locations.Area', null=True)
-    #subscription = models.OneToOneField('subscriptions.Subscription', related_name='customer')
 
     card_fingerprint = models.CharField(max_length=200, blank=True)
     card_last_4 = models.CharField(max_length=4, blank=True)
