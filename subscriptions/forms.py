@@ -9,6 +9,12 @@ PLAN_AMOUNT_CHOICES = (
     (1.0, '16oz'),
 )
 
+PLAN_AMOUNT_CHOICES_UPDATE = (
+    (0.5, '8oz'),
+    (0.75, '12oz'),
+    (1.0, '16oz'),
+)
+
 PLAN_INTERVAL_CHOICES = (
     (1, 'Monthly'),
     (3, '3 months'),
@@ -20,6 +26,15 @@ class SubscriptionForm(forms.Form):
     amount = forms.ChoiceField(
         widget=forms.widgets.RadioSelect,
         choices=PLAN_AMOUNT_CHOICES)
+    interval = forms.ChoiceField(
+        widget=forms.widgets.RadioSelect,
+        choices=PLAN_INTERVAL_CHOICES)
+
+class SubscriptionUpdateForm(forms.Form):
+
+    amount = forms.ChoiceField(
+        widget=forms.widgets.RadioSelect,
+        choices=PLAN_AMOUNT_CHOICES_UPDATE)
     interval = forms.ChoiceField(
         widget=forms.widgets.RadioSelect,
         choices=PLAN_INTERVAL_CHOICES)
