@@ -133,6 +133,17 @@ $(function() {
 
 </div> <!--End container-->
 
+<script>
+$(document).ready(function(){
+  $(".qhead a").on("click", function(e){
+    e.preventDefault();
+    var href = $(this).attr("href");
+
+    $(href).fadeToggle(450);
+  });
+});
+</script>
+
 </body>
 
 </html>
