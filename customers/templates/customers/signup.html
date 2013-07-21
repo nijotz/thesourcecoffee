@@ -12,29 +12,6 @@
 {% endblock %}
 
 {% block extra_js %}
-<script type="text/javascript">
-  $(function() {
-    function update_gift_form() {
-      if ( $('#gift_checkbox').prop('checked') ) {
-        $('#check11').hide();
-        $('#check12').hide();
-        $('#gift-check11').show();
-        $('#gift-check12').show();
-      } else {
-        $('#gift-check11').hide();
-        $('#gift-check12').hide();
-        $('#check11').show();
-        $('#check12').show();
-      }
-    }
-
-    $('#gift_checkbox').on("click", function() {
-      update_gift_form();
-    });
-
-    update_gift_form();
-  });
-</script>
 {% endblock %}
 
 {% block main %}
@@ -88,6 +65,35 @@
 <h2>Step 2: Choose your plan</h2>
 
 {% include "subscriptions/form.html" %}
+
+<!-- This needs to be down here because disabled the 2oz Trial button needs to happen after
+     buttonset() is called which happens in a script in the subscription form above -->
+<script type="text/javascript">
+  $(function() {
+    function update_gift_form() {
+      if ( $('#gift_checkbox').prop('checked') ) {
+        $('#check11').hide();
+        $('#check12').hide();
+        $('#gift-check11').show();
+        $('#gift-check12').show();
+        $("input[type='radio'][name='amount'][value='0.125']").button({disabled:true});
+      } else {
+        $('#gift-check11').hide();
+        $('#gift-check12').hide();
+        $('#check11').show();
+        $('#check12').show();
+        $("input[type='radio'][name='amount'][value='0.125']").button({disabled:false});
+      }
+    }
+
+    $('#gift_checkbox').on("click", function() {
+      update_gift_form();
+    });
+
+    update_gift_form();
+  });
+</script>
+
 <br/>
 
 <p class="content">
