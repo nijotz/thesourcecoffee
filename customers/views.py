@@ -192,10 +192,10 @@ def signup(request):
         else:
             return context
 
-        if context['gift_purchase'] and gift_form.is_valid():
+        if context.get('gift_purchase') and gift_form.is_valid():
             return gift_purchase(request, context)
 
-        if context['gift_redeerm'] and customer_form.is_valid():
+        if context.get('gift_redeem') and customer_form.is_valid():
             return gift_redeem(request, context)
 
         if not customer_form.is_valid():
