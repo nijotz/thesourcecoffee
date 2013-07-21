@@ -217,7 +217,7 @@ def signup(request):
 
             transaction.savepoint_commit(save)
 
-            form_invite_code = reward_code.cleaned_data['invite_code']
+            form_invite_code = reward_code_form.cleaned_data['invite_code']
             if form_invite_code != '' and form_invite_code != None:
                 inv_code_instance = InviteCode.objects.filter(
                     code=form_invite_code)
