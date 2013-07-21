@@ -989,13 +989,12 @@ opacity:1;
 } 
 
 .ui-button[aria-pressed="false"] { 
-opacity:.35;
+opacity:.7;
 } 
 
-.ui-state-disabled
-{
-opacity: .35;
-}
+.ui-button[aria-disabled="true"] { 
+display:none;
+} 
 
 span.help-inline
 {
