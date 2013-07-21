@@ -1,69 +1,120 @@
 {% extends "customers/base.html" %}
+{% load mezzanine_tags %}
 
+{% block extra_js %} {{block.super}}
+{% compress css %}
+<style type="text/css">
+#invite_code_url {
+    width: 100%;
+}
+</style>
+{% endcompress %}
+{% compress js %}
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/contrib/ZeroClipboard.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    clip = new ZeroClipboard($("#copy_text_btn"), {
+        moviePath: "{{STATIC_URL}}flash/ZeroClipboard.swf"
+    });
+    clip.on("load", function ( client, args ) {
+        var button = $("#copy_text_btn");
+        var flash = $("#global-zeroclipboard-html-bridge");
+        flash.css("width", button.width()*2);
+        flash.css("height", button.height()*2);
+    });
+    clip.on("complete", function(client, args) {
+        $("#invite_code_url").val("Copied!");
+    });
+    $(window).resize(function() {
+        clip.reposition();
+    });
+});
+</script>
+{% endcompress %}
+{% endblock %}
 {% block main %}
 
 <div class="loggedin">
-		<h2>Invites and Rewards</h2>
-			<p class="content">
-			Since we are a small company we rely mostly on word of mouth relationships and we value your recommendation.
-			Copy the link below and send it to your friends via facebook, email, etc. and earn a free shipment when they sign up for a subscription! 
-			You can also earn free goodies for signing up more than 5 people!
-			</p>
-			<div class="invitewrap">
-			<p class="shadow">Your personal invite link:</p>
-			<input type="text" size="50" class="shadow"></input>
-			<br/><br/>
-			<input type="submit" class="btn" value="Copy to clipboard"></input>
-			</div>
-			
-			<div class="invitewrap">
-			<h2>Social Media</h2>
-			<div id='fb-root'></div>
-    <script src='http://connect.facebook.net/en_US/all.js'></script>
+        <h2>Invites and Rewards</h2>
+            <p class="content">
+            Since we are a small company we rely mostly on word of mouth relationships and we value your recommendation.
+            Copy the link below and send it to your friends via facebook, email, etc. and earn a free shipment when they sign up for a subscription! 
+            You can also earn free goodies for signing up more than 5 people!
+            </p>
+            <div class="invitewrap">
+            <p class="shadow">Your personal invite link:</p>
+            <input id="invite_code_url" disabled="true" type="text" size="50" class="shadow" value="https://{{ request.get_host}}{% url "signup" %}?code={{request.user.customer.invite_code}}"></input>
+            <br/><br/>
+            <input id="copy_text_btn" data-clipboard-target="invite_code_url" data-clipboard-text="https://{{ request.get_host}}{% url "signup" %}?code={{request.user.customer.invite_code}}" type="submit" class="btn" value="Copy to clipboard"></input>
+            </div>
+
+            <div class="invitewrap">
+            <h2>Social Media</h2>
+            <div id='fb-root'></div>
     <p class="shadow"><a onclick='postToFeed(); return false;'>Share Via Facebook</a></p>
     <p id='msg'></p>
+            </div>
 
-    <script> 
-      FB.init({appId: "510565695683050", status: true, cookie: true});
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-      function postToFeed() {
+            <div class="invitewrap">
+                <h2>Email</h2>
+                {% if email_list_form.list_of_emails.errors %}
+                    <p class="error shadow">{{email_list_form.list_of_emails.errors}}</p>
+                {% endif %}
+                <form method="POST">{% csrf_token %}
+                    <p class="shadow">{{email_list_form.list_of_emails.label_tag}}</p>
+                    {{ email_list_form.list_of_emails }}
+                    <input style="margin-top: 5px;" type="submit" class="shdadow btn" value="Invite via Email"></input>
+                </form>
+                {% if email_success == True %}
+                    <p class="shadow">Thanks for spreading the word! We've sent some email to your friends.</p>
+                {% endif %}
+            </div>
 
-        // calling the API ...
-        var obj = {
-          method: 'feed',
-          redirect_uri: 'http://thesourcecoffee.com',
-          link: 'https://developers.facebook.com/docs/reference/dialogs/',
-          picture: 'http://fbrell.com/f8.jpg',
-          name: 'Facebook Dialogs',
-          caption: 'Reference Documentation',
-          description: 'Using Dialogs to interact with people.'
-        };
-
-        function callback(response) {
-          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
-        }
-
-        FB.ui(obj, callback);
-      }
-
-    </script>
-			</div>
-			
-			<br/><br<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-			
-			<div class="invitewrap">
-			<h2>Email</h2>
-			<p class="shadow">You can also enter friends' email addresses below, separated by a comma to invite them.</p>
-			<textarea cols="40" id="id_field_3" rows="10"></textarea>
-			<br/><br/>
-			<input type="submit" class="btn" value="Invite via Email"></input>
-			</div>
-			
-			<div class="invitewrap">
-		<h2>Your Rewards</h2>
-			<p class="shadow">You have no rewards yet.</p>
-		</div>
-		</div>
+            <div class="invitewrap">
+        <h2>Your Rewards</h2>
+        {% with customer=request.user.customer %}
+            {% if customer.rewards.count == 0 %}
+                <p class="shadow">You have no rewards yet.</p>
+            {% else %}
+            <ul id="rewards_list">
+                {% for reward in customer.rewards.all %}
+                <li><p class="reward_text shadow">{{ reward }}</p></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        </div>
+        </div>
 
 
 {% endblock %}
+{% block footer_js %}{{ block.super }}
+{% compress js %}
+<script type="text/javascript">
+  FB.init({appId: "510565695683050", status: true, cookie: true});
+  function postToFeed() {
+
+    // calling the API ...
+    var obj = {
+      method: 'feed',
+      redirect_uri: 'http://thesourcecoffee.com',
+      link: 'https://developers.facebook.com/docs/reference/dialogs/',
+      picture: 'http://fbrell.com/f8.jpg',
+      name: 'Facebook Dialogs',
+      caption: 'Reference Documentation',
+      description: 'Using Dialogs to interact with people.'
+    };
+
+    function callback(response) {
+      document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+    }
+
+    FB.ui(obj, callback);
+  }
+</script>
+{% endcompress %}
+{% endblock %}
+

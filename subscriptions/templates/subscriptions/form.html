@@ -125,8 +125,12 @@ $(function(){
     <div class="controls">
         <input id="id_code" name="code" type="text" />
         <span class="help-inline"></span>
-    <input type="button" class="btn" id="apply_code_btn" value="Apply Code"></input>
+        <input type="button" class="btn" id="apply_code_btn" value="Apply Code"></input>
     </div>
+</div>
+
+<div class="control-group input_invite_code">
+    {{ reward_code_form.as_p }}
 </div>
 
 <h3 id="signup_total">Grand Total:</h3>

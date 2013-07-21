@@ -1,3 +1,5 @@
+from base.models import StripeObject
+from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -40,6 +42,51 @@ class Customer(StripeObject):
     @property
     def stripe_customer(self):
         return stripe.Customer.retrieve(self.stripe_id)
+
+    def invite_code(self):
+        # Avoid circular import
+        from rewards.models import InviteCode
+        code = InviteCode.objects.filter(customer=self)
+        if code.exists():
+            return code.get()
+
+        return InviteCode.objects.create(customer=self)
+
+    def grant_reward(self, invitee):
+        from rewards.models import Reward
+        from orders.models import Order
+        try:
+            invitee_subscription = invitee.subscription
+            plan = self.subscription.plan
+        except Subscription.DoesNotExist, e:
+            # Either this customer doesn't have a plan or the invtee
+            # doen't have one.
+            return None
+
+        try:
+            already_invited = invitee.reward_resulting_from_my_invitation
+        except Reward.DoesNotExist, e:
+            pass
+        else:
+            return 'Already invited.' # This person was already invited.
+
+        if plan.interval > 1:
+            # The invitee probably signed up for 3 months or a year. Hooray,
+            # then the customer gets a reward right away!
+            order = Order.objects.create(subscription=self.subscription,
+                to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
+            return Reward.objects.create(rewardee=self, invitee=invitee,
+                order=order)
+        elif plan.interval == 1:
+            # They're on a month-to-month plan and need to be treated a bit
+            # differently. If this customer has at least a month of orders
+            # then we can credit them right away.
+            return Reward.objects.create(rewardee=self, invitee=invitee,
+                order=None)
+
+        # Something weird happened.
+        return None
+
 
     def update_card(self, token):
         sc = self.stripe_customer

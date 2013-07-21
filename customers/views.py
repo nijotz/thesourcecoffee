@@ -14,6 +14,7 @@ from customers.forms import CustomerForm
 from customers.tests import signup_test_customer
 from gifts.forms import GiftSubscriptionForm
 from gifts.models import GiftSubscription
+from rewards.forms import RewardCodeForm
 from subscriptions.forms import SubscriptionForm
 from subscriptions.models import Plan, Subscription
 
@@ -167,10 +168,14 @@ def signup(request):
     plans = Plan.objects.jsonify_for_form()
     code_check_url = reverse('gifts_check_code')
 
+    invite_code = request.GET.get('code', '')
+    reward_code_form = RewardCodeForm(request.POST or None,
+        initial={'invite_code': invite_code})
     context = {
         'customer_form': customer_form,
         'subscription_form': subscription_form,
         'gift_form': gift_form,
+        'reward_code_form': reward_code_form,
         'stripe_key': stripe_key,
         'plans': plans,
         'gift': request.POST.get('gift'),
@@ -196,6 +201,9 @@ def signup(request):
         if not customer_form.is_valid():
             return context
 
+        if not reward_code_form.is_valid():
+            return context
+
     # Attempt normal subscription signup
     with transaction.commit_on_success():
         save = transaction.savepoint()
@@ -208,6 +216,14 @@ def signup(request):
             subscription.save()
 
             transaction.savepoint_commit(save)
+
+            form_invite_code = reward_code.cleaned_data['invite_code']
+            if form_invite_code != '' and form_invite_code != None:
+                inv_code_instance = InviteCode.objects.filter(
+                    code=form_invite_code)
+                if inv_code_instance.exists():
+                    inv = inv_code_instance.get()
+                    inv.customer.grant_reward(subscription)
 
             if not customer.user.is_active:
                 send_verification_mail(request, customer.user, "signup_verify")

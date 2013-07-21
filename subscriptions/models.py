@@ -127,6 +127,7 @@ class Subscription(models.Model):
 
     # stripe fields
     started = models.DateTimeField()
+    # TODO: Migrate this to "Cancelled"
     canceled = models.DateTimeField(null=True)
     ended = models.DateTimeField(null=True)
     current_period_start = models.DateTimeField(null=True)
