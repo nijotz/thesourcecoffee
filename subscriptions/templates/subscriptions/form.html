@@ -1,11 +1,15 @@
 {% load jsonify %}
 
 <script type="text/javascript">
+
+// Turn interval and amount radios into jquery buttonsets
 $(function() {
   $('#amount_radios').buttonset();
   $('#interval_radios').buttonset();
 });
 
+// Update the grand total HTML with a given price or calculate based on
+// chosen interval and amount
 function update_total(price) {
   if (!price) {
     var plans = {{plans|jsonify}};
@@ -25,24 +29,50 @@ function update_total(price) {
   $('#signup_total').html('Grand Total: ' + price);
 }
 
+// Event handling code for interval/amount buttons
 $(function(){
   $("input[type='radio']").change(function(obj) {
+
+    //disable interval when choosing the 2oz trial or re-enable when deselected
     if ($('input:checked[name="amount"]').val() == 0.125) {
       $('input[name="interval"]').button({disabled:true});
       $('input[name="interval"]').prop('checked', false);
       $('#interval_radios').buttonset('refresh');
       update_total('Free!');
-    }
-    else {
+    } else {
       $('input[name="interval"]').button({disabled:false});
       update_total();
     }
   });
 });
 
+// Initialize total
 $(function(){
   update_total();
 });
+
+// Make an ajax request to see if the code is valid and apply it if so
+function apply_code() {
+  var code = $("#id_code").val();
+  var email = $("#id_email").val();
+  $.ajax({
+    type: 'POST',
+    url: '{{code_check_url}}',
+    data: {
+      'code': code,
+      'email': email
+    },
+  }).done(function(msg) {
+    alert(msg);
+  });
+}
+
+// Handle gift code application
+$(function(){
+  $("#apply_code_btn").click(function(obj) { apply_code(); });
+});
+
+apply_code();
 </script>
 
 <div class="control-group input_id_plan">
@@ -74,7 +104,7 @@ $(function(){
     <div class="controls">
         <input id="id_code" name="code" type="text" />
         <span class="help-inline"></span>
-    <input type="submit" class="btn" value="Apply Code"></input>
+    <input type="button" class="btn" id="apply_code_btn" value="Apply Code"></input>
     </div>
 </div>
 

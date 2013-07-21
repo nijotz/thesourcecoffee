@@ -124,6 +124,7 @@ def signup(request):
     customer_form = CustomerForm(request.POST or None)
     gift_form = GiftSubscriptionForm(request.POST or None)
     plans = Plan.objects.jsonify_for_form()
+    code_check_url = reverse('gifts_check_code')
 
     context = {
         'customer_form': customer_form,
@@ -132,6 +133,7 @@ def signup(request):
         'stripe_key': stripe_key,
         'plans': plans,
         'gift': request.POST.get('gift'),
+        'code_check_url': code_check_url,
     }
 
     # Validate forms, handle gift if necessary

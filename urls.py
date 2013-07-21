@@ -25,6 +25,7 @@ urlpatterns = patterns("",
     ("^subscription/", include('subscriptions.urls')),
     ("^account/", include('customers.urls')),
     ("^rewards/", include('rewards.urls')),
+    ("^gifts/", include('gifts.urls')),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
