@@ -69,7 +69,7 @@ def gift(request, context):
             'gifter': context['gift_form'].cleaned_data['gifter'],
         }
 
-        GiftSubscription(**data).save()
+        gift = GiftSubscription(**data).save()
 
         stripe.Charge.create(
             amount=int(context['plan'].price * 100),
@@ -79,6 +79,7 @@ def gift(request, context):
         )
 
     # Gather e-mail info
+    context = { 'gift':gift, }
     gifter_subject = SiteSetting.objects.get(key="gifts.gifter_email_subject")
     gifter_html = loader.render_to_string("gifts/gifter_email.html", context_instance=context)
     gifter_text = loader.render_to_string("gifts/gifter_email.txt", context_instance=context)

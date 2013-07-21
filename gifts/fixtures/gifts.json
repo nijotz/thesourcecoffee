@@ -1,0 +1,20 @@
+[
+{
+  "pk": null, 
+  "model": "base.sitesetting", 
+  "fields": {
+    "key": "gifts.gifter_email_subject",
+    "value": "Your gift has been sent",
+    "description": "The subject used when sending the e-mail to a gift-giver"
+  }
+},
+{
+  "pk": null, 
+  "model": "base.sitesetting", 
+  "fields": {
+    "key": "gifts.giftee_email_subject",
+    "value": "You've received a gift",
+    "description": "The subject used when sending the e-mail to a gift-receiver"
+  }
+},
+]

@@ -1,0 +1,7 @@
+Hi,
+
+You sent a gift. Way to go. Info:
+
+{{gift}}
+
+-Bye
