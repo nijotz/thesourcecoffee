@@ -448,6 +448,41 @@ box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
+div.qhead
+{
+margin-bottom: 3px;
+}
+
+div.answer
+{
+display:none;
+}
+
+.qhead a
+{
+text-decoration:none;
+font-family: 'dinmedium', 'serif';
+color:#B9842B;
+font-size: 22px;
+font-weight:bold;
+}
+
+.qhead a:hover 
+{ 
+text-decoration: none; 
+color:#B9842B; 
+border-bottom: 2px solid #B9842B; 
+}
+
+.qhead a:visited
+{
+text-decoration:none;
+font-family: 'dinmedium', 'serif';
+color:#B9842B;
+font-size: 22px;
+font-weight:bold;
+}
+
 #update
 {
 float:left;
@@ -869,6 +904,20 @@ margin-top:25px;
 margin-left:25px;
 }
 
+a.cost_btn
+{
+text-decoration:none;
+margin-top:20px;
+margin-left:0px;
+}
+
+a.cost_btn1
+{
+text-decoration:none;
+margin-top:0px;
+margin-left:0px;
+}
+
 .cost_btn1
 {
 float:left;
@@ -918,19 +967,44 @@ margin-left:5px;
 margin-right:5px;
 }
 
-label.ui-state-default
+.ui-state-default
 {
 background-color:#E0AA5B;
 }
+
+
 
 .ui-button
 {
 padding:5px;
 }
 
+.ui-state-active
+{
+opacity: 1;
+}
+
+.ui-button[aria-pressed="true"] { 
+opacity:1;
+} 
+
+.ui-button[aria-pressed="false"] { 
+opacity:.35;
+} 
+
 .ui-state-disabled
 {
 opacity: .35;
+}
+
+span.help-inline
+{
+position:relative;
+display:block;
+font-family: 'dinmedium', 'serif';
+color:#B9842B;
+font-size:16px;
+text-shadow:2px 2px 1px #000000;
 }
 
 h1 
@@ -981,7 +1055,7 @@ margin-top:0px;
 h5{
 float:left;
 font-family:'dinmedium', 'serif';
-color:#B9842B;
+color:#FFFFFF;
 font-size:24px;
 text-decoration:none;
 margin:0;
@@ -994,7 +1068,7 @@ text-shadow:2px 2px 1px #000000;
 h6{
 float:left;
 font-family:'dinmedium', 'serif';
-color:#B9842B;
+color:#FFFFFF;
 font-size:24px;
 text-decoration:none;
 margin-top:10px;
@@ -1093,12 +1167,41 @@ border-collapse:collapse;
 
 table th
 {
-border:2px solid #B9842B;
+border-left:2px solid #B9842B;
+border-right:2px solid #B9842B;
+border-top:none;
+border-bottom:2px solid #B9842B;
 font-family: 'dinbold', 'dinmedium', 'serif';
-color:#939597;
-font-size:16px;
+color:#FFFFFF;
+font-size:20px;
 text-decoration:none;
 padding:5px;
+text-shadow:2px 2px 1px #000000;
+background-image: linear-gradient(right bottom, rgb(33,33,30) 35%, rgb(87,87,87) 81%);
+background-image: -o-linear-gradient(right bottom, rgb(33,33,30) 35%, rgb(87,87,87) 81%);
+background-image: -moz-linear-gradient(right bottom, rgb(33,33,30) 35%, rgb(87,87,87) 81%);
+background-image: -webkit-linear-gradient(right bottom, rgb(33,33,30) 35%, rgb(87,87,87) 81%);
+background-image: -ms-linear-gradient(right bottom, rgb(33,33,30) 35%, rgb(87,87,87) 81%);
+
+background-image: -webkit-gradient(
+	linear,
+	right bottom,
+	left top,
+	color-stop(0.35, rgb(33,33,30)),
+	color-stop(0.81, rgb(87,87,87))
+);
+}
+
+tr.odd
+{
+background-color:#21211E;
+color:#B9842B;
+}
+
+tr.even
+{
+background-color:#5D5D5D;
+color:#FFF;
 }
 
 table.sub
@@ -1112,11 +1215,6 @@ table.sub thead th:empty
 {
 background:transparent;
     border:none;
-}
-
-table.sub thead
-{
-border-bottom:2px solid #B9842B
 }
 
 table.sub thead th.right
@@ -1140,32 +1238,9 @@ background:transparent;
 	text-align:center;
 }
 
-
-table.sub th
-{
-border:2px solid #B9842B;
-font-family: 'dinbold', 'dinmedium', 'serif';
-color:#939597;
-font-size:16px;
-text-decoration:none;
-padding:5px;
-}
-
-table.sub td
-{
-border:2px solid #B9842B;
-font-family:'dinmedium', 'serif';
-color:#939597;
-font-size:16px;
-text-decoration:none;
-padding:5px;
-}
-
-
 table.sub th.price
 {
-border-left:1px solid #B9842B;
-border-right:1px solid #B9842B;
+border:none;
 font-family: 'dinbold', 'dinmedium', 'serif';
 color:#B9842B;
 font-size:20px;
@@ -1179,7 +1254,7 @@ text-shadow:2px 2px 1px #000000;
 
 table.sub td.price1
 {
-border-right:1px solid #B9842B;
+border-left:1px solid #B9842B;
 font-family:'dinmedium', 'serif';
 color:#939597;
 font-size:16px;
@@ -1190,14 +1265,43 @@ text-align:center;
 
 table.sub td.price2
 {
-border:none;
+border-left:1px solid #B9842B;
+border-right:1px solid #B9842B;
 font-family:'dinmedium', 'serif';
-color:#FFFFFF;
-background-color:#4D4D4D;
+color:#FFF;
+background-color:#4d4d45;
 font-size:16px;
 text-decoration:none;
 padding:5px;
 text-align:center;
+text-shadow:2px 2px 1px #000000;
+}
+
+table.sub td.price3
+{
+border-left:1px solid #B9842B;
+border-right:1px solid #B9842B;
+font-family:'dinmedium', 'serif';
+color:#FFF;
+background-color:#4d4d45;
+font-size:16px;
+text-decoration:none;
+padding:5px;
+text-align:center;
+text-shadow:2px 2px 1px #000000;
+}
+
+table.sub td.price4
+{
+border-right:1px solid #B9842B;
+font-family:'dinmedium', 'serif';
+color:#FFF;
+background-color:#4d4d45;
+font-size:16px;
+text-decoration:none;
+padding:5px;
+text-align:center;
+text-shadow:2px 2px 1px #000000;
 }
 
 #circle
