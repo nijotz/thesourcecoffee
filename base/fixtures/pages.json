@@ -5,10 +5,10 @@
   "fields": {
     "status": 2, 
     "_order": 1, 
-    "titles": "About Us", 
-    "description": "About THE SOURCE.\nMany first encounters, daily routines, and welcoming gestures into homes are started with coffee. What if you started your day with the most ethical consumer choice you could possibly make by enjoying the freshest roasted coffee period? Coffee that was shaped by decades of coffee growing family tradition; coffee that was not touched by Wall Street.\u00a0", 
+    "titles": "About", 
+    "description": "About THE SOURCE\nMany first encounters, daily routines, and welcoming gestures into homes are started with coffee. What if you started\u00a0your day with the most ethical consumer choice you could possibly make by enjoying the freshest roasted coffee period? Coffee that was shaped by decades of coffee growing family tradition; coffee that was not touched by Wall Street.\u00a0", 
     "parent": null, 
-    "title": "About Us", 
+    "title": "About", 
     "short_url": null, 
     "login_required": false, 
     "site": 1, 
@@ -30,7 +30,7 @@
     "status": 2, 
     "_order": 0, 
     "titles": "Sources / Guatamala - La Perla", 
-    "description": "LA PERLA\nFarm: Finca La Perla", 
+    "description": "LA PERLA\n", 
     "parent": 25, 
     "title": "Guatamala - La Perla", 
     "short_url": null, 
@@ -54,7 +54,7 @@
     "status": 2, 
     "_order": 1, 
     "titles": "Sources / Nicaragua - El Cairo", 
-    "description": "El Cairo\nFarm: Finca El Cairo", 
+    "description": "El Cairo\n", 
     "parent": 25, 
     "title": "Nicaragua - El Cairo", 
     "short_url": null, 
@@ -102,7 +102,7 @@
     "status": 2, 
     "_order": 0, 
     "titles": "Contact / FAQ", 
-    "description": "Frequently Asked Questions\nQ: Why should I buy my coffee from you?A:\u00a0", 
+    "description": "Frequently Asked Questions\nWe receive many questions about our coffees, subscriptions, etc. We have tried to answer the most common ones here. Just click on the questions below to see the answer! If we haven't fully answered your question, please send us an email here!", 
     "parent": 14, 
     "title": "FAQ", 
     "short_url": null, 
@@ -120,39 +120,15 @@
   }
 },
 {
-  "pk": 17, 
-  "model": "pages.page", 
-  "fields": {
-    "status": 2, 
-    "_order": 2, 
-    "titles": "Sources / Test Gallery", 
-    "description": "Testing", 
-    "parent": 25, 
-    "title": "Test Gallery", 
-    "short_url": null, 
-    "login_required": false, 
-    "site": 1, 
-    "in_sitemap": true, 
-    "keywords_string": "", 
-    "_meta_title": "", 
-    "expiry_date": null, 
-    "publish_date": "2013-05-17T22:18:48Z", 
-    "content_model": "gallery", 
-    "in_menus": "1,2,3", 
-    "slug": "sources/test-gallery", 
-    "gen_description": true
-  }
-},
-{
   "pk": 18, 
   "model": "pages.page", 
   "fields": {
     "status": 2, 
     "_order": 0, 
-    "titles": "About Us / Our President's Story", 
-    "description": "The Origin of THE SOURCE.\nIn 2007 I took a road trip to Mammoth Mountain in California with a best friend of mine. After heading out of Los Angeles we made a wrong turn and got on \"The Grape Vine\" instead of the correct highway. This took us hundreds, maybe thousands of miles off route. We re-routed our gps and it told us to head through Yosemite National Park in an attempt to enter Mammoth from the back side. After hours of driving and eventually passing San Francisco we made our way to the entrance of Yosemite. We found ourselves driving through a blizzard which was completely foreign to us being from sunny southern California. The roads were completely iced over and the visibility was poor. My dear friend Jeff saw his first deer- six of them actually. After driving about 100 miles on ice at 20-30 mph through a blizzard we reached Tioga Pass which is at about 10,000 feet elevation (the highest highway pass in California). The road was closed, Jeff thought he saw a bear and ran back to the car. We didn't know what to do and we were very lost and very far from home. We had seen a forest ranger station about a mile back down the road with the lights on. It was just about\u00a0midnight\u00a0and we thought we were only about 20 miles or so from Mammoth. We stopped at the ranger station to ask about Tioga Pass being closed. The lone ranger informed us that Tioga pass is usually completely snowed in 10 months out of the year. He laughed at us, said something about 4 wheel drive, and offered us coffee. We eagerly accepted the coffee even though we weren't coffee drinkers, mainly because we were standing in a blizzard at midnight\u00a0after driving 8 hours or more and it's polite to accept kind gestures from lone rangers at 10,000 feet on a mountain. We were now scared of bears, fascinated by deer, we hated gps, and we were incredibly thankful that we were offered coffee upon entering the only building that we could see in the blizzard. I eventually drove another 100 miles down the mountain atop the ice, another few hundred miles back towards Los Angeles, another hundred miles or so east towards the correct highway then another 5 hours up towards Mammoth to arrive at our snowboarding vacation by noonish. One of the first things we did after driving 20 hours or so was go buy more coffee!!", 
+    "titles": "About / Our Story", 
+    "description": "The Origin of THE SOURCE.\nIn 2007 I took a road trip to Mammoth Mountain in California with a best friend of mine. After heading out of Los Angeles we made a wrong turn and got on \"The Grape Vine\" instead of the correct highway. This took us hundreds, maybe thousands of miles off route. We re-routed our gps and it told us to head through Yosemite National Park in an attempt to enter Mammoth from the back side.", 
     "parent": 1, 
-    "title": "Our President's Story", 
+    "title": "Our Story", 
     "short_url": null, 
     "login_required": false, 
     "site": 1, 
@@ -174,7 +150,7 @@
     "status": 2, 
     "_order": 3, 
     "titles": "Pricing", 
-    "description": "Specialty coffee. Fresh to your door. Every two weeks.\u00a0\n\u00a0", 
+    "description": "Specialty Coffee From Farm to Doorstep.\n\n\n\nThe Free Trial\n\n\n\n\nFree!", 
     "parent": null, 
     "title": "Pricing", 
     "short_url": null, 
@@ -240,45 +216,109 @@
   }
 },
 {
+  "pk": 26, 
+  "model": "pages.page", 
+  "fields": {
+    "status": 2, 
+    "_order": 0, 
+    "titles": "Pricing / Contract Information", 
+    "description": "Contract Pricing and Options\nWe have contract options available at a discount from our normal monthly price. Please note, however, that contracts CANNOT BE CANCELLED!", 
+    "parent": 23, 
+    "title": "Contract Information", 
+    "short_url": null, 
+    "login_required": false, 
+    "site": 1, 
+    "in_sitemap": true, 
+    "keywords_string": "", 
+    "_meta_title": "", 
+    "expiry_date": null, 
+    "publish_date": "2013-06-23T21:08:14Z", 
+    "content_model": "richtextpage", 
+    "in_menus": "", 
+    "slug": "pricing/contract-info", 
+    "gen_description": true
+  }
+},
+{
+  "pk": 27, 
+  "model": "pages.page", 
+  "fields": {
+    "status": 2, 
+    "_order": 1, 
+    "titles": "Contact / Privacy", 
+    "description": "Privacy Policy\nOur policy is very simple and straightforward:", 
+    "parent": 14, 
+    "title": "Privacy", 
+    "short_url": null, 
+    "login_required": false, 
+    "site": 1, 
+    "in_sitemap": true, 
+    "keywords_string": "", 
+    "_meta_title": "", 
+    "expiry_date": null, 
+    "publish_date": "2013-06-26T01:17:57Z", 
+    "content_model": "richtextpage", 
+    "in_menus": "", 
+    "slug": "privacy", 
+    "gen_description": true
+  }
+},
+{
   "pk": 1, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<h1>About THE SOURCE.</h1>\n<p class=\"content\">Many first encounters, daily routines, and welcoming gestures into homes are started with coffee. What if you started your day with the most ethical consumer choice you could possibly make by enjoying the freshest roasted coffee period? Coffee that was shaped by decades of coffee growing family tradition; coffee that was not touched by Wall Street.\u00a0</p>\n<h2>VISION</h2>\n<p class=\"content\">The Source was founded to connect indigenous small-scale farmers and ethical conscious consumers. \u00a0We aim to educate consumers on making ethical choices. We live in a world where today we can make a choice between what is ethical and what pressures people into poverty. We envision a world where producers of goods are paid the real value of their crops; a world wide community in which we can buy our goods directly from a global market rather than through a commodity day trader on Wall Street.\u00a0</p>\n<h2>MISSION</h2>\n<p class=\"content\">Our mission is to give small-scale indigenous farmers worldwide a platform to rise out of poverty and directly connect to the consumers who value their hard work. \u00a0We accomplish this by purchasing our raw materials directly from the farmer and paying better than fair trade prices. \u00a0We also donate a percentage of any profits made to our non-profit arm which accumulates these profits for a micro-loan fund to finance small-scale farmers to improve their farms and overall quality of life. \u00a0</p>\n<h2>VALUES</h2>\n<p class=\"content\">Empowerment:\u00a0We strive to place indigenous farmers directly into the global marketplace enabling those who were previously pressured by corporate concentration to break through the commodity market and deliver their goods to the ethical consumers that love the results of their work.</p>\n<p class=\"content\">Community: We hope that by experiencing the direct trade phenomenon; our members will realize that we are all connected in a global community that removes both the commodity day trader and the faceless corporation from the equation.</p>\n<p class=\"content\">Sustainability: We ensure that the source of the products you enjoy at home are from places where sustainability is the only option. As a company we recycle everything possible, buy renewable energy credits to reduce our industrial carbon footprint, and further reduce carbon by financing small family farms that have not clear cut native rainforest in order to maximize production. The cup of coffee in you enjoy in your home is not from a plantation and was grown in some of the most remote and beautiful locations on earth</p>\n<p class=\"content\">Quality:\u00a0Our goal is to bring the best coffee period to your doorstep at the best possible price. While it may seem high compared to many large coffee companies sourcing from commodity coffee plantations, or even your local supermarket, this is simply premium coffee and any excess profits are placed back into our micro loan fund to finance the farmer for the coming season. We believe that giving the farmers the means at the beginning of the season enables them to focus on producing the absolute best possible product rather than figuring out how to feed their families.\u00a0</p>\n<p class=\"content\">Reality: When it comes down to the wire the direct trade priaces we pay are the difference between an indigenous family making $350 gross annual income or $2000-$3000 dollars gross annual income. While we enjoy coffee from around the world in our homes or our local coffee shop, we as consumers that love coffee are very far removed from the reality of our farmer's quality of life.\u00a0</p>"
+    "content": "<h1>About THE SOURCE</h1>\n<p class=\"content\">Many first encounters, daily routines, and welcoming gestures into homes are started with coffee. What if you started\u00a0your day with the most ethical consumer choice you could possibly make by enjoying the freshest roasted coffee period? Coffee that was shaped by decades of coffee growing family tradition; coffee that was not touched by Wall Street.\u00a0</p>\n<p class=\"right\"><img class=\"img_right\" height=\"375\" src=\"/media/uploads/galleries/beansonbranchsmall.jpg\" width=\"500\"></p>\n<h2>VISION</h2>\n<p class=\"content\">The Source was founded to connect indigenous small-scale farmers and ethical conscious consumers. \u00a0We aim to educate consumers on making ethical choices. We live in a world where today we can make a choice between what is ethical and what pressures people into poverty. We envision a world where producers of goods are paid the real value of their crops; a world wide community in which we can buy our goods directly from a global market rather than through a commodity day trader on Wall Street.\u00a0</p>\n<h2>MISSION</h2>\n<p class=\"content\">Our mission is to give small-scale indigenous farmers worldwide a platform to rise out of poverty and directly connect to the consumers who value their hard work. \u00a0We accomplish this by purchasing our raw materials directly from the farmer and paying better than fair trade prices. \u00a0We also donate a percentage of any profits made to our non-profit arm which accumulates these profits for a micro-loan fund to finance small-scale farmers to improve their farms and overall quality of life. \u00a0</p>\n<h2>VALUES</h2>\n<p class=\"content\">Empowerment:\u00a0We strive to place indigenous farmers directly into the global marketplace enabling those who were previously pressured by corporate concentration to break through the commodity market and deliver their goods to the ethical consumers that love the results of their work.</p>\n<p class=\"content\">Community: We hope that by experiencing the direct trade phenomenon; our members will realize that we are all connected in a global community that removes both the commodity day trader and the faceless corporation from the equation.</p>\n<p class=\"content\">Sustainability: We ensure that the source of the products you enjoy at home are from places where sustainability is the only option. As a company we recycle everything possible, buy renewable energy credits to reduce our industrial carbon footprint, and further reduce carbon by financing small family farms that have not clear cut native rainforest in order to maximize production. The cup of coffee in you enjoy in your home is not from a plantation and was grown in some of the most remote and beautiful locations on earth</p>\n<p class=\"content\">Quality:\u00a0Our goal is to bring the best coffee period to your doorstep at the best possible price. While it may seem high compared to many large coffee companies sourcing from commodity coffee plantations, or even your local supermarket, this is simply premium coffee and any excess profits are placed back into our micro loan fund to finance the farmer for the coming season. We believe that giving the farmers the means at the beginning of the season enables them to focus on producing the absolute best possible product rather than figuring out how to feed their families.\u00a0</p>\n<p class=\"content\">Reality: When it comes down to the wire the direct trade priaces we pay are the difference between an indigenous family making $350 gross annual income or $2000-$3000 dollars gross annual income. While we enjoy coffee from around the world in our homes or our local coffee shop, we as consumers that love coffee are very far removed from the reality of our farmer's quality of life.\u00a0</p>"
   }
 },
 {
   "pk": 18, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<h1>The Origin of THE SOURCE.</h1>\n<p class=\"content\">In 2007 I took a road trip to Mammoth Mountain in California with a best friend of mine. After heading out of Los Angeles we made a wrong turn and got on \"The Grape Vine\" instead of the correct highway. This took us hundreds, maybe thousands of miles off route. We re-routed our gps and it told us to head through Yosemite National Park in an attempt to enter Mammoth from the back side. After hours of driving and eventually passing San Francisco we made our way to the entrance of Yosemite. We found ourselves driving through a blizzard which was completely foreign to us being from sunny southern California. The roads were completely iced over and the visibility was poor. My dear friend Jeff saw his first deer- six of them actually. After driving about 100 miles on ice at 20-30 mph through a blizzard we reached Tioga Pass which is at about 10,000 feet elevation (the highest highway pass in California). The road was closed, Jeff thought he saw a bear and ran back to the car. We didn't know what to do and we were very lost and very far from home. We had seen a forest ranger station about a mile back down the road with the lights on. It was just about\u00a0midnight\u00a0and we thought we were only about 20 miles or so from Mammoth. We stopped at the ranger station to ask about Tioga Pass being closed. The lone ranger informed us that Tioga pass is usually completely snowed in 10 months out of the year. He laughed at us, said something about 4 wheel drive, and offered us coffee. We eagerly accepted the coffee even though we weren't coffee drinkers, mainly because we were standing in a blizzard at midnight\u00a0after driving 8 hours or more and it's polite to accept kind gestures from lone rangers at 10,000 feet on a mountain. We were now scared of bears, fascinated by deer, we hated gps, and we were incredibly thankful that we were offered coffee upon entering the only building that we could see in the blizzard. I eventually drove another 100 miles down the mountain atop the ice, another few hundred miles back towards Los Angeles, another hundred miles or so east towards the correct highway then another 5 hours up towards Mammoth to arrive at our snowboarding vacation by noonish. One of the first things we did after driving 20 hours or so was go buy more coffee!!</p>\n<p class=\"content\">Although I don't know for certain, I like to think the coffee up on that mountain saved our lives. I mean, what an ice breaker; especially after travelling miles down that icy road in the middle of a blizzard atop a mountain.</p>\n<p class=\"content\">After moving to the Northwest for college many cups of coffee and more than 100 deer sightings later, my education taught me that not only was that cup of coffee completely terrible, but our lives were saved most likely at the expense\u00a0of a coffee farmer on a coffee plantation in a 3rd world country close to the Equator. A farmer that was pressured into selling his goods to a commodity market in which his labor and product was turned into $1 dollar 10 ounce bags of coffee that are used to make gallons of low-quality coffee to fuel an office building of workers. The farmer that produced the beans to make that cup of coffee up on that mountain in our time of need most likely didn't even make half of one cent from that cup of coffee that fueled us for another 14 hours of driving. If I could ever find him or her I'd give them 100 dollars for saving me from which they would probably quit their job at the large plantation they work at and buy their own land to start up their own coffee farm.\u00a0</p>\n<p class=\"content\">Coffee welcomes people into our homes, enables first dates, starts new businesses, starts our days, wakes us up in the morning, clears our minds, gives inspiration in meetings to create millions of jobs. This vital ingredient in so many of our lives should be chosen with care and the choice should be an ethical one.\u00a0</p>\n<p class=\"content\">Thinking back, if that lone ranger told me that the coffee he gave me was produced by a friend of his and that I could get it delivered fresh to my door every other week for years to come, I'd buy all my friends many years worth of that coffee. Especially Jeff. \u00a0</p>"
+    "content": "<h1>The Origin of THE SOURCE.</h1>\n<p class=\"content\">In 2007 I took a road trip to Mammoth Mountain in California with a best friend of mine. After heading out of Los Angeles we made a wrong turn and got on \"The Grape Vine\" instead of the correct highway. This took us hundreds, maybe thousands of miles off route. We re-routed our gps and it told us to head through Yosemite National Park in an attempt to enter Mammoth from the back side.</p>\n<p class=\"content\">After hours of driving and eventually passing San Francisco we made our way to the entrance of Yosemite. We found ourselves driving through a blizzard which was completely foreign to us being from sunny southern California. The roads were completely iced over and the visibility was poor. My dear friend Jeff saw his first deer- six of them actually. After driving about 100 miles on ice at 20-30 mph through a blizzard we reached Tioga Pass which is at about 10,000 feet elevation (the highest highway pass in California).</p>\n<p class=\"right\"><img height=\"194\" src=\"/media/uploads/tiogapass.png\" width=\"259\"></p>\n<p class=\"content\">The road was closed. Jeff thought he saw a bear and ran back to the car. We didn't know what to do and we were very lost and very far from home. We had seen a forest ranger station about a mile back down the road with the lights on. It was just about\u00a0midnight\u00a0and we thought we were only about 20 miles or so from Mammoth. We stopped at the ranger station to ask about Tioga Pass being closed. The lone ranger informed us that Tioga pass is usually completely snowed in 10 months out of the year. He laughed at us, said something about 4 wheel drive, and offered us coffee. We eagerly accepted the coffee even though we weren't coffee drinkers, mainly because we were standing in a blizzard at midnight\u00a0after driving 8 hours or more and it's polite to accept kind gestures from lone rangers at 10,000 feet on a mountain.</p>\n<p class=\"left\"><img height=\"281\" src=\"/media/uploads/tiogapasswinter.png\" width=\"400\"></p>\n<p class=\"content\">We were now scared of bears, fascinated by deer, we hated gps, and we were incredibly thankful that we were offered coffee upon entering the only building that we could see in the blizzard. I eventually drove another 100 miles down the mountain atop the ice, another few hundred miles back towards Los Angeles, another hundred miles or so east towards the correct highway then another 5 hours up towards Mammoth to arrive at our snowboarding vacation by noonish. One of the first things we did after driving 20 hours or so was go buy more coffee!!</p>\n<p class=\"content\">Although I don't know for certain, I like to think the coffee up on that mountain saved our lives. I mean, what an ice breaker; especially after travelling miles down that icy road in the middle of a blizzard atop a mountain.</p>\n<p class=\"content\">After moving to the Northwest for college many cups of coffee and more than 100 deer sightings later, my education taught me that not only was that cup of coffee completely terrible, but our lives were saved most likely at the expense\u00a0of a coffee farmer on a coffee plantation in a 3rd world country close to the Equator. A farmer that was pressured into selling his goods to a commodity market in which his labor and product was turned into $1 dollar 10 ounce bags of coffee that are used to make gallons of low-quality coffee to fuel an office building of workers. The farmer that produced the beans to make that cup of coffee up on that mountain in our time of need most likely didn't even make half of one cent from that cup of coffee that fueled us for another 14 hours of driving. If I could ever find him or her I'd give them 100 dollars for saving me from which they would probably quit their job at the large plantation they work at and buy their own land to start up their own coffee farm.\u00a0</p>\n<p class=\"content\">Coffee welcomes people into our homes, enables first dates, starts new businesses, starts our days, wakes us up in the morning, clears our minds, gives inspiration in meetings to create millions of jobs. This vital ingredient in so many of our lives should be chosen with care and the choice should be an ethical one.\u00a0</p>\n<p class=\"content\">Thinking back, if that lone ranger told me that the coffee he gave me was produced by a friend of his and that I could get it delivered fresh to my door every other week for years to come, I'd buy all my friends many years worth of that coffee. Especially Jeff. \u00a0</p>"
   }
 },
 {
   "pk": 15, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<h1>Frequently Asked Questions</h1>\n<p class=\"content\">Q: Why should I buy my coffee from you?<br><br>A:\u00a0</p>\n<p class=\"content\">Q: Can I buy single bags of coffee? Or is subscribing my only option?</p>\n<p class=\"content\">A: At this time, we only allow subscriptions, unless you're lucky enough to catch us in person at your local farmer's market or festival - there may be single bags there!</p>\n<p class=\"content\">Q: How is your coffee shipped?<br><br>A: We ship all orders via USPS. \u00a0You can expect to receive your order 2-5 days after shipping.</p>\n<p class=\"content\">Q: When do you ship my subscription?</p>\n<p class=\"content\">A: We begin roasting and ship as soon as humanly possible afterwards, less than 24 hours after your coffee is roasted. \u00a0Depending on the number of orders to be filled, your coffee may come later in the week, but you can rest assured that it shipped the same day it was roasted.</p>\n<p class=\"content\">Q: Can I choose how my coffee is roasted?</p>\n<p class=\"content\">A: At this time, no. \u00a0We roast each coffee to ensure that the best flavor profiles come out. \u00a0For some coffees, this is a light roast, and for some, it will be darker. \u00a0</p>\n<p class=\"content\">Q: Can I choose what kind of coffee I get each week?</p>\n<p class=\"content\">A: Not at this time. There is a chance in the future that you may be able to select from a few types; at our current scale we buy very small (comparatively) amounts of coffee, but we ensure that each one is of the utmost quality and taste.</p>\n<p class=\"content\">Q: Can I get more of the coffee you had last week?<br><br>A: Probably not. \u00a0We buy in such small quantities that we usually have very little left over after shipping to all our subscribers.\u00a0</p>\n<p class=\"content\">Q: Do you have decaf options?</p>\n<p class=\"content\">A: Not at this time. \u00a0We may offer them in the future!</p>\n<p class=\"content\">Q: Do you have gift options?<br><br>A: We do! Click here to give someone a gift subscription!\u00a0</p>\n<p class=\"content\">Q: Do you do wholesale?<br><br>A: No, but we can do larger amounts of coffee than our standard subscriptions. \u00a0Get in touch with us <a href=\"/contact/\">here</a> if you're interested.\u00a0</p>\n<p class=\"content\">Q: Can you ship outside the United States?<br><br>A: Sorry, not at this time. \u00a0We'll let you know if/when we can!\u00a0</p>\n<p class=\"content\">Q: What does my subscription support?</p>\n<p class=\"content\">A: After covering overhead, we move a percentage of gross profit into our non-profit micro-loan fund that helps indigenous farmers raise themselves out of poverty. \u00a0</p>"
+    "content": "<h1>Frequently Asked Questions</h1>\n<p class=\"content\">We receive many questions about our coffees, subscriptions, etc. We have tried to answer the most common ones here. Just click on the questions below to see the answer! If we haven't fully answered your question, please send us an email <a href=\"http://www.thesourcecoffee.com/contact\">here</a>!</p>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q01\">What makes your coffee so special?</a></p>\n</div>\n<div class=\"answer\" id=\"q01\">\n<p class=\"faq2\">We make sure to source only the finest coffees from small, family owned farms and cooperatives and pay them a better than fair trade price. We then perfectly roast the beans and ship them to you fresh the same day, all for less than the price of coffee from many other retail locations and grocery stores. And unlike these places, you know it's fresh because it comes within days of being roasted!</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q02\">What does my subscription support?</a></p>\n</div>\n<div class=\"answer\" id=\"q02\">\n<p class=\"faq2\">After covering overhead, we move a percentage of gross profit into our non-profit micro-loan fund that helps indigenous farmers raise themselves out of poverty. \u00a0</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q03\">How do I get my free coffee shipments?</a></p>\n</div>\n<div class=\"answer\" id=\"q03\">\n<p class=\"faq2\">First of all, thanks for recommending us to your friends! We rely mostly on word of mouth, so we appreciate positive reviews. Your free coffee shipment will be shipped the next available date after your friend has had an active subscription for one month. If you're both on a contract, your free shipment will be added to your contract period. So if you had a three month subscription, you now have three months and one week!</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q04\">Can I choose how my coffee is roasted?</a></p>\n</div>\n<div class=\"answer\" id=\"q04\">\n<p class=\"faq2\">At this time, no. \u00a0We roast each coffee to ensure that the best flavor profiles come out. \u00a0For some coffees, this is a light roast, and for some, it will be darker. \u00a0</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q05\">Can I choose what kind of coffee I get each week?</a></p>\n</div>\n<div class=\"answer\" id=\"q05\">\n<p class=\"faq2\">There is a chance in the future that you may be able to select from a few types; at our current scale we buy very small (comparatively) amounts of coffee, but we ensure that each one is of the utmost quality and taste.</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q06\">Do you roast decaf? Espresso? Carmel Machiatto with foam, no whip?</a></p>\n</div>\n<div class=\"answer\" id=\"q06\">\n<p class=\"faq2\">If there is enough interest, we might eventually have a decaf subscription. The same goes for espresso, though you can most certainly use our current offerings for espresso and they should taste fairly amazing.</p>\n<p class=\"faq2\">As for that other thing, please never ask that again.</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q07\">Is it fair trade, organic, shade-grown, etc.?</a></p>\n</div>\n<div class=\"answer\" id=\"q07\">\n<p class=\"faq2\">We ALWAYS make sure that we buy at better than fair trade prices. Fair trade only assures a minimum of $1.60 per pound and we like to beat that by going direct to farmer; some people call this direct trade coffee. Some of our coffees may be certified organic, and we will certainly let you know if they are, but as with fair trade, organic certification is expensive for small farmers. Rest assured, they're better than organic, it just doesn't have the label!</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q08\">How do you ship the beans?</a></p>\n</div>\n<div class=\"answer\" id=\"q08\">\n<p class=\"faq2\">We ship for FREE via USPS on the day your beans are roasted. They should arrive to you within the next 2-3 days. If they don't, let us <a href=\"/contact/\">know here</a>, we'll want to look into it.</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q09\">Why do you need a credit card for a free trial?</a></p>\n</div>\n<div class=\"answer\" id=\"q09\">\n<p class=\"faq2\">We want to ensure that you're seriously wanting to taste our artisan coffee and a credit card will allow us to track the number of samples we send out. After you taste, you can choose to activate a subscription early (auto-activation happens two weeks after the sample arrives) or cancel if you're not completely stoked about it.</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q10\">Do you offer gift subscriptions?</a></p>\n</div>\n<div class=\"answer\" id=\"q10\">\n<p class=\"faq2\">We do! <a href=\"/account/signup/?next=/\">Click here</a> and choose \"Is this a gift?\" while checking out. We'll take it from there!</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q11\">Why can't I cancel a contract?</a></p>\n</div>\n<div class=\"answer\" id=\"q11\">\n<p class=\"faq2\">By subscribing with a contract agreement, we can ensure that you receive the lowest possible price that we can give you. However, we can only offer pricing that low when we buy larger amounts of beans, and a contract ensures you'll be with us to help everyone get there!</p>\n</div>\n<div class=\"qhead\">\n<p class=\"faq1\"><a href=\"#q12\">I want more/less beans more/less often. Can I customize my subscription?</a></p>\n</div>\n<div class=\"answer\" id=\"q12\">\n<p class=\"faq2\">Maybe. Get in touch with us <a href=\"/contact/\">here</a> and we'll see if we can work something out.</p>\n</div>"
+  }
+},
+{
+  "pk": 27, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<h2>Privacy Policy</h2>\n<p class=\"content\">Our policy is very simple and straightforward:</p>\n<p class=\"content\">We will not, under any circumstances whatsoever, give out or sell your information (including name and email address) to anyone. Period.</p>\n<p class=\"content\">We will also never send you an email unless it is important and directly related to your Source Coffee experience.</p>\n<p class=\"content\">Also, no one will ever have access to your information, files, and other data. The only exception to this rule is that from time to time, a programmer will have to access the code in order to update the system, perform routine maintenance, and possibly fix bugs. However, all your data will still remain 100% confidential.</p>"
+  }
+},
+{
+  "pk": 26, 
+  "model": "pages.richtextpage", 
+  "fields": {
+    "content": "<h2>Contract Pricing and Options</h2>\n<p class=\"content\">We have contract options available at a discount from our normal monthly price. Please note, however, that contracts CANNOT BE CANCELLED!</p>\n<p class=\"content\"></p>\n<h2>Contract Information</h2>\n<table class=\"sub\">\n<tbody>\n<tr><th class=\"price\"></th><th class=\"price\">The Alert Farm Ally</th><th class=\"price\">The Buzzed Benefactor</th><th class=\"price\">The Caffeinated Philanthropist</th></tr>\n<tr>\n<td class=\"price1\">Size</td>\n<!--Type-->\n<td class=\"price1\">8 oz bag</td>\n<!--8oz-->\n<td class=\"price1\">12 oz bag</td>\n<!--12 oz-->\n<td class=\"price1\">16 oz bag</td>\n<!--16 oz--></tr>\n<!--8oz--><!--12 oz--><!--16 oz-->\n<tr>\n<td class=\"price2\">Free Shipping</td>\n<!--Feature-->\n<td class=\"price2\">Yes</td>\n<!--Monthly-->\n<td class=\"price2\">Yes</td>\n<!--3 Month-->\n<td class=\"price2\">Yes</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"price1\">Roaming Feature</td>\n<!--Feature-->\n<td class=\"price1\">Yes</td>\n<!--Monthly-->\n<td class=\"price1\">Yes</td>\n<!--3 Month-->\n<td class=\"price1\">Yes</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"price2\">Pause Account</td>\n<!--Feature-->\n<td class=\"price2\">Yes</td>\n<!--Monthly-->\n<td class=\"price2\">Yes</td>\n<!--3 Month-->\n<td class=\"price2\">Yes</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"price1\">Ships 2x Monthly</td>\n<!--Feature-->\n<td class=\"price1\">Yes</td>\n<!--Monthly-->\n<td class=\"price1\">Yes</td>\n<!--3 Month-->\n<td class=\"price1\">Yes</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"price2\">Fresh Guarantee</td>\n<!--Feature-->\n<td class=\"price2\">Yes</td>\n<!--Monthly-->\n<td class=\"price2\">Yes</td>\n<!--3 Month-->\n<td class=\"price2\">Yes</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"price1\">Cancel Anytime</td>\n<!--Feature-->\n<td class=\"price1\">NO</td>\n<!--Monthly-->\n<td class=\"price1\">NO</td>\n<!--3 Month-->\n<td class=\"price1\">NO</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"none\"></td>\n<!--Feature-->\n<td class=\"none\"><input class=\"btn\" type=\"submit\" value=\"Yes, I'm an ally!\"></td>\n<!--Monthly-->\n<td class=\"none\"><input class=\"btn\" type=\"submit\" value=\"Help more farms!\"></td>\n<!--3 Month-->\n<td class=\"none\"><input class=\"btn\" type=\"submit\" value=\"I love my coffee farmers!\"></td>\n<!--1 year--></tr>\n</tbody>\n</table>"
   }
 },
 {
   "pk": 10, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<h1><span>LA PERLA</span></h1>\n<p class=\"content\">Farm: Finca La Perla</p>\n<p class=\"content\">Varietal: Bourbon Caturra</p>\n<p class=\"content\">Processing: Fully Washed and dried on patio</p>\n<p class=\"content\">Altitude: 1,100-1,800m</p>\n<p class=\"content\">Owner: Arenas family</p>\n<p class=\"content\">Town/City: Chaj\u00fal</p>\n<p class=\"content\">Region: El Quich\u00e9</p>\n<p>\u00a0</p>\n<p class=\"content\">Roast: Full City</p>\n<p class=\"content\">Aroma: Citrus</p>\n<p class=\"content\">Body: Medium</p>\n<p class=\"content\">Flavors: Orange, Plum, Caramel</p>\n<p><span><br></span></p>\n<p class=\"content\">Finca La Perla lies amid the steep green hills of the \u2018Ixil Triangle\u2019 high in Guatemala\u2019s western highlands, an isolated area famed for the strength of its indigenous culture and the beauty of its landscape. \u2018La Perla\u2019 means \"Sleeping Woman\" in Ixil, a Mayan language spoken widely locally (Spanish remains a second language at best in this hard to reach area).</p>\n<p class=\"content\">Coffee has been growing at La Perla since 1940 and the farm now produces 6,000 to 7,000 quintales of parchment each year. The coffee grows between 1,100-1,800 metres above sea level and is planted in a loose soil with a high content of clay and sand over a limestone base. The Arenas family pays scrupulous attention to detail at every stage of the coffee process. The beans are harvested by hand only when perfectly ripe, then wet milled and dried either in the sun or in mechanical dryers, depending on the weather.</p>\n<p class=\"content\">La Perla won a Presidential award at the 2006 Cup of Excellence competition and has made the auction final 4 times (2001, 2002, 2006 and 2008).</p>\n<p class=\"content\">Around 15% (493 hectares) of this vast farm\u2019s 3,285 rugged, rolling hectares are planted with coffee \u2013 of the Caturra and Bourbon variety. A further 990 hectares are set aside as native forest reserves, which are a haven for animals, birds and native plant species. The farm\u2019s rain-drenched hills are also the source of several natural springs, and its Ixtupil and Sacsiwan rivers provide more than enough water to irrigate the entire farm.</p>\n<p class=\"content\">The climate in the area is steamy, hot and humid, with 197 to 217 inches of rain each year. These conditions also support a wide selection of other crops, including cardamom, macadamia nuts and grains.</p>\n<p class=\"content\">The farm\u2019s land is scattered with small settlements, which are home to between 2,500 and 3,000 local Mayan people. Most work on the farm throughout the year, as well as tending to their own plots of land, where they grow staple foodstuffs for consumption at home. Some 500 workers have formed a solidarity association whose activities have helped to raise standards of living within the farm community.</p>\n<p class=\"content\">The commitment of its workers permitted La Perla to continue to produce during the civil war (circa 1960-1996 \u2013 the longest civil war in the history of the American continent), despite the fact that the farm was located in the heartland of the conflict between the Army and guerrilla groups, which used the surrounding mountains as a base. Over the period of the armed conflict thousands of civilians in the Ixil Triangle area were killed, tortured or disappeared as the Guatemalan Army pursued a \u2018scorched-earth\u2019 policy to destroy villages. [A UN-sponsored report published in 1999 estimated that the state was responsible for 93% of the human rights violations committed during the war, the guerrillas for 3%. An estimated 83% of the victims were Mayan.]</p>\n<p class=\"content\">At the end of the armed conflict, the farm worked hard to reintegrate those most affected by the violence: the refugees who fled to save their families. La Perla provided work, reconstructed entire villages, and promoted health campaigns, such as vaccinations, that facilitated the repatriation of many whose lives were adversely affected by the conflict.</p>"
+    "content": "<h1><span>LA PERLA</span></h1>\n<p><img class=\"imgright\" height=\"167\" src=\"/media/uploads/perla1.jpg\" width=\"250\"></p>\n<div class=\"info\">\n<h2>Farm Info</h2>\n<p class=\"shadow\">Farm: Finca La Perla <br> <br> Varietal: Bourbon Caturra <br><br> Processing: Fully Washed/Patio Dried <br><br> Altitude: 1,100-1,800m<br><br> Owner: Arenas family<br><br>Town/City: Chaj\u00fal <br><br>Region: El Quich\u00e9</p>\n</div>\n<div class=\"info\">\n<h2>Roast Info</h2>\n<p class=\"shadow\">Roast: Full City</p>\n<p class=\"shadow\">Aroma: Citrus</p>\n<p class=\"shadow\">Body: Medium</p>\n<p class=\"shadow\">Flavors: Orange, Plum, Caramel</p>\n</div>\n<p><span><br></span></p>\n<h2>About the farmers</h2>\n<p class=\"content\">Finca La Perla lies amid the steep green hills of the \u2018Ixil Triangle\u2019 high in Guatemala\u2019s western highlands, an isolated area famed for the strength of its indigenous culture and the beauty of its landscape. \u2018La Perla\u2019 means \"Sleeping Woman\" in Ixil, a Mayan language spoken widely locally (Spanish remains a second language at best in this hard to reach area).</p>\n<p class=\"content\">Coffee has been growing at La Perla since 1940 and the farm now produces 6,000 to 7,000 quintales of parchment each year. The coffee grows between 1,100-1,800 metres above sea level and is planted in a loose soil with a high content of clay and sand over a limestone base. The Arenas family pays scrupulous attention to detail at every stage of the coffee process. The beans are harvested by hand only when perfectly ripe, then wet milled and dried either in the sun or in mechanical dryers, depending on the weather.</p>\n<p class=\"content\">La Perla won a Presidential award at the 2006 Cup of Excellence competition and has made the auction final 4 times (2001, 2002, 2006 and 2008).</p>\n<p class=\"content\">Around 15% (493 hectares) of this vast farm\u2019s 3,285 rugged, rolling hectares are planted with coffee \u2013 of the Caturra and Bourbon variety. A further 990 hectares are set aside as native forest reserves, which are a haven for animals, birds and native plant species. The farm\u2019s rain-drenched hills are also the source of several natural springs, and its Ixtupil and Sacsiwan rivers provide more than enough water to irrigate the entire farm.</p>\n<p class=\"content\">The climate in the area is steamy, hot and humid, with 197 to 217 inches of rain each year. These conditions also support a wide selection of other crops, including cardamom, macadamia nuts and grains.</p>\n<p class=\"content\">The farm\u2019s land is scattered with small settlements, which are home to between 2,500 and 3,000 local Mayan people. Most work on the farm throughout the year, as well as tending to their own plots of land, where they grow staple foodstuffs for consumption at home. Some 500 workers have formed a solidarity association whose activities have helped to raise standards of living within the farm community.</p>\n<p class=\"content\">The commitment of its workers permitted La Perla to continue to produce during the civil war (circa 1960-1996 \u2013 the longest civil war in the history of the American continent), despite the fact that the farm was located in the heartland of the conflict between the Army and guerrilla groups, which used the surrounding mountains as a base. Over the period of the armed conflict thousands of civilians in the Ixil Triangle area were killed, tortured or disappeared as the Guatemalan Army pursued a \u2018scorched-earth\u2019 policy to destroy villages. [A UN-sponsored report published in 1999 estimated that the state was responsible for 93% of the human rights violations committed during the war, the guerrillas for 3%. An estimated 83% of the victims were Mayan.]</p>\n<p class=\"content\">At the end of the armed conflict, the farm worked hard to reintegrate those most affected by the violence: the refugees who fled to save their families. La Perla provided work, reconstructed entire villages, and promoted health campaigns, such as vaccinations, that facilitated the repatriation of many whose lives were adversely affected by the conflict.</p>"
   }
 },
 {
   "pk": 11, 
   "model": "pages.richtextpage", 
   "fields": {
-    "content": "<h1 class=\"content\">El Cairo</h1>\n<p class=\"content\">Farm: Finca El Cairo</p>\n<p class=\"content\">Processing: Fully Washed and dried on patio</p>\n<p class=\"content\">Altitude: 1,200 metres above sea level</p>\n<p class=\"content\">Owner: Justo Pastor Montecinos Sierra</p>\n<p class=\"content\">Town/City: Comarca los Planes, nr. Dipilto</p>\n<p class=\"content\">Region: Nueva Segovia</p>\n<p class=\"content\">The Montecinos Sierra family has been farming at Finca El Cairo since 1964. The farm lies at some 1,200 metres above sea level in the mountainous Nueva Segovia region in northern Nicaragua, not far from the border with Honduras.</p>\n<p class=\"content\">The farm extends over around 21 hectares, all of which are under coffee. The Montecinos family implemented a major replanting progamme in the late 1970s, and Finca El Cairo is now planted out with only Caturra varietal trees.</p>\n<p class=\"content\">Finca El Cairo employs around 20 permanent workers, who carry out all pre-harvest tasks on the farm such as pruning (March) and fertilizing (May). The harvest usually begins in November and lasts until the end of January, during which the workforce swells to as many as 65 workers. The cherries are picked by hand when fully ripe, pulped on the same day and fully washed. The coffee is then dried in the sun on the farm\u2019s patios until it reaches optimum humidity.</p>"
+    "content": "<h1 class=\"content\">El Cairo</h1>\n<p><img class=\"imgright\" height=\"272\" src=\"/media/uploads/elcairo.jpg\" width=\"250\"></p>\n<div class=\"info\">\n<h2>Farm info</h2>\n<p class=\"shadow\">Farm: Finca El Cairo</p>\n<p class=\"shadow\">Processing: Fully Washed and dried on patio</p>\n<p class=\"shadow\">Altitude: 1,200 metres above sea level</p>\n<p class=\"shadow\">Owner: Justo Pastor Montecinos Sierra</p>\n<p class=\"shadow\">Town/City: Comarca los Planes, near Dipilto</p>\n<p class=\"shadow\">Region: Nueva Segovia</p>\n</div>\n<div class=\"info\">\n<h2>Roast Info</h2>\n<p class=\"shadow\">Roast: City+</p>\n<p class=\"shadow\">Aroma: Earth</p>\n<p class=\"shadow\">Body: Full</p>\n<p class=\"shadow\">Flavors: Chocolate, Hazelnut, Bitters</p>\n</div>\n<h2>About the farm</h2>\n<p class=\"content\">The Montecinos Sierra family has been farming at Finca El Cairo since 1964. The farm lies at some 1,200 metres above sea level in the mountainous Nueva Segovia region in northern Nicaragua, not far from the border with Honduras.</p>\n<p class=\"content\">The farm extends over around 21 hectares, all of which are under coffee. The Montecinos family implemented a major replanting progamme in the late 1970s, and Finca El Cairo is now planted out with only Caturra varietal trees.</p>\n<p class=\"content\">Finca El Cairo employs around 20 permanent workers, who carry out all pre-harvest tasks on the farm such as pruning (March) and fertilizing (May). The harvest usually begins in November and lasts until the end of January, during which the workforce swells to as many as 65 workers. The cherries are picked by hand when fully ripe, pulped on the same day and fully washed. The coffee is then dried in the sun on the farm\u2019s patios until it reaches optimum humidity.</p>"
   }
-},
+}
+]
+[
 {
   "pk": 24, 
   "model": "galleries.gallery", 
   "fields": {
-    "content": "<h1><strong>Welcome to THE SOURCE.</strong></h1>\n<p class=\"content\">We strive to provide you with the best specialty coffee the world has to offer. \u00a0We know that the best coffee is non-commodity varieties, grown by small farmers who make the effort to grow the finest coffee in the world. \u00a0Our goal is to connect you to them - to get your coffee from The Source.</p>", 
+    "content": "<h1>Welcome to THE SOURCE.</h1>\n<p class=\"content\">We strive to provide you with the best specialty coffee the world has to offer. \u00a0We know that the best coffee is non-commodity varieties, grown by small farmers who make the effort to grow the finest coffee in the world. \u00a0Our goal is to connect you to them - to get your coffee from The Source.</p>\n<p><a class=\"homebtn\" href=\"/account/signup/?next=/\">Subscribe today!</a></p>\n<h2>How does it work?</h2>\n<p class=\"content\">Think of us as a CSA (community supported agriculture). \u00a0We begin by sourcing the best artisan coffee varieties in the world grown by indigenous farmers in various coffee-producing countries. \u00a0We then roast the coffees to perfection, package them, and ship them to your front door! \u00a0You grind and brew your delicious coffee. It's that simple!\u00a0</p>\n<p class=\"content\">When you subscribe, we also allocate a portion of profits to our non-profit organization which is dedicated to raising indigenous coffee farmers out of poverty. \u00a0The non-profit arm uses these profits to create a revolving micro-loan fund. \u00a0The Source then guarantees the purchase of the coffee grown the year a loan was made so that farmers are guaranteed a way of paying back their small loans.</p>\n<h2 class=\"content\">Earn free coffee!</h2>\n<p class=\"content\">Since we are a small company, we rely on word of mouth for most of our publicity. \u00a0Our rewards program lets you earn free bags of coffee, merchandise, and other thank-yous for referring us to your friends! We have an easy to use referral system that lets you post on Facebook, Twitter, and email your friends. \u00a0Just sign up and click on the Invites and Rewards link to learn more!\u00a0</p>\n<h2>Come source with us!</h2>\n<p class=\"content\">If you subscribe to our premium coffee delivery service for one year (26 shipments) we will automatically enter you into our yearly contest to come source coffee with us! The winner will recieve an all-expenses paid trip to one of our sourcing countries, to be determined by their availability.</p>", 
     "zip_import": ""
   }
 },
@@ -286,7 +326,7 @@
   "pk": 23, 
   "model": "galleries.gallery", 
   "fields": {
-    "content": "<h1>Specialty coffee. Fresh to your door. Every two weeks.\u00a0</h1>", 
+    "content": "<h1>Specialty Coffee From Farm to Doorstep.</h1>\n<!---Trial--->\n<div class=\"subcost\">\n<div class=\"subwrap1\">\n<h6>The Free Trial</h6>\n<div id=\"extra\"></div>\n<div id=\"costimgwrapper\"><img class=\"costimg\" height=\"106\" src=\"/media/uploads/2oz.png\" width=\"100\"></div>\n</div>\n<div class=\"subwrap2\">\n<p class=\"header\">Free!</p>\n<p class=\"per\">One time shipment</p>\n</div>\n<div class=\"subwrap3\">\n<div class=\"left\">\n<p class=\"costs\">We'll send you a few cups of our delicious coffee to try, absolutely free!</p>\n</div>\n<div class=\"left1\"><a class=\"cost_btn\" href=\"http://www.thesourcecoffee.com/account/signup/?next=/\">Let's try it!</a></div>\n</div>\n</div>\n<!---8oz--->\n<div class=\"subcost\">\n<div class=\"subwrap1\">\n<h5>The Alert Farmer Ally</h5>\n<div id=\"extra\"></div>\n<div id=\"costimgwrapper\"><img class=\"costimg\" height=\"106\" src=\"/media/uploads/8oz.png\" width=\"100\"></div>\n</div>\n<div class=\"subwrap2\">\n<p class=\"header\">$30</p>\n<p class=\"per\">per month</p>\n</div>\n<div class=\"subwrap3\">\n<div class=\"left\">\n<p class=\"costs\">Our entry level supporter will receive two eight ounce bags per month!</p>\n</div>\n<div class=\"left1\"><a class=\"cost_btn\" href=\"http://www.thesourcecoffee.com/account/signup/?next=/\">Yes, I'm an ally!</a></div>\n</div>\n</div>\n<!---8oz--->\n<div class=\"subcost\">\n<div class=\"subwrap1\">\n<h5>The Buzzed Benefactor</h5>\n<div id=\"extra\"></div>\n<div id=\"costimgwrapper\"><img class=\"costimg\" height=\"106\" src=\"/media/uploads/12oz.png\" width=\"100\"></div>\n</div>\n<div class=\"subwrap2\">\n<p class=\"header\">$40</p>\n<p class=\"per\">per month</p>\n</div>\n<div class=\"subwrap3\">\n<div class=\"left\">\n<p class=\"costs\">Best Seller! Great for the daily drinker- two 12 ounce bags per month.</p>\n</div>\n<div class=\"left1\"><a class=\"cost_btn\" href=\"http://www.thesourcecoffee.com/account/signup/?next=/\">Help more farms!</a></div>\n</div>\n</div>\n<!---16oz--->\n<div class=\"subcost\">\n<div class=\"subwrap1\">\n<h5>The Caffeinated Philanthropist</h5>\n<div id=\"extra\"></div>\n<div id=\"costimgwrapper\"><img class=\"costimg\" height=\"106\" src=\"/media/uploads/16oz.png\" width=\"100\"></div>\n</div>\n<div class=\"subwrap2\">\n<p class=\"header\">$50</p>\n<p class=\"per\">per month</p>\n</div>\n<div class=\"subwrap3\">\n<div class=\"left\">\n<p class=\"costs\">Two 16 ounce shipments per month to keep you and your entire clan of farm supporters awake!</p>\n</div>\n<div class=\"left1\"><a class=\"cost_btn\" href=\"http://www.thesourcecoffee.com/account/signup/?next=/\">I love my farmers!</a></div>\n</div>\n</div>\n<div id=\"extra\"></div>\n<p></p>\n<h2>Want to save some money? Check out our <a href=\"/pricing/contract-info\">contract options</a>!</h2>\n<p></p>\n<h2>Subscription Details and Information</h2>\n<table class=\"sub\">\n<thead>\n<tr><th></th><th class=\"price\">The Free Trial</th><th class=\"price\">The Alert Farm Ally</th><th class=\"price\">The Buzzed Benefactor</th><th class=\"right\">The Caffeinated Philanthropist</th></tr>\n</thead>\n<tbody>\n<tr>\n<td class=\"price1\">Size</td>\n<!--Type-->\n<td class=\"price2\">2 oz bag</td>\n<!--2 oz-->\n<td class=\"price3\">8 oz bag</td>\n<!--8oz-->\n<td class=\"price3\">12 oz bag</td>\n<!--12 oz-->\n<td class=\"price4\">16 oz bag</td>\n<!--16 oz--></tr>\n<tr>\n<td class=\"price1\">Serves</td>\n<!--Type-->\n<td class=\"price2\">A few cups to try</td>\n<!--2 oz-->\n<td class=\"price3\">1-2 light drinkers</td>\n<!--8oz-->\n<td class=\"price3\">1-2 daily drinkers</td>\n<!--12 oz-->\n<td class=\"price4\">2-3 daily drinkers</td>\n<!--16 oz--></tr>\n<tr>\n<td class=\"price1\">Free Shipping</td>\n<!--Feature-->\n<td class=\"price2\">Yes</td>\n<!--Trial-->\n<td class=\"price3\">Yes</td>\n<!--Monthly-->\n<td class=\"price3\">Yes</td>\n<!--3 Month-->\n<td class=\"price4\">Yes</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"price1\">Roaming Feature</td>\n<!--Feature-->\n<td class=\"price2\">No</td>\n<!--Trial-->\n<td class=\"price3\">Yes</td>\n<!--Monthly-->\n<td class=\"price3\">Yes</td>\n<!--3 Month-->\n<td class=\"price4\">Yes</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"price1\">Pause Account</td>\n<!--Feature-->\n<td class=\"price2\">No</td>\n<!--Trial-->\n<td class=\"price3\">Yes</td>\n<!--Monthly-->\n<td class=\"price3\">Yes</td>\n<!--3 Month-->\n<td class=\"price4\">Yes</td>\n<!--1 year--></tr>\n<tr>\n<td class=\"price1\">Ships 2x Monthly</td>\n<!--Feature-->\n<td class=\"price2\">\n<div class=\"circle\" id=\"circle\"></div>\n</td>\n<td class=\"price3\"></td>\n<td class=\"price3\"></td>\n<td class=\"price4\"></td>\n</tr>\n<tr>\n<td class=\"price1\">Freshness Guaranteed</td>\n<!--Feature-->\n<td class=\"price2\">\n<div class=\"circle\" id=\"circle\"></div>\n</td>\n<td class=\"price3\"></td>\n<td class=\"price3\"></td>\n<td class=\"price4\"></td>\n</tr>\n<tr>\n<td class=\"price1\">Cancel Anytime</td>\n<!--Feature-->\n<td class=\"price2\">\n<div class=\"circle\" id=\"circle\"></div>\n</td>\n<td class=\"price3\"></td>\n<td class=\"price3\"></td>\n<td class=\"price4\"></td>\n</tr>\n</tbody>\n<tfoot>\n<tr>\n<td class=\"none\"></td>\n<td><a class=\"cost_btn1\" href=\"http://www.thesourcecoffee.com/account/signup/?next=/\">Let's try it!</a></td>\n<td><a class=\"cost_btn1\" href=\"http://www.thesourcecoffee.com/account/signup/?next=/\">Yes, I'm an ally!</a></td>\n<td><a class=\"cost_btn1\" href=\"http://www.thesourcecoffee.com/account/signup/?next=/\">Help more farms!</a></td>\n<td><a class=\"cost_btn1\" href=\"http://www.thesourcecoffee.com/account/signup/?next=/\">I love my farmers!</a></td>\n</tr>\n</tfoot>\n</table>", 
     "zip_import": ""
   }
 },
@@ -294,27 +334,21 @@
   "pk": 25, 
   "model": "galleries.gallery", 
   "fields": {
-    "content": "<h1>Let us connect you to your farmers.</h1>\n<p class=\"content\">Under this section, we will constantly update to provide you with information on the farmers we purchase your coffee from. \u00a0To find the particular source of your coffee, please refer to the label for the name of the source and the corresponding link below will take you to the information on that source. \u00a0Since we sometimes buy very small batches of coffee, you may find more than one source here each time. \u00a0We strive to provide as much information as possible, including pictures, video, and text. \u00a0Want more? Subscribe to The Source for a year and be automatically entered for a trip to come with us on a coffee buying expedition!</p>\n<h1 class=\"content\">Sources:</h1>\n<p class=\"content\"><a href=\"/sources/guatamala-la-perla/\">La Perla</a></p>\n<p class=\"content\"><a href=\"/sources/nicaragua-el-cairo/\">El Cairo</a></p>", 
+    "content": "<h1>Let us connect you to your farmers.</h1>\n<p class=\"content\">Under this section, we will constantly update to provide you with information on the farmers we purchase your coffee from. \u00a0To find the particular source of your coffee, please refer to the label for the name of the source and the corresponding link below will take you to the information on that source. \u00a0Since we sometimes buy very small batches of coffee, you may find more than one source here each time. \u00a0We strive to provide as much information as possible, including pictures, video, and text. \u00a0Want more? Subscribe to The Source for a year and be automatically entered for a trip to come with us on a coffee buying expedition!</p>\n<h1 class=\"content\">Sources:</h1>\n<div class=\"source\"><a href=\"/sources/guatamala-la-perla/\"><img class=\"srcimg\" height=\"167\" src=\"/media/uploads/perla1.jpg\" width=\"250\"><br>La Perla</a></div>\n<div class=\"source\"><a href=\"/sources/nicaragua-el-cairo/\"><img class=\"srcimg\" height=\"167\" src=\"/media/uploads/elcairosmall.png\" width=\"250\"><br>El Cairo</a></div>", 
     "zip_import": ""
   }
-},
-{
-  "pk": 17, 
-  "model": "galleries.gallery", 
-  "fields": {
-    "content": "<p>Testing</p>", 
-    "zip_import": ""
-  }
-},
+}
+]
+[
 {
   "pk": 14, 
   "model": "forms.form", 
   "fields": {
     "email_message": "Thanks for providing us with your valuble feedback.  If your inquiry requires a response, please expect one within 24 hours.  If you do not hear from us by then, please contact us at urgent@thesourcecoffee.com.  ", 
-    "email_copies": "", 
+    "email_copies": "yourfriends@thesourcecoffee.com", 
     "button_text": "Submit Inquiry", 
-    "response": "<p>Thanks for your feedback and we will respond as soon as possible!</p>", 
-    "content": "<p><img alt=\"\" class=\"img_block\" height=\"455\" src=\"/media/uploads/galleries/coolillustration.jpg\" width=\"1425\"><span>Connect to THE SOURCE.</span></p>\n<p class=\"content\">Please check out the <a href=\"/contact/faq/\" target=\"_blank\" title=\"FAQ\">FAQ</a>\u00a0and if your question is not answered there,\u00a0feel free to email us with your questions, comments, and concerns. \u00a0If your question is regarding an order, please select the option below and we will respond to you as soon as possible. \u00a0Thanks!</p>", 
+    "response": "<h2>Message Received</h2>\n<p class=\"content\">Thanks for your feedback and we will respond as soon as possible!</p>", 
+    "content": "<h1><span>Connect to THE SOURCE.</span></h1>\n<p class=\"content\">Please check out the <a href=\"/contact/faq/\" target=\"_blank\" title=\"FAQ\">FAQ</a>\u00a0and if your question is not answered there,\u00a0feel free to email us with your questions, comments, and concerns. \u00a0If your question is regarding an order, please select the option below and we will respond to you as soon as possible. \u00a0Thanks!</p>\n<p class=\"right\"><img height=\"365\" src=\"/media/uploads/galleries/coffeebeansfreshsmall.jpg\" width=\"650\"></p>", 
     "send_email": true, 
     "email_subject": "Your message has been received!", 
     "email_from": "yourfriends@thesourcecoffee.com"
@@ -393,6 +427,54 @@
   }
 },
 {
+  "pk": 4, 
+  "model": "forms.formentry", 
+  "fields": {
+    "entry_time": "2013-07-21T20:04:44.537Z", 
+    "form": 14
+  }
+},
+{
+  "pk": 5, 
+  "model": "forms.formentry", 
+  "fields": {
+    "entry_time": "2013-07-21T20:06:59.607Z", 
+    "form": 14
+  }
+},
+{
+  "pk": 6, 
+  "model": "forms.formentry", 
+  "fields": {
+    "entry_time": "2013-07-21T20:11:16.934Z", 
+    "form": 14
+  }
+},
+{
+  "pk": 7, 
+  "model": "forms.formentry", 
+  "fields": {
+    "entry_time": "2013-07-21T20:14:22.389Z", 
+    "form": 14
+  }
+},
+{
+  "pk": 8, 
+  "model": "forms.formentry", 
+  "fields": {
+    "entry_time": "2013-07-21T20:14:36.182Z", 
+    "form": 14
+  }
+},
+{
+  "pk": 9, 
+  "model": "forms.formentry", 
+  "fields": {
+    "entry_time": "2013-07-21T20:20:55.727Z", 
+    "form": 14
+  }
+},
+{
   "pk": 1, 
   "model": "forms.fieldentry", 
   "fields": {
@@ -429,35 +511,223 @@
   }
 },
 {
-  "pk": 1, 
-  "model": "mezzanine_slides.slide", 
+  "pk": 5, 
+  "model": "forms.fieldentry", 
   "fields": {
-    "_order": 0, 
-    "page": 17, 
-    "file": "uploads/galleries/coffee-wallpaper.jpg", 
-    "description": "Coffee Wallpaper"
+    "entry": 4, 
+    "field_id": 1, 
+    "value": "Eric"
   }
 },
 {
-  "pk": 2, 
-  "model": "mezzanine_slides.slide", 
+  "pk": 6, 
+  "model": "forms.fieldentry", 
   "fields": {
-    "_order": 1, 
-    "page": 17, 
-    "file": "uploads/galleries/dreamstimefree_6830454.jpg", 
-    "description": "Dreamstimefree 6830454"
+    "entry": 4, 
+    "field_id": 2, 
+    "value": "ericjohnsohn@gmail.com"
   }
 },
 {
-  "pk": 3, 
-  "model": "mezzanine_slides.slide", 
+  "pk": 7, 
+  "model": "forms.fieldentry", 
   "fields": {
-    "_order": 0, 
-    "page": 23, 
-    "file": "uploads/galleries/1343838_62237865.jpg", 
-    "description": "1343838 62237865"
+    "entry": 4, 
+    "field_id": 3, 
+    "value": "test"
   }
 },
+{
+  "pk": 8, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 4, 
+    "field_id": 4, 
+    "value": "Order"
+  }
+},
+{
+  "pk": 9, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 5, 
+    "field_id": 1, 
+    "value": "Test"
+  }
+},
+{
+  "pk": 10, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 5, 
+    "field_id": 2, 
+    "value": "ntzaperas@gmail.com"
+  }
+},
+{
+  "pk": 11, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 5, 
+    "field_id": 3, 
+    "value": "Sup"
+  }
+},
+{
+  "pk": 12, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 5, 
+    "field_id": 4, 
+    "value": "Comment"
+  }
+},
+{
+  "pk": 13, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 6, 
+    "field_id": 1, 
+    "value": "Test"
+  }
+},
+{
+  "pk": 14, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 6, 
+    "field_id": 2, 
+    "value": "ntzaperas@gmail.com"
+  }
+},
+{
+  "pk": 15, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 6, 
+    "field_id": 3, 
+    "value": "Sup"
+  }
+},
+{
+  "pk": 16, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 6, 
+    "field_id": 4, 
+    "value": "Comment"
+  }
+},
+{
+  "pk": 17, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 7, 
+    "field_id": 1, 
+    "value": "Eric"
+  }
+},
+{
+  "pk": 18, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 7, 
+    "field_id": 2, 
+    "value": "ericjohnsohn@gmail.com"
+  }
+},
+{
+  "pk": 19, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 7, 
+    "field_id": 3, 
+    "value": "test"
+  }
+},
+{
+  "pk": 20, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 7, 
+    "field_id": 4, 
+    "value": "Order"
+  }
+},
+{
+  "pk": 21, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 8, 
+    "field_id": 1, 
+    "value": "Nick"
+  }
+},
+{
+  "pk": 22, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 8, 
+    "field_id": 2, 
+    "value": "ntzaperas@gmail.com"
+  }
+},
+{
+  "pk": 23, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 8, 
+    "field_id": 3, 
+    "value": "Test"
+  }
+},
+{
+  "pk": 24, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 8, 
+    "field_id": 4, 
+    "value": "Comment"
+  }
+},
+{
+  "pk": 25, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 9, 
+    "field_id": 1, 
+    "value": "Eric"
+  }
+},
+{
+  "pk": 26, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 9, 
+    "field_id": 2, 
+    "value": "ericjohnsohn@gmail.com"
+  }
+},
+{
+  "pk": 27, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 9, 
+    "field_id": 3, 
+    "value": "testing"
+  }
+},
+{
+  "pk": 28, 
+  "model": "forms.fieldentry", 
+  "fields": {
+    "entry": 9, 
+    "field_id": 4, 
+    "value": "Order"
+  }
+}
+]
+[
 {
   "pk": 4, 
   "model": "mezzanine_slides.slide", 
@@ -486,16 +756,6 @@
     "page": 24, 
     "file": "uploads/galleries/coolillustration.jpg", 
     "description": "Coolillustration"
-  }
-},
-{
-  "pk": 7, 
-  "model": "mezzanine_slides.slide", 
-  "fields": {
-    "_order": 0, 
-    "page": 25, 
-    "file": "uploads/galleries/beanshands.jpg", 
-    "description": "Hands"
   }
 }
 ]
