@@ -34,7 +34,7 @@
     "value": 80, 
     "description": "Maximum number of pounds that can be fulfilled in one day"
   }
-}
+},
 {
   "pk": 5,
   "model": "base.sitesetting",

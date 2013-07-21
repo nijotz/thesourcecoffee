@@ -311,9 +311,7 @@
   "fields": {
     "content": "<h1 class=\"content\">El Cairo</h1>\n<p><img class=\"imgright\" height=\"272\" src=\"/media/uploads/elcairo.jpg\" width=\"250\"></p>\n<div class=\"info\">\n<h2>Farm info</h2>\n<p class=\"shadow\">Farm: Finca El Cairo</p>\n<p class=\"shadow\">Processing: Fully Washed and dried on patio</p>\n<p class=\"shadow\">Altitude: 1,200 metres above sea level</p>\n<p class=\"shadow\">Owner: Justo Pastor Montecinos Sierra</p>\n<p class=\"shadow\">Town/City: Comarca los Planes, near Dipilto</p>\n<p class=\"shadow\">Region: Nueva Segovia</p>\n</div>\n<div class=\"info\">\n<h2>Roast Info</h2>\n<p class=\"shadow\">Roast: City+</p>\n<p class=\"shadow\">Aroma: Earth</p>\n<p class=\"shadow\">Body: Full</p>\n<p class=\"shadow\">Flavors: Chocolate, Hazelnut, Bitters</p>\n</div>\n<h2>About the farm</h2>\n<p class=\"content\">The Montecinos Sierra family has been farming at Finca El Cairo since 1964. The farm lies at some 1,200 metres above sea level in the mountainous Nueva Segovia region in northern Nicaragua, not far from the border with Honduras.</p>\n<p class=\"content\">The farm extends over around 21 hectares, all of which are under coffee. The Montecinos family implemented a major replanting progamme in the late 1970s, and Finca El Cairo is now planted out with only Caturra varietal trees.</p>\n<p class=\"content\">Finca El Cairo employs around 20 permanent workers, who carry out all pre-harvest tasks on the farm such as pruning (March) and fertilizing (May). The harvest usually begins in November and lasts until the end of January, during which the workforce swells to as many as 65 workers. The cherries are picked by hand when fully ripe, pulped on the same day and fully washed. The coffee is then dried in the sun on the farm\u2019s patios until it reaches optimum humidity.</p>"
   }
-}
-]
-[
+},
 {
   "pk": 24, 
   "model": "galleries.gallery", 
@@ -337,9 +335,7 @@
     "content": "<h1>Let us connect you to your farmers.</h1>\n<p class=\"content\">Under this section, we will constantly update to provide you with information on the farmers we purchase your coffee from. \u00a0To find the particular source of your coffee, please refer to the label for the name of the source and the corresponding link below will take you to the information on that source. \u00a0Since we sometimes buy very small batches of coffee, you may find more than one source here each time. \u00a0We strive to provide as much information as possible, including pictures, video, and text. \u00a0Want more? Subscribe to The Source for a year and be automatically entered for a trip to come with us on a coffee buying expedition!</p>\n<h1 class=\"content\">Sources:</h1>\n<div class=\"source\"><a href=\"/sources/guatamala-la-perla/\"><img class=\"srcimg\" height=\"167\" src=\"/media/uploads/perla1.jpg\" width=\"250\"><br>La Perla</a></div>\n<div class=\"source\"><a href=\"/sources/nicaragua-el-cairo/\"><img class=\"srcimg\" height=\"167\" src=\"/media/uploads/elcairosmall.png\" width=\"250\"><br>El Cairo</a></div>", 
     "zip_import": ""
   }
-}
-]
-[
+},
 {
   "pk": 14, 
   "model": "forms.form", 
@@ -725,9 +721,7 @@
     "field_id": 4, 
     "value": "Order"
   }
-}
-]
-[
+},
 {
   "pk": 4, 
   "model": "mezzanine_slides.slide", 
