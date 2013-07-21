@@ -9,6 +9,9 @@ def check_code(request):
         gift = GiftSubscription.objects.get(
             code__code=code,
             giftee=email)
-        return HttpResponse('true')
+        data = {}
+        data['interval'] = gift.plan.interval
+        data['amount'] = gift.plan.amount
+        return HttpResponse(json.dumps(data))
     except:
-        return HttpResponse('false')
+        return HttpResponse(json.dumps(None))
