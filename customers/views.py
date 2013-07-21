@@ -61,22 +61,28 @@ def home(request):
     return locals()
 
 
-def gift(request, context):
+def gift_purchase(request, context):
     with transaction.commit_on_success():
-        data = {
-            'plan': context['plan'],
-            'giftee': context['gift_form'].cleaned_data['giftee'],
-            'gifter': context['gift_form'].cleaned_data['gifter'],
-        }
+        save = transaction.savepoint()
+        try:
+            data = {
+                'plan': context['plan'],
+                'giftee': context['gift_form'].cleaned_data['giftee'],
+                'gifter': context['gift_form'].cleaned_data['gifter'],
+            }
 
-        gift = GiftSubscription(**data).save()
+            gift = GiftSubscription(**data).save()
 
-        stripe.Charge.create(
-            amount=int(context['plan'].price * 100),
-            currency='usd',
-            card=request.POST['stripeToken'],
-            description='{plan} for {giftee} from {gifter}'.format(**data)
-        )
+            stripe.Charge.create(
+                amount=int(context['plan'].price * 100),
+                currency='usd',
+                card=request.POST['stripeToken'],
+                description='{plan} for {giftee} from {gifter}'.format(**data)
+            )
+
+        except Exception as e:
+            transaction.savepoint_rollback(save)
+            error(request, e)
 
     # Gather e-mail info
     context = { 'gift':gift, }
@@ -109,6 +115,41 @@ def gift(request, context):
     # Redirect to page with message
     return redirect(reverse('gifts_sent'))
 
+
+def gift_redeem(request, context):
+    with transaction.commit_on_success():
+        save = transaction.savepoint()
+        try:
+
+            # Create coupon so customer gets free subscription
+            coupon = stripe.Coupon.create(percent_off=100, duration=once)['id']
+
+            customer_form = context['customer_form']
+            customer = customer_form.save(commit=False).customer
+
+            subscription = Subscription(customer=customer, plan=plan)
+            subscription.save(coupon=coupon)
+
+            transaction.savepoint_commit(save)
+
+            if not customer.user.is_active:
+                send_verification_mail(request, customer.user, "signup_verify")
+                info(request, _("A verification email has been sent with "
+                                "a link for activating your account."))
+                return redirect(request.GET.get("next", "/"))
+            else:
+                info(request, _("Successfully signed up"))
+                auth_login(request, customer.user)
+                return login_redirect(request)
+            data = {
+                'plan': context['plan'],
+                'giftee': context['gift_form'].cleaned_data['giftee'],
+                'gifter': context['gift_form'].cleaned_data['gifter'],
+            }
+
+        except Exception as e:
+            transaction.savepoint_rollback(save)
+            error(request, e)
 
 @render_to('customers/gifts_sent')
 def gifts_sent(request):
@@ -146,8 +187,11 @@ def signup(request):
         else:
             return context
 
-        if context['gift'] and gift_form.is_valid():
-            return gift(request, context)
+        if context['gift_purchase'] and gift_form.is_valid():
+            return gift_purchase(request, context)
+
+        if context['gift_redeerm'] and customer_form.is_valid():
+            return gift_redeem(request, context)
 
         if not customer_form.is_valid():
             return context
@@ -176,7 +220,7 @@ def signup(request):
                 return login_redirect(request)
 
         except Exception as e:
-            error(request, e)
             transaction.savepoint_rollback(save)
+            error(request, e)
 
     return context

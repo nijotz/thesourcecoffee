@@ -137,11 +137,11 @@ class Subscription(models.Model):
     def __unicode__(self):
         return '%s - %s' % (self.customer, self.plan)
 
-    def save(self, *args, **kwargs):
+    def save(self, coupon=None, *args, **kwargs):
 
         # sync with stripe, this can override every field but customer
         sc = self.customer.stripe_customer
-        sc.update_subscription(plan=self.plan.stripe_id)
+        sc.update_subscription(plan=self.plan.stripe_id, coupon=coupon)
         stripe_sub = sc.subscription
 
         if stripe_sub:
