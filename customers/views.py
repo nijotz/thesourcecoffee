@@ -182,27 +182,30 @@ def signup(request):
         'code_check_url': code_check_url,
     }
 
+    # Shortcut for initial page load
+    if not request.method != 'POST':
+        return context
+
     # Validate forms, handle gift if necessary
-    if request.method == "POST":
-        if subscription_form.is_valid():
-            context['plan'] = Plan.objects.get(
-                amount=subscription_form.cleaned_data['amount'],
-                interval=subscription_form.cleaned_data['interval'])
-            plan = context['plan']
-        else:
-            return context
+    if subscription_form.is_valid():
+        context['plan'] = Plan.objects.get(
+            amount=subscription_form.cleaned_data['amount'],
+            interval=subscription_form.cleaned_data['interval'])
+        plan = context['plan']
+    else:
+        return context
 
-        if context.get('gift_purchase') and gift_form.is_valid():
-            return gift_purchase(request, context)
+    if context.get('gift_purchase') and gift_form.is_valid():
+        return gift_purchase(request, context)
 
-        if context.get('gift_redeem') and customer_form.is_valid():
-            return gift_redeem(request, context)
+    if context.get('gift_redeem') and customer_form.is_valid():
+        return gift_redeem(request, context)
 
-        if not customer_form.is_valid():
-            return context
+    if not customer_form.is_valid():
+        return context
 
-        if not reward_code_form.is_valid():
-            return context
+    if not reward_code_form.is_valid():
+        return context
 
     # Attempt normal subscription signup
     with transaction.commit_on_success():
