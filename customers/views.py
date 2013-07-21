@@ -167,10 +167,10 @@ def signup(request):
     gift_form = GiftSubscriptionForm(request.POST or None)
     plans = Plan.objects.jsonify_for_form()
     code_check_url = reverse('gifts_check_code')
-
-    invite_code = request.GET.get('code', '')
+    invite_code = request.GET.get('invite_code', '')
     reward_code_form = RewardCodeForm(request.POST or None,
         initial={'invite_code': invite_code})
+
     context = {
         'customer_form': customer_form,
         'subscription_form': subscription_form,

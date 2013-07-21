@@ -44,9 +44,9 @@ $(function() {
             </p>
             <div class="invitewrap">
             <p class="shadow">Your personal invite link:</p>
-            <input id="invite_code_url" disabled="true" type="text" size="50" class="shadow" value="https://{{ request.get_host}}{% url "signup" %}?code={{request.user.customer.invite_code}}"></input>
+            <input id="invite_code_url" disabled="true" type="text" size="50" class="shadow" value="https://{{ request.get_host}}{% url "signup" %}?invite_code={{request.user.customer.invite_code}}"></input>
             <br/><br/>
-            <input id="copy_text_btn" data-clipboard-target="invite_code_url" data-clipboard-text="https://{{ request.get_host}}{% url "signup" %}?code={{request.user.customer.invite_code}}" type="submit" class="btn" value="Copy to clipboard"></input>
+            <input id="copy_text_btn" data-clipboard-target="invite_code_url" data-clipboard-text="https://{{ request.get_host}}{% url "signup" %}?invite_code={{request.user.customer.invite_code}}" type="submit" class="btn" value="Copy to clipboard"></input>
             </div>
 
             <div class="invitewrap">
