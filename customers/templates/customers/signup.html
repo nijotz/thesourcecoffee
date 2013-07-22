@@ -87,8 +87,11 @@
         $('#gift-check12').show();
         $('.gift').show();
         $('.nongift').hide();
-        $("input[type='radio'][name='amount'][value='0.125']").button({disabled:true});
-        $("input[type='radio'][name='amount'][value='0.125']").hide();
+
+        var trial = $("input[type='radio'][name='amount'][value='0.125']")
+        trial.button({disabled:true});
+        $('label[for="' + trial[0].id + '"]').hide()
+
         $('.input_id_code').hide()
       } else {
         $('#gift-check11').hide();
@@ -97,8 +100,11 @@
         $('#check12').show();
         $('.gift').hide();
         $('.nongift').show();
-        $("input[type='radio'][name='amount'][value='0.125']").button({disabled:false});
-        $("input[type='radio'][name='amount'][value='0.125']").show();
+
+        var trial = $("input[type='radio'][name='amount'][value='0.125']")
+        trial.button({disabled:false});
+        $('label[for="' + trial[0].id + '"]').show()
+
         $('.input_id_code').show()
       }
     }
