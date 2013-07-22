@@ -95,8 +95,10 @@ TEMPLATE_ACCESSIBLE_SETTINGS = (
 # In the format (('Full Name', 'email@example.com'),
 #                ('Full Name', 'anotheremail@example.com'))
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('Eric Johnson', 'eric@thesourcecoffee.com'),
+    ('Nick Tzaperas', 'ntzaperas@gmail.com'),
 )
+SERVER_EMAIL='django-errors@thesourcecoffee.com'
 MANAGERS = ADMINS
 
 # Local time zone for this installation. Choices can be found here:
