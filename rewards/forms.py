@@ -23,7 +23,7 @@ class EmailListForm(forms.Form):
 
 class RewardCodeForm(forms.Form):
     invite_code = forms.CharField(max_length=10,
-        label = "Have a reward code?", required=False)
+        label = "Have an invite code?", required=False)
 
     def clean_invite_code(self):
 
