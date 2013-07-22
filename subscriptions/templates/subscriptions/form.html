@@ -53,8 +53,8 @@ $(function(){
 
 // Make an ajax request to see if the code is valid and apply it if so
 function apply_code() {
-  var code = $("#id_code").val();
-  var email = $("#id_email").val();
+  var code = $('#id_code').val();
+  var email = $('#id_email').val();
   $.ajax({
     url: '{{code_check_url}}',
     data: {
@@ -94,6 +94,8 @@ function apply_code() {
       $('.input_id_code .help-inline').html('Invalid code!');
     }
   });
+
+  if ($('#id_code').val()) { apply_code(); }
 }
 
 // Handle gift code application
