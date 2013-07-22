@@ -17,8 +17,10 @@ DATABASES = {
     }
 }
 
-STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_byUXCM2Jh3dR4GG5SbML95zn")
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_ogQKzO4mi83uIl7yMnTVl2z2")
+#STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_8aFt7ltHKPQ4Pm9CDzhWEyyv")
+#STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_IKVpC0Z3UvwETbTNQMNKHRKl")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_live_RAbmHMYx6d3u02qEEgFi8WP2")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_live_4S00xu51gSTkzpbcVDsmbO3Y")
 
 #SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTOCOL", "https")
 #
