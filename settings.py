@@ -128,6 +128,12 @@ SITE_ID = 1
 SITE_TITLE = 'The Source Coffee Company'
 SITE_TAGLINE = "Roasting Coffee since 2013"
 
+ALLOWED_HOSTS = [
+    'thesourcecoffee.com',
+    'localhost',
+    'staging.thesourcecoffee.com',
+]
+
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = False
