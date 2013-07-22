@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.urls import login_redirect
 import stripe
+from base.models import SiteSetting
 from customers.forms import CustomerForm
 from customers.tests import signup_test_customer
 from gifts.forms import GiftSubscriptionForm
