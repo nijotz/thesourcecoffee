@@ -68,9 +68,17 @@ function apply_code() {
       var input = "input[type='radio']";
       var interval = "[name='interval'][value='" + data['interval'] + "']";
       var amount = "[name='amount'][value='" + data['amount'] + "']";
+
+      // Disable all buttons
       $("input[type='radio']").button({disabled:true});
+
+      // Just enable the amount and interval gifted
       $(input + interval).button({disabled:false});
       $(input + amount).button({disabled:false});
+
+      // Actual click the radios of the amount and interval gifted
+      $(input + interval).attr("checked", "checked").button('refresh');
+      $(input + amount).attr("checked", "checked").button('refresh');
 
       // Don't allow other 'on change' code to mess with button state
       $('input[type="radio"]').unbind('change');

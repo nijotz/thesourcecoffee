@@ -1,3 +1,4 @@
+from datetime import datetime
 from annoying.decorators import render_to
 from django.conf import settings
 from django.contrib import messages
@@ -133,14 +134,18 @@ def gift_redeem(request, context):
     with transaction.commit_on_success():
         save = transaction.savepoint()
         try:
+            code = context['gift_code']
+            gift = GiftSubscription.objects.get(code=code)
+            gift.redeemed = datetime.now()
+            gift.save()
 
             # Create coupon so customer gets free subscription
-            coupon = stripe.Coupon.create(percent_off=100, duration=once)['id']
+            coupon = stripe.Coupon.create(percent_off=100, duration='once')['id']
 
             customer_form = context['customer_form']
             customer = customer_form.save(commit=False).customer
 
-            subscription = Subscription(customer=customer, plan=plan)
+            subscription = Subscription(customer=customer, plan=context['plan'])
             subscription.save(coupon=coupon)
 
             transaction.savepoint_commit(save)
@@ -163,6 +168,8 @@ def gift_redeem(request, context):
         except Exception as e:
             transaction.savepoint_rollback(save)
             error(request, e)
+
+    return context
 
 @render_to('customers/gifts_sent')
 def gifts_sent(request):
@@ -192,6 +199,7 @@ def signup(request):
         'plans': plans,
         'gift_purchase': request.POST.get('gift_purchase'),
         'code_check_url': code_check_url,
+        'gift_code': request.POST.get('code')
     }
 
     # Shortcut for initial page load
@@ -210,7 +218,7 @@ def signup(request):
     if context.get('gift_purchase') and gift_form.is_valid():
         return gift_purchase(request, context)
 
-    if context.get('gift_redeem') and customer_form.is_valid():
+    if context.get('gift_code') and customer_form.is_valid():
         return gift_redeem(request, context)
 
     if not customer_form.is_valid():
