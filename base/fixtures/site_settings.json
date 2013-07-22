@@ -61,5 +61,14 @@
     "value": "You've been connected to The Source",
     "description": "The subject line for the e-mail sent to a gift recipient"
   }
+},
+{
+  "pk": 8,
+  "model": "base.sitesetting",
+  "fields": {
+    "key": "gifts.email_from",
+    "value": "yourfriends@thesourcecoffee.com",
+    "description": "The e-mail address to send from when sending out gift e-mails"
+  }
 }
 ]

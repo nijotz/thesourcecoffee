@@ -96,6 +96,7 @@ def gift_purchase(request, context):
         'gift': gift,
         'redeem_url': reverse('customers_signup') + '?code=' + gift.code.code })
     gifter_subject = SiteSetting.objects.get(key="gifts.gifter_email_subject")
+    from_email = SiteSetting.objects.get(key="gifts.email_from").value
     gifter_html = loader.render_to_string("gifts/gifter_email.html", context_instance=context)
     gifter_text = loader.render_to_string("gifts/gifter_email.txt", context_instance=context)
     gifter_email = data['gifter']
@@ -109,7 +110,8 @@ def gift_purchase(request, context):
     email = EmailMultiAlternatives(
         gifter_subject,
         gifter_text,
-        [gifter_email,])
+        from_email,
+        [gifter_email])
     email.attach_alternative(gifter_html, "text/html")
     email.send(fail_silently=False)
 
@@ -117,7 +119,8 @@ def gift_purchase(request, context):
     email = EmailMultiAlternatives(
         giftee_subject,
         giftee_text,
-        [giftee_email,])
+        from_email,
+        [giftee_email])
     email.attach_alternative(giftee_html, "text/html")
     email.send(fail_silently=False)
 
