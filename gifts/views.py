@@ -4,11 +4,8 @@ from gifts.models import GiftSubscription
 
 def check_code(request):
     code = request.REQUEST.get('code', '')
-    email = request.REQUEST.get('email', '')
     try:
-        gift = GiftSubscription.objects.get(
-            code__code=code,
-            giftee=email)
+        gift = GiftSubscription.objects.get(code__code=code)
         data = {}
         data['interval'] = gift.plan.interval
         data['amount'] = gift.plan.amount
