@@ -4,10 +4,11 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.messages import info, error
+from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.shortcuts import redirect
-from django.template import loader
+from django.template import Context, loader
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.urls import login_redirect
 import stripe
@@ -74,7 +75,8 @@ def gift_purchase(request, context):
                 'gifter': context['gift_form'].cleaned_data['gifter'],
             }
 
-            gift = GiftSubscription(**data).save()
+            gift = GiftSubscription(**data)
+            gift.save()
 
             stripe.Charge.create(
                 amount=int(context['plan'].price * 100),
@@ -86,11 +88,13 @@ def gift_purchase(request, context):
         except Exception as e:
             transaction.savepoint_rollback(save)
             error(request, e)
+            return context
 
+    # TODO: dont concatenate strings to build URLs
     # Gather e-mail info
-    context = {
+    context = Context({
         'gift': gift,
-        'redeem_url': reverse('customers_signup', kwargs={'code':gift.code.code}) }
+        'redeem_url': reverse('customers_signup') + '?code=' + gift.code.code })
     gifter_subject = SiteSetting.objects.get(key="gifts.gifter_email_subject")
     gifter_html = loader.render_to_string("gifts/gifter_email.html", context_instance=context)
     gifter_text = loader.render_to_string("gifts/gifter_email.txt", context_instance=context)
