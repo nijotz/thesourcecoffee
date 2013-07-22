@@ -92,7 +92,6 @@ $(function() {
 
 {% endblock %}
 {% block footer_js %}{{ block.super }}
-{% compress js %}
 <script type="text/javascript">
   FB.init({appId: "510565695683050", status: true, cookie: true});
   function postToFeed() {
@@ -115,6 +114,5 @@ $(function() {
     FB.ui(obj, callback);
   }
 </script>
-{% endcompress %}
 {% endblock %}
 
