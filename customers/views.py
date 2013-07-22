@@ -7,6 +7,7 @@ from django.contrib.messages import info, error
 from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.shortcuts import redirect
+from django.template import loader
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.urls import login_redirect
 import stripe
