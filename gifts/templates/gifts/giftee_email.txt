@@ -1,12 +1,30 @@
-Hi,
+Hi {{gift.giftee}},
 
-You received a gift. Way to go. Info:
+Welcome to The Source! Your friend {{gift.gifter}} has gifted you with a subscription to our luxury coffee delivery service.
+You will receive {{gift.plan.amount_str}} of coffee every two weeks for {{gift.plan.interval_str}}.
 
-{{gift}}
-{{gift.plan.amount}}
-{{gift.plan.interval}}
-{{gift.code}}
-{{gifter}}
+To redeem your gift, copy and paste the code below into the gift redemption box on our website. Or, just click the redemption URL below!
+
+Your gift code:
+{{gift.code.code}}
+
+Redemption URL:
 {{redeem_url}}
 
--Bye
+The Source was created to provide you with the best specialty coffee the world has to offer.  We know that the best coffee is non-commodity varieties, grown by small farmers who make the effort to grow the finest coffee in the world.  Our goal is to connect you to them - to get your coffee from The Source. 
+
+Think of us as a CSA (community supported agriculture).  We begin by sourcing the best artisan coffee varieties in the world grown by indigenous farmers in various coffee-producing countries.  We then roast the coffees to perfection, package them, and ship them to your front door!  You grind and brew your delicious coffee. It's that simple! 
+
+We also allocate a portion of profits to our non-profit organization which is dedicated to raising indigenous coffee farmers out of poverty.  The non-profit arm uses these profits to create grants that small farmers can apply for.  The Source promises to purchase the coffee grown the year a grant was made so that farmers benefit even more from your subscription!
+
+Best,
+The Source Coffee Company
+yourfriends@thesourcecoffee.com
+Like us!
+http://www.facebook.com/thesourcecoffeecompany
+Tweet us!
+http://www.twitter.com/thesourcecoffee
+Follow us!
+http://www.instagram.com/thesourcecoffee
+
+

@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block main %}
-Recipient e-mail: {{gift.giftee}}<br/>
-Gift code: {{gift.code.code}}<br/>
-Amount: {{gift.plan.amount_str}}<br/>
-Interval: {{gift.plan.interval_str}}<br/>
+<h2>Gift Purchased</h2>
+<p class="shadow">
+You successfully purchased your gift! Please check your email for your receipt and confirmation letter.
+<br/><br/>
+Recipient's e-mail: {{gift.giftee}}<br/>
+Subscription Amount: {{gift.plan.amount_str}}<br/>
+Subscription Interval: {{gift.plan.interval_str}}<br/>
+</p>
 {% endblock %}

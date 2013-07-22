@@ -39,8 +39,8 @@ $(function() {
         <h2>Invites and Rewards</h2>
             <p class="content">
             Since we are a small company we rely mostly on word of mouth relationships and we value your recommendation.
-            Copy the link below and send it to your friends via facebook, email, etc. and earn a free shipment when they sign up for a subscription! 
-            You can also earn free goodies for signing up more than 5 people!
+            Copy the link below and send it to your friends via facebook, email, etc. and earn a free coffee shipment when they sign up and keep a monthly subscription, or an immediate
+			free shipment if they sign up for a contract! You can also earn free goodies for signing up more than 10 people!
             </p>
             <div class="invitewrap">
             <p class="shadow">Your personal invite link:</p>
@@ -51,9 +51,9 @@ $(function() {
 
             <div class="invitewrap">
             <h2>Social Media</h2>
-            <div id='fb-root'></div>
-    <p class="shadow"><a onclick='postToFeed(); return false;'>Share Via Facebook</a></p>
-    <p id='msg'></p>
+            <a  class="share" href="https://www.facebook.com/sharer/sharer.php?u=https://{{ request.get_host}}{% url "signup" %}?invite_code={{request.user.customer.invite_code}}" target="_blank">
+  Share on Facebook
+			</a>
             </div>
 
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

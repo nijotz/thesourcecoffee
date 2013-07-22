@@ -16,6 +16,7 @@ html, body {
     font-family: 'dinmedium', 'serif';
     color:#939597;
     font-size:14px;
+	text-align:center;
 }
 .content {
     min-width:972px;
@@ -25,6 +26,7 @@ html, body {
     color:#939597;
     font-size:14px;
     margin-bottom:10px;
+	padding:20px;
 }
 p.shadow {
     font-family:'dinmedium', 'serif';
@@ -34,13 +36,36 @@ p.shadow {
     text-shadow:2px 2px 1px #000000;
 }
 p.shadow a {
+    text-decoration:none;
+color: rgb(255, 255, 255);
+font-size: 20px;
+padding: 12px;
+text-shadow: -2px -1px 8px rgba(30, 30, 30, 0.73);
+-webkit-border-radius: 51px;
+-moz-border-radius: 51px;
+border-radius: 51px;
+background: rgb(185, 133, 43);
+background: -moz-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -webkit-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -o-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -ms-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: linear-gradient(0deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+-webkit-box-shadow: 3px 2px 7px rgba(50, 50, 50, 0.87);
+-moz-box-shadow:    3px 2px 7px rgba(50, 50, 50, 0.87);
+box-shadow:         3px 2px 7px rgba(50, 50, 50, 0.87);
+border:none;
+cursor:pointer;
+}
+
+p.notshadow a
+{
     font-family:'dinmedium', 'serif';
     color:#B9842B;
     font-size:18px;
     text-decoration:none;
     text-shadow:2px 2px 1px #000000;
-    cursor:pointer;
 }
+
 h2 {
     font-family:'dinmedium', 'serif';
     color:#939597;
@@ -52,12 +77,34 @@ h2 {
 </style>
 </head>
 <body>
-    <div class="header">
+    <!---<div class="header">
         <div class="logo"><img width="300" height="150" src="http://{{ current_site }}{{ STATIC_URL }}images/logo_horizontal.png"></img></div>
-    </div>
+    </div>--->
     <div class="content">
-        <h2>You've been invited</h2>
-        <p class="shadow">A friend has invited you to try out thesourcecoffee.com! Check it out <a href="{{invite_url}}">here.</a></p>
-    </div>
+        <h2>You've been invited!</h2>
+        <p class="shadow">A friend has invited you to connect to The Source! Click on your invitation link below to check out our subscription options and sign up!
+		<br /><br /><br />
+		<a href="{{invite_url}}">Invitation Sign Up</a></p>
+		<br />
+		<h2>About The Source</h2>
+		<p class="shadow">The Source was created to provide you with the best specialty coffee the world has to offer.  We know that the best coffee is non-commodity varieties, grown by small farmers who make the effort to grow the finest coffee in the world.  Our goal is to connect you to them - to get your coffee from The Source. </p>
+<br /><br />
+	<p class="shadow">Think of us as a CSA (community supported agriculture).  We begin by sourcing the best artisan coffee varieties in the world grown by indigenous farmers in various coffee-producing countries.  We then roast the coffees to perfection, package them, and ship them to your front door!  You grind and brew your delicious coffee. It's that simple! </p>
+<br /><br />
+	<p class="shadow">We also allocate a portion of profits to our non-profit organization which is dedicated to raising indigenous coffee farmers out of poverty.  The non-profit arm uses these profits to create grants that small farmers can apply for.  The Source promises to purchase the coffee grown the year a grant was made so that farmers benefit even more from your subscription!</p>
+<p class="shadow">	
+Best,
+<br />
+The Source Coffee Company
+</p>
+<p class="notshadow">
+yourfriends@thesourcecoffee.com
+<br /><br />
+	<a href="http://www.facebook.com/thesourcecoffeecompany">Like us!</a>
+	<br />
+        <a href="http://www.twitter.com/thesourcecoffee">Tweet us!</a>
+		<br />
+        <a href="http://www.instagram.com/thesourcecoffee">Follow us!</a>
+		</div>
 </body>
 </html>
