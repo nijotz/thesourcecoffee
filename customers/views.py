@@ -95,13 +95,14 @@ def gift_purchase(request, context):
     context = Context({
         'gift': gift,
         'redeem_url': reverse('customers_signup') + '?code=' + gift.code.code })
-    gifter_subject = SiteSetting.objects.get(key="gifts.gifter_email_subject")
     from_email = SiteSetting.objects.get(key="gifts.email_from").value
+
+    gifter_subject = SiteSetting.objects.get(key="gifts.gifter_email_subject").value
     gifter_html = loader.render_to_string("gifts/gifter_email.html", context_instance=context)
     gifter_text = loader.render_to_string("gifts/gifter_email.txt", context_instance=context)
     gifter_email = data['gifter']
 
-    giftee_subject = SiteSetting.objects.get(key="gifts.giftee_email_subject")
+    giftee_subject = SiteSetting.objects.get(key="gifts.giftee_email_subject").value
     giftee_html = loader.render_to_string("gifts/giftee_email.html", context_instance=context)
     giftee_text = loader.render_to_string("gifts/giftee_email.txt", context_instance=context)
     giftee_email = data['giftee']
