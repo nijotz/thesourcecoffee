@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django_localflavor_us.models import PhoneNumberField, USStateField, USPostalCodeField
 import stripe
-from base.models import StripeObject
+from base.models import StripeObject, SiteSetting
 from subscriptions.models import Subscription
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
