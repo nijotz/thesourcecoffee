@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block main %}
+Recipient e-mail: {{gift.giftee}}<br/>
+Gift code: {{gift.code.code}}<br/>
+Amount: {{gift.plan.amount_str}}<br/>
+Interval: {{gift.plan.interval_str}}<br/>
+{% endblock %}
