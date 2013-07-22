@@ -56,11 +56,11 @@ def create_subscription_orders(sender, instance, **kwargs):
     subscription = instance
 
     #TODO: this shouldn't be hardcoded; too many magic numbers
-    if subscription.interval == 1:
+    if subscription.plan.interval == 1:
         num_orders = 2
-    elif subscription.interval == 3:
+    elif subscription.plan.interval == 3:
         num_orders = 6
-    elif subscription.interval == 12:
+    elif subscription.plan.interval == 12:
         num_orders = 26
 
     for i in range(0, num_orders):
