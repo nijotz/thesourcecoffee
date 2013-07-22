@@ -97,13 +97,13 @@ function apply_code() {
 
 }
 
-// Handle gift code application
 $(function(){
+  // Handle gift code application
   $("#apply_code_btn").click(function(obj) { apply_code(); });
-});
 
-// Apply code on page load if filled in
-if ($('#id_code').val()) { apply_code(); }
+  // Apply code on page load if filled in
+  if ($('#id_code').val()) { apply_code(); }
+});
 </script>
 
 <div class="control-group input_id_plan">
