@@ -95,13 +95,15 @@ function apply_code() {
     }
   });
 
-  if ($('#id_code').val()) { apply_code(); }
 }
 
 // Handle gift code application
 $(function(){
   $("#apply_code_btn").click(function(obj) { apply_code(); });
 });
+
+// Apply code on page load if filled in
+if ($('#id_code').val()) { apply_code(); }
 </script>
 
 <div class="control-group input_id_plan">
