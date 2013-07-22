@@ -100,7 +100,7 @@ def gift_purchase(request, context):
     # Gather e-mail info
     context = Context({
         'gift': gift,
-        'static_url': request.build_absolute_uri(settings.STATIC_URL),
+        'static_abs_url': request.build_absolute_uri(settings.STATIC_URL),
         'redeem_url': request.build_absolute_uri(reverse('customers_signup') + '?code=' + gift.code.code)})
     from_email = SiteSetting.objects.get(key="gifts.email_from").value
 
