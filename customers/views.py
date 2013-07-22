@@ -215,10 +215,13 @@ def signup(request):
 
     # Validate forms, handle gift if necessary
     if subscription_form.is_valid():
-        context['plan'] = Plan.objects.get(
-            amount=subscription_form.cleaned_data['amount'],
-            interval=subscription_form.cleaned_data['interval'])
-        plan = context['plan']
+        if subscription_form.cleaned_data['amount'] == '0.125':
+            plan = Plan.objects.get(trial=True)
+        else:
+            plan = Plan.objects.get(
+                amount=subscription_form.cleaned_data['amount'],
+                interval=subscription_form.cleaned_data['interval'])
+        context['plan'] = plan
     else:
         return context
 

@@ -3,33 +3,12 @@
   "pk": 1, 
   "model": "subscriptions.plan", 
   "fields": {
-    "amount": 0.125, 
+    "amount": 0.5, 
     "interval": 1, 
-    "stripe_id": "2 ozs for 1 month at $18.75", 
-    "price": "18.75", 
-    "public": true
-  }
-},
-{
-  "pk": 2, 
-  "model": "subscriptions.plan", 
-  "fields": {
-    "amount": 0.125, 
-    "interval": 3, 
-    "stripe_id": "2 ozs for 3 months at $18.75", 
-    "price": "18.75", 
-    "public": true
-  }
-},
-{
-  "pk": 3, 
-  "model": "subscriptions.plan", 
-  "fields": {
-    "amount": 0.125, 
-    "interval": 12, 
-    "stripe_id": "2 ozs for 12 months at $18.75", 
-    "price": "18.75", 
-    "public": true
+    "stripe_id": "8 ozs for 1 month at $30.00 with trial", 
+    "price": "30.00", 
+    "public": true,
+    "trial": true
   }
 },
 {
