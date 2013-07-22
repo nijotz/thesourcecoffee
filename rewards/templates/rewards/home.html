@@ -9,8 +9,8 @@
 }
 </style>
 {% endcompress %}
-{% compress js %}
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+{% compress js %}
 <script type="text/javascript" src="{{STATIC_URL}}js/contrib/ZeroClipboard.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -91,28 +91,3 @@ $(function() {
 
 
 {% endblock %}
-{% block footer_js %}{{ block.super }}
-<script type="text/javascript">
-  FB.init({appId: "510565695683050", status: true, cookie: true});
-  function postToFeed() {
-
-    // calling the API ...
-    var obj = {
-      method: 'feed',
-      redirect_uri: 'http://thesourcecoffee.com',
-      link: 'https://developers.facebook.com/docs/reference/dialogs/',
-      picture: 'http://fbrell.com/f8.jpg',
-      name: 'Facebook Dialogs',
-      caption: 'Reference Documentation',
-      description: 'Using Dialogs to interact with people.'
-    };
-
-    function callback(response) {
-      document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
-    }
-
-    FB.ui(obj, callback);
-  }
-</script>
-{% endblock %}
-
