@@ -19,6 +19,7 @@ from customers.tests import signup_test_customer
 from gifts.forms import GiftSubscriptionForm
 from gifts.models import GiftSubscription
 from rewards.forms import RewardCodeForm
+from rewards.models import InviteCode
 from subscriptions.forms import SubscriptionForm
 from subscriptions.models import Plan, Subscription
 
@@ -251,7 +252,7 @@ def signup(request):
                     code=form_invite_code)
                 if inv_code_instance.exists():
                     inv = inv_code_instance.get()
-                    inv.customer.grant_reward(subscription)
+                    inv.customer.grant_reward(customer)
 
             if not customer.user.is_active:
                 send_verification_mail(request, customer.user, "signup_verify")
