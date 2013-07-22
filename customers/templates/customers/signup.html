@@ -25,7 +25,7 @@
 <h2>Step 1: Enter your information</h2>
 <p class="content">Is this a gift?
 <input id="gift_checkbox" name="gift_purchase" type="checkbox" {% if gift %}checked="checked"{% endif %}/>
-<p class="content">Enter the address you wish to receive your coffee at below:</p>
+<p class="content nongift">Enter the address you wish to receive your coffee at below:</p>
 
 <div id="gift-check11" type="gift">
 {% for field in gift_form %}
@@ -51,7 +51,7 @@
 {% include "customers/form_fields.html" with form=customer_form %}
 
 <div id="extra"></div>
-  <p class="content">
+  <p class="content nongift">
   <br/><br/>
   Your email address will be your username for login purposes.
   <br/><br/>
@@ -59,6 +59,14 @@
   <br/><br/>
   Your subscription will begin the Monday of the week after you place your order and your first shipment should arrive soon after!
   </p>
+
+  <p class="content gift">
+  <br/><br/>
+  Please note that for now we can only ship to valid USPS addresses in the United States.
+  <br/><br/>
+  The recipient's subscription will begin the Monday of the week after they redeem their code and their first shipment should arrive soon after!
+  </p>
+
 </div>
 
 <div id="check2">
@@ -76,6 +84,8 @@
         $('#check12').hide();
         $('#gift-check11').show();
         $('#gift-check12').show();
+        $('.gift').show();
+        $('.nongift').hide();
         $("input[type='radio'][name='amount'][value='0.125']").button({disabled:true});
         $('.input_id_code').hide()
       } else {
@@ -83,6 +93,8 @@
         $('#gift-check12').hide();
         $('#check11').show();
         $('#check12').show();
+        $('.gift').hide();
+        $('.nongift').show();
         $("input[type='radio'][name='amount'][value='0.125']").button({disabled:false});
         $('.input_id_code').show()
       }
