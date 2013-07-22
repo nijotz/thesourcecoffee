@@ -1,5 +1,5 @@
 from base.models import StripeObject
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -73,8 +73,11 @@ class Customer(StripeObject):
         if plan.interval > 1:
             # The invitee probably signed up for 3 months or a year. Hooray,
             # then the customer gets a reward right away!
+            interval = SiteSetting.objects.get(key='subscriptions.interval').value
+            last_order = self.orders.all().order_by('-to_be_fulfilled')[0]
+            to_be_fulfilled = last_order.to_be_fulfilled + timedelta(weeks=interval)
             order = Order.objects.create(subscription=self.subscription,
-                to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
+                to_be_fulfilled=to_be_fulfilled)
             return Reward.objects.create(rewardee=self, invitee=invitee,
                 order=order)
         elif plan.interval == 1:
