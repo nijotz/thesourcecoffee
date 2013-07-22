@@ -1013,7 +1013,7 @@ opacity:.7;
 } 
 
 .ui-button[aria-disabled="true"] { 
-display:none;
+opacity:.4;
 } 
 
 span.help-inline
