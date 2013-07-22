@@ -508,7 +508,8 @@ background-color:#4d4d45;
 {
 float:left;
 width:485px;
-height:675px;
+min-height:700px;
+max-height:1000px;
 border:2px solid #B9842B;
 margin-right:30px;
 padding:20px;
@@ -545,11 +546,17 @@ width:0px;
 clear:both;
 }
 
+#act_update
+{
+clear:both;
+}
+
 #check2
 {
 float:left;
 width:485px;
-height:675px;
+min-height:700px;
+max-height:1000px;
 border:2px solid #B9842B;
 padding:20px;
 -webkit-border-radius: 17px;
@@ -703,22 +710,12 @@ text-shadow:2px 2px 1px #000000;
 }
 
 
-label.signup
+ label.signup
 {
 font-family: 'dinmedium', 'serif';
 color:#E8E8E9;
 font-size: 20px;
 text-decoration:none;
-text-shadow:2px 2px 1px #000000;
-}
-
-.input_invite_code label
-{
-font-family: 'dinmedium', 'serif';
-color:#E8E8E9;
-font-size: 20px;
-text-decoration:none;
-text-shadow:2px 2px 1px #000000;
 }
 
 div.center
@@ -751,28 +748,41 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 }
 */
 
-/*form.signup
+#pw_reset_form
 {
-font-family:'dinmedium', 'serif';
-color:#E8E8E9;
-font-size:20px;
-margin-bottom:0px;
-width:0px;
-height:0px;
-padding:0px;
-background-color:transparent;
-border:none;
--webkit-border-radius: 0px;
--moz-border-radius: 0px;
-border-radius: 0px;
--webkit-box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.5);
-box-shadow:  0px 0px 0px 0px rgba(0, 0, 0, 0.5);
--moz-box-shadow:  0px 0px 0px 0px rgba(0, 0, 0);
-/* For IE 8 
--ms-filter: "none";
-filter: none;
+border:2px solid #B9842B;
+padding:20px;
+max-width:250px;
+background-color:#4d4d45;
+-webkit-border-radius: 17px;
+-moz-border-radius: 17px;
+border-radius: 17px;
+-webkit-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+-moz-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
-*/
+
+#pages_form
+{
+border:2px solid #B9842B;
+padding:20px;
+max-width:500px;
+background-color:#4d4d45;
+-webkit-border-radius: 17px;
+-moz-border-radius: 17px;
+border-radius: 17px;
+-webkit-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+-moz-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
 
 form
 {
@@ -1008,7 +1018,7 @@ display:none;
 span.help-inline
 {
 position:relative;
-display:block;
+display:inline-block;
 font-family: 'dinmedium', 'serif';
 color:#B9842B;
 font-size:16px;
@@ -1093,6 +1103,14 @@ width:100%;
 height:100%;
 }
 
+a.share
+{
+font-family: 'dinmedium', 'serif';
+color:#B9842B;
+font-size: 18px;
+text-decoration:none;
+text-shadow:2px 2px 1px #000000;
+}
 
 p.content {
 font-family: 'dinmedium', 'serif';
@@ -1402,6 +1420,34 @@ float:right;
 -webkit-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 -moz-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+ul.messages li.info
+{
+font-family: 'dinmedium', 'serif';
+color:#B9842B;
+font-size:18px;
+text-shadow:2px 2px 1px #000000;
+text-decoration:none;
+}
+
+ul.errorlist li
+{
+position:relative;
+display:block;
+font-family: 'dinmedium', 'serif';
+color:#B9842B;
+font-size:16px;
+text-shadow:2px 2px 1px #000000;
+}
+
+ul.messages li.error
+{
+font-family: 'dinmedium', 'serif';
+color:#B9842B;
+font-size:18px;
+text-shadow:2px 2px 1px #000000;
+text-decoration:none;
 }
 
 ul#splash
