@@ -527,6 +527,28 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 background-color:#4d4d45;
 }
 
+#giftcheck1
+{
+float:left;
+width:485px;
+min-height:700px;
+max-height:1000px;
+border:2px solid #B9842B;
+margin-right:30px;
+padding:20px;
+-webkit-border-radius: 17px;
+-moz-border-radius: 17px;
+border-radius: 17px;
+-webkit-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+-moz-box-shadow:  5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+background-color:#4d4d45;
+}
+
 #check11
 {
 float:left;
@@ -992,8 +1014,6 @@ margin-right:5px;
 background-color:#E0AA5B;
 }
 
-
-
 .ui-button
 {
 padding:5px;
@@ -1238,7 +1258,7 @@ max-width:100%;
     border-spacing: 0; 
 }
 
-table.sub thead th:empty
+table.sub th.none
 {
 background:transparent;
     border:none;
