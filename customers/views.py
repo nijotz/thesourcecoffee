@@ -183,7 +183,7 @@ def signup(request):
     }
 
     # Shortcut for initial page load
-    if not request.method != 'POST':
+    if request.method != 'POST':
         return context
 
     # Validate forms, handle gift if necessary
