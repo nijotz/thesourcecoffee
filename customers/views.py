@@ -76,10 +76,14 @@ def gift_purchase(request, context):
                 'gifter': context['gift_form'].cleaned_data['gifter'],
             }
 
+            customer = stripe.Customer.create(
+                card=request.POST['stripeToken'],
+                email=data['gifter'])
+
             stripe.Charge.create(
                 amount=int(context['plan'].price * 100),
                 currency='usd',
-                card=request.POST['stripeToken'],
+                customer=customer['id'],
                 description='{plan} for {giftee} from {gifter}'.format(**data)
             )
 
