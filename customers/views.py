@@ -142,7 +142,7 @@ def gift_redeem(request, context):
         save = transaction.savepoint()
         try:
             code = context['gift_code']
-            gift = GiftSubscription.objects.get(code=code)
+            gift = GiftSubscription.objects.get(code=code, redeemed=None)
             gift.redeemed = datetime.now()
             gift.save()
 
