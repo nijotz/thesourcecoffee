@@ -41,4 +41,3 @@ def send_invite_email(inviter, email_address):
         [email_address])
     email.attach_alternative(rendered_html_template, "text/html")
     email.send(fail_silently=False)
-

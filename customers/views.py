@@ -88,7 +88,9 @@ def gift_purchase(request, context):
             error(request, e)
 
     # Gather e-mail info
-    context = { 'gift':gift, }
+    context = {
+        'gift': gift,
+        'redeem_url': reverse('customers_signup', kwargs={'code':gift.code.code}) }
     gifter_subject = SiteSetting.objects.get(key="gifts.gifter_email_subject")
     gifter_html = loader.render_to_string("gifts/gifter_email.html", context_instance=context)
     gifter_text = loader.render_to_string("gifts/gifter_email.txt", context_instance=context)

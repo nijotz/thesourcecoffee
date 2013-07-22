@@ -3,5 +3,10 @@ Hi,
 You received a gift. Way to go. Info:
 
 {{gift}}
+{{gift.plan.amount}}
+{{gift.plan.interval}}
+{{gift.code}}
+{{gifter}}
+{{redeem_url}}
 
 -Bye
