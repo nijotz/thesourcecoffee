@@ -1243,12 +1243,16 @@ tr.odd
 {
 background-color:#21211E;
 color:#B9842B;
+font-family: 'dinbold', 'dinmedium', 'serif';
+font-size:20px;
 }
 
 tr.even
 {
 background-color:#5D5D5D;
-color:#FFF;
+font-family: 'dinbold', 'dinmedium', 'serif';
+color:#FFFFFF;
+font-size:20px;
 }
 
 table.sub
