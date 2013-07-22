@@ -86,6 +86,10 @@ function apply_code() {
 
       // Remove invalid code msg if present
       $('.input_id_code .help-inline').html('');
+
+      // Get rid of "Is this a gift?"
+      $('#gift_checkbox').hide();
+      $('label[for="gift_checkbox"]').hide();
     } else {
       $('.input_id_code .help-inline').html('Invalid code!');
     }
