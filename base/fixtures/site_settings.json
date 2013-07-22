@@ -43,5 +43,23 @@
     "value": "A friend has invited you to The Source Coffee!",
     "description": "The subject line for the invite email sent via the rewards app."
   }
+},
+{
+  "pk": 6,
+  "model": "base.sitesetting",
+  "fields": {
+    "key": "gifts.gifter_email_subject",
+    "value": "Your gift has been sent",
+    "description": "The subject line for the e-mail sent to a gift sender"
+  }
+},
+{
+  "pk": 7,
+  "model": "base.sitesetting",
+  "fields": {
+    "key": "gifts.giftee_email_subject",
+    "value": "You've been connected to The Source",
+    "description": "The subject line for the e-mail sent to a gift recipient"
+  }
 }
 ]
