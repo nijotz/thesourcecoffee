@@ -178,7 +178,7 @@ def signup(request):
         'reward_code_form': reward_code_form,
         'stripe_key': stripe_key,
         'plans': plans,
-        'gift': request.POST.get('gift'),
+        'gift_purchase': request.POST.get('gift_purchase'),
         'code_check_url': code_check_url,
     }
 
