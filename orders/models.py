@@ -66,5 +66,5 @@ def create_subscription_orders(sender, instance, **kwargs):
     for i in range(0, num_orders):
         order = Order(
             subscription=instance,
-            to_be_fulfilled=datetime.now() + (i * timedelta(weeks=2))
+            to_be_fulfilled=datetime.now() + (i * timedelta(weeks=2)))
         order.save()
