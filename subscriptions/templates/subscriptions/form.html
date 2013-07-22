@@ -81,9 +81,11 @@ function apply_code() {
       // Remove stripe button
       $('.stripe-button-el').remove();
 
-      //Place redeem code button
+      // Place redeem code button
       $('#redeem_code_btn').show();
 
+      // Remove invalid code msg if present
+      $('.input_id_code .help-inline').html('');
     } else {
       $('.input_id_code .help-inline').html('Invalid code!');
     }
