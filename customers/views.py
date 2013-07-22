@@ -236,7 +236,7 @@ def signup(request):
             else:
                 info(request, _("Successfully signed up"))
                 auth_login(request, customer.user)
-                return login_redirect(request)
+                return redirect(reverse('customers_home'))
 
         except Exception as e:
             transaction.savepoint_rollback(save)
