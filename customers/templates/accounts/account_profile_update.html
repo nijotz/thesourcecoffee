@@ -13,7 +13,7 @@
 {% block main %}
 <h2>Manage Account</h2>
 <form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-
+{% csrf_token %}
 <div id="check1">
 
 {% include "customers/form_fields.html" %}
