@@ -131,7 +131,7 @@ def gift_purchase(request, context):
     email.send(fail_silently=False)
 
     # Redirect to page with message
-    request.session['gifts_purchased'] = gift.id
+    request.session['gifts_purchased'] = gift.code
     return redirect(reverse('gifts_purchased'))
 
 

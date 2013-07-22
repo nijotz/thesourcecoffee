@@ -17,10 +17,9 @@ def check_code(request):
 @render_to('gifts/purchased.html')
 def purchased(request):
     gift = None
-    gift_id = request.session.get('gifts_purchased', None)
-    if gift_id:
-        try:
-            gift = GiftSubscription.objects.get(id=gift_id)
-        except:
-            pass
+    try:
+        gift_id = request.session.pop('gifts_purchased', None)
+        gift = GiftSubscription.objects.get(code=gift_id)
+    except:
+        pass
     return {'gift':gift}
