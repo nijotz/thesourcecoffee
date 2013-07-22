@@ -76,15 +76,15 @@ def gift_purchase(request, context):
                 'gifter': context['gift_form'].cleaned_data['gifter'],
             }
 
-            gift = GiftSubscription(**data)
-            gift.save()
-
             stripe.Charge.create(
                 amount=int(context['plan'].price * 100),
                 currency='usd',
                 card=request.POST['stripeToken'],
                 description='{plan} for {giftee} from {gifter}'.format(**data)
             )
+
+            gift = GiftSubscription(**data)
+            gift.save()
 
         except Exception as e:
             transaction.savepoint_rollback(save)
