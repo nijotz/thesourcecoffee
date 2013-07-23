@@ -32,7 +32,7 @@ class SubscriptionForm(forms.Form):
 
     def clean_interval(self):
         interval = self.cleaned_data['interval']
-        if self.cleaned_data['amount'] == '0.125':
+        if self.cleaned_data.get('amount') == '0.125':
             if interval:
                 raise forms.ValidationError('No interval should be selected for the trial amount')
             else:
