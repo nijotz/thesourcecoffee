@@ -46,6 +46,8 @@ def signup_test_customer(custom_data={}):
     client = Client()
     response = client.post(reverse('customers_signup'), post)
 
+    customer = Customer.objects.get(user__email=post['email'])
+
     return (response, post)
 
 

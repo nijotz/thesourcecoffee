@@ -31,14 +31,14 @@ def send_invite_email(inviter, email_address):
         "invite_url": invite_url
     })
 
-    invite_email_subject = SiteSetting.objects.get(key="rewards.invite_email_subject")
+    invite_email_subject = SiteSetting.objects.get(key="rewards.invite_email_subject").value
 
     rendered_html_template = loader.render_to_string("rewards/invite_email.html", context_instance=context)
     rendered_txt_template = loader.render_to_string("rewards/invite_email.txt", context_instance=context)
-    email = EmailMultiAlternatives(invite_email_subject,
+    email = EmailMultiAlternatives(
+        invite_email_subject,
         rendered_txt_template,
         "The Source Coffee <noreply@thesourcecoffee.com>",
         [email_address])
     email.attach_alternative(rendered_html_template, "text/html")
     email.send(fail_silently=False)
-

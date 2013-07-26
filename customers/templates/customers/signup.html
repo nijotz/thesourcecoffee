@@ -11,55 +11,48 @@
 <li>{{ title }}</li>
 {% endblock %}
 
+{% block extra_js %}
+{% endblock %}
+
 {% block main %}
 
 <form class="signup" method="post">
 
 {% csrf_token %}
 
-<div id="check1">
+<div id="check1" type="normal">
 
 <h2>Step 1: Enter your information</h2>
-<p class="content">Is this a gift? <input type="checkbox" />
-<p class="content">Enter the address you wish to receive your coffee at below:</p>
-<div id="check11">
+<p class="content">
+<label for="gift_checkbox">Is this a gift?</label>
+<input id="gift_checkbox" name="gift_purchase" type="checkbox" {% if gift_purchase %}checked="checked"{% endif %}/>
+<p class="content nongift">Enter the address you wish to receive your coffee at below:</p>
 
-{% for field in customer_form %}
-
-{% if forloop.counter == 6 %}
-</div> <!-- End first column -->
-<div id="check12">
-{% endif %}
-
-{% if field.is_hidden %}
-{{ field }}
-{% else %}
-<div class="control-group input_{{ field.id_for_label }} {{ field.field.type }}
+<div id="gift-check11" type="gift">
+{% for field in gift_form %}
+  <div class="control-group input_{{ field.id_for_label }} {{ field.field.type }}
     {% if field.errors %} error{% endif %}">
     {{ field.label_tag }}
     <div class="controls">
-        {{ field }}
-        {% if field.errors %}
-        <span class="help-inline">
-            {% for e in field.errors %}
-            {% if not forloop.first %} / {% endif %}{{ e }}
-            {% endfor %}
-        </span>
-        {% else %}
-        <span class="help-inline">{{ field.help_text }}</span>
-        {% endif %}
+      {{ field }}
+      {% if field.errors %}
+      <span class="help-inline">
+        {% for e in field.errors %}
+        {% if not forloop.first %} / {% endif %}{{ e }}
+        {% endfor %}
+      </span>
+      {% else %}
+      <span class="help-inline">{{ field.help_text }}</span>
+      {% endif %}
     </div>
-</div>
-{% endif %}
-
-{% if forloop.last and forloop.counter >= 6 %}
-</div> <!-- End second column -->
-{% endif %}
-
+  </div>
 {% endfor %}
+</div>
+
+{% include "customers/form_fields.html" with form=customer_form %}
 
 <div id="extra"></div>
-  <p class="content">
+  <p class="content nongift">
   <br/><br/>
   Your email address will be your username for login purposes.
   <br/><br/>
@@ -68,16 +61,66 @@
   Your subscription will begin the Monday of the week after you place your order and your first shipment should arrive soon after!
   </p>
 
-</div> <!-- End of check1 -->
+  <p class="content gift">
+  <br/><br/>
+  Please note that for now we can only ship to valid USPS addresses in the United States.
+  <br/><br/>
+  The recipient's subscription will begin the Monday of the week after they redeem their code and their first shipment should arrive soon after!
+  </p>
+
+</div>
 
 <div id="check2">
 <h2>Step 2: Choose your plan</h2>
 
 {% include "subscriptions/form.html" %}
+
+<!-- This needs to be down here because disabled the 2oz Trial button needs to happen after
+     buttonset() is called which happens in a script in the subscription form above -->
+<script type="text/javascript">
+  $(function() {
+    function update_gift_form() {
+      if ( $('#gift_checkbox').prop('checked') ) {
+        $('#check11').hide();
+        $('#check12').hide();
+        $('#gift-check11').show();
+        $('#gift-check12').show();
+        $('.gift').show();
+        $('.nongift').hide();
+
+        var trial = $("input[type='radio'][name='amount'][value='0.125']")
+        trial.button({disabled:true});
+        $('label[for="' + trial[0].id + '"]').hide()
+
+        $('.input_id_code').hide()
+      } else {
+        $('#gift-check11').hide();
+        $('#gift-check12').hide();
+        $('#check11').show();
+        $('#check12').show();
+        $('.gift').hide();
+        $('.nongift').show();
+
+        var trial = $("input[type='radio'][name='amount'][value='0.125']")
+        trial.button({disabled:false});
+        $('label[for="' + trial[0].id + '"]').show()
+
+        $('.input_id_code').show()
+      }
+    }
+
+    $('#gift_checkbox').on("click", function() {
+      update_gift_form();
+    });
+
+    update_gift_form();
+  });
+</script>
+
 <br/>
 
 <p class="content">
-Your card will be charged when you place your order.  After that, it will be charged every month/3 months/year unless you cancel your subscription.
+Your card will be charged when you place your order.  After that, it will be charged every interval unless you cancel your subscription.
 <br/><br/>
 Our subscriptions are securely processed with Stripe&copy;.
 </p>

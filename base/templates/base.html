@@ -23,7 +23,7 @@
 <script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
 <script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_UI_FILENAME }}"></script>
 <script src="{{ STATIC_URL }}js/jquery.slides.js"></script>
-<script>
+<script type="text/javascript">
 $(function() {
     $('.slides').slidesjs({
       width: 940,
@@ -46,8 +46,8 @@ $(function() {
 });
 </script>
 
-{% block extra_js %}{% endblock %}
 {% endcompress %}
+{% block extra_js %}{% endblock %}
 
 {% block extra_head %}{% endblock %}
 
@@ -119,19 +119,38 @@ $(function() {
     {% block slides %}{% endblock %}
     <!-- end slides -->
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <div id="media">
       {% block main %}{% endblock %}
     </div>
     {% endblock %}
 
     <div id="footer">
-      <p id="foot">&copy; 2013 The Source Coffee Company. All rights reserved. <a href="http://www.thesourcecoffee.com/privacy">Privacy</a> </p>
+      <p id="foot">&copy; 2013 The Source Coffee Company. All rights reserved. <a href="/privacy">Privacy</a> </p>
     <div class="fb-like" data-href="https://www.facebook.com/thesourcecoffeecompany" data-send="false" data-width="235" data-show-faces="false" data-font="verdana" data-colorscheme="dark">
     </div>
     </p>
     </div>
 
 </div> <!--End container-->
+
+<script>
+$(document).ready(function(){
+  $(".qhead a").on("click", function(e){
+    e.preventDefault();
+    var href = $(this).attr("href");
+
+    $(href).fadeToggle(450);
+  });
+});
+</script>
 
 </body>
 

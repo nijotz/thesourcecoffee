@@ -1,0 +1,118 @@
+<html>
+<head>
+<style>
+html, body {
+    min-height:100%;
+    width:96%;
+    background-color:#000000;
+    padding-left:2%;
+    padding-right:2%;
+    margin:0;
+}
+.header {
+    min-width:972px;
+    background-color:#21211E;
+    overflow:hidden;
+    font-family: 'dinmedium', 'serif';
+    color:#939597;
+    font-size:14px;
+	text-align:center;
+}
+.content {
+    min-width:972px;
+    background-color:#21211E;
+    overflow:hidden;
+    font-family: 'dinmedium', 'serif';
+    color:#939597;
+    font-size:14px;
+    margin-bottom:10px;
+	padding:20px;
+}
+p.shadow {
+    font-family:'dinmedium', 'serif';
+    color:#FFFFFF;
+    font-size:18px;
+    text-decoration:none;
+    text-shadow:2px 2px 1px #000000;
+}
+p.shadow a {
+    text-decoration:none;
+color: rgb(255, 255, 255);
+font-size: 20px;
+padding: 12px;
+text-shadow: -2px -1px 8px rgba(30, 30, 30, 0.73);
+-webkit-border-radius: 51px;
+-moz-border-radius: 51px;
+border-radius: 51px;
+background: rgb(185, 133, 43);
+background: -moz-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -webkit-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -o-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: -ms-linear-gradient(90deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+background: linear-gradient(0deg, rgb(185, 133, 43) 52%, rgb(230, 207, 168) 82%);
+-webkit-box-shadow: 3px 2px 7px rgba(50, 50, 50, 0.87);
+-moz-box-shadow:    3px 2px 7px rgba(50, 50, 50, 0.87);
+box-shadow:         3px 2px 7px rgba(50, 50, 50, 0.87);
+border:none;
+cursor:pointer;
+}
+
+p.notshadow {
+    font-family:'dinmedium', 'serif';
+    color:#FFFFFF;
+    font-size:18px;
+    text-decoration:none;
+    text-shadow:2px 2px 1px #000000;
+}
+p.notshadow a{
+    font-family:'dinmedium', 'serif';
+    color:#B9842B;
+    font-size:18px;
+    text-decoration:none;
+    text-shadow:2px 2px 1px #000000;
+}
+h2 {
+    font-family:'dinmedium', 'serif';
+    color:#B9842B;
+    font-size:28px;
+    text-decoration:none;
+    margin-top:0px;
+    text-shadow:4px 4px 3px #000000;
+}
+</style>
+</head>
+<body>
+    <!---<div class="header">
+        <div class="logo"><img width="300" height="150" src="http://{{ current_site }}{{ STATIC_URL }}images/logo_horizontal.png"></img></div>
+    </div>--->
+    <div class="content">
+<h2>Your gift has been sent</h2>
+<p class="notshadow">
+Hi {{gift.gifter}},
+</p>
+<p class="notshadow">
+Thanks for choosing to connect {{gift.giftee}} to The Source!
+<br /><br />
+We have successfully delivered your gift subscription to our luxury coffee delivery service.  When they redeem their gift, {{gift.giftee}} will receive {{gift.plan.amount_str}} of coffee every two weeks for {{gift.plan.interval_str}}!
+<br /><br />
+Your gift will not only benefit the recipient, it will also help raise indigenous farmers our of poverty! Thanks again for your generosity!
+</p>
+<br />
+<p class="shadow">	
+Best,
+<br />
+The Source Coffee Company
+</p>
+<p class="notshadow">
+yourfriends@thesourcecoffee.com
+<br /><br />
+	<a href="http://www.facebook.com/thesourcecoffeecompany">Like us!</a>
+	<br />
+        <a href="http://www.twitter.com/thesourcecoffee">Tweet us!</a>
+		<br />
+        <a href="http://www.instagram.com/thesourcecoffee">Follow us!</a>
+		</div>
+</body>
+</html>
+
+

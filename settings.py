@@ -95,8 +95,10 @@ TEMPLATE_ACCESSIBLE_SETTINGS = (
 # In the format (('Full Name', 'email@example.com'),
 #                ('Full Name', 'anotheremail@example.com'))
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('Eric Johnson', 'eric@thesourcecoffee.com'),
+    ('Nick Tzaperas', 'ntzaperas@gmail.com'),
 )
+SERVER_EMAIL='django-errors@thesourcecoffee.com'
 MANAGERS = ADMINS
 
 # Local time zone for this installation. Choices can be found here:
@@ -127,6 +129,12 @@ SITE_ID = 1
 
 SITE_TITLE = 'The Source Coffee Company'
 SITE_TAGLINE = "Roasting Coffee since 2013"
+
+ALLOWED_HOSTS = [
+    'thesourcecoffee.com',
+    'localhost',
+    'staging.thesourcecoffee.com',
+]
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -271,8 +279,10 @@ INSTALLED_APPS = (
     "mezzanine_slides",
     "south",
 
+    "gifts",
     "locations",
     "orders",
+    "promotions",
     "rewards",
     "subscriptions",
 )

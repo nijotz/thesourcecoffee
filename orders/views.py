@@ -17,7 +17,10 @@ from orders.models import MailOrder, Order
 def list(request):
     orders = request.user.customer.orders
     fulfilled_orders = orders.exclude(fulfilled=None)
-    next_order = orders.filter(fulfilled=None).order_by('to_be_fulfilled')[0]
+    unfulfilled_orders = orders.filter(fulfilled=None).order_by('to_be_fulfilled')
+    next_order = None
+    if unfulfilled_orders.count() > 0:
+        next_order = unfulfilled_orders[0]
     return locals()
 
 

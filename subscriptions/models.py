@@ -53,19 +53,25 @@ class Plan(StripeObject):
     price = models.DecimalField(decimal_places=2, max_digits=7)
     public = models.BooleanField(default=True)
     interval = models.IntegerField() # months
+    trial = models.BooleanField(default=False)
 
     objects = PlanManager()
 
     class Meta:
-        unique_together = ('amount', 'price', 'interval')
+        unique_together = ('amount', 'price', 'interval', 'trial')
 
     def __unicode__(self):
 
-        return '{amount_str} for {interval_str} at ${price:,.2f}'\
+        trial = ''
+        if self.trial:
+            trial = ' with trial'
+
+        return '{amount_str} for {interval_str} at ${price:,.2f}{trial}'\
             .format(
                 amount_str=self.amount_str,
                 interval_str=self.interval_str,
-                price=self.price)
+                price=self.price,
+                trial=trial)
 
     def save(self, *args, **kwargs):
 
@@ -76,13 +82,17 @@ class Plan(StripeObject):
         try:
             stripe.Plan.retrieve(str(self))
         except stripe.InvalidRequestError:
+            trial_period_days = None
+            if self.trial:
+                trial_period_days = '14'
             stripe.Plan.create(
                 amount=int(100 * self.price),
                 interval = 'month',
                 interval_count=self.interval,
                 name=str(self),
                 currency='usd',
-                id=self.stripe_id)
+                id=self.stripe_id,
+                trial_period_days=trial_period_days)
 
         super(Plan, self).save(*args, **kwargs)
 
@@ -138,11 +148,11 @@ class Subscription(models.Model):
     def __unicode__(self):
         return '%s - %s' % (self.customer, self.plan)
 
-    def save(self, *args, **kwargs):
+    def save(self, coupon=None, *args, **kwargs):
 
         # sync with stripe, this can override every field but customer
         sc = self.customer.stripe_customer
-        sc.update_subscription(plan=self.plan.stripe_id)
+        sc.update_subscription(plan=self.plan.stripe_id, coupon=coupon)
         stripe_sub = sc.subscription
 
         if stripe_sub:

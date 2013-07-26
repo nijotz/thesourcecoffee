@@ -1,5 +1,5 @@
-from base.models import StripeObject
-from datetime import datetime
+from base.models import StripeObject, SiteSetting
+from datetime import datetime, timedelta
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -24,8 +24,6 @@ class Customer(StripeObject):
     city = models.CharField(max_length=256)
     state = USStateField()
     zipcode = models.CharField(max_length=10)
-    #area = models.ForeignKey('locations.Area', null=True)
-    #subscription = models.OneToOneField('subscriptions.Subscription', related_name='customer')
 
     card_fingerprint = models.CharField(max_length=200, blank=True)
     card_last_4 = models.CharField(max_length=4, blank=True)
@@ -75,8 +73,16 @@ class Customer(StripeObject):
 
         # Not month to month
         if plan.interval > 1:
+<<<<<<< HEAD
+=======
+            # The invitee probably signed up for 3 months or a year. Hooray,
+            # then the customer gets a reward right away!
+            interval = SiteSetting.objects.get(key='subscriptions.interval').value
+            last_order = self.orders.all().order_by('-to_be_fulfilled')[0]
+            to_be_fulfilled = last_order.to_be_fulfilled + timedelta(weeks=interval)
+>>>>>>> origin/master
             order = Order.objects.create(subscription=self.subscription,
-                to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
+                to_be_fulfilled=to_be_fulfilled)
             return Reward.objects.create(rewardee=self, invitee=invitee,
                 order=order)
         elif plan.interval == 1:

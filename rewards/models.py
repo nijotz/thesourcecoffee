@@ -16,7 +16,9 @@ class Reward(models.Model):
 
     def __unicode__(self):
         order_str = "Invited {0}. Rewarded ".format(unicode(self.invitee))
-        fulfilled_on = self.order.fulfilled
+        fulfilled_on = None
+        if self.order:
+            fulfilled_on = self.order.fulfilled
 
         if self.order is not None:
             unicode_order = unicode(self.rewardee.subscription.plan.amount_str)

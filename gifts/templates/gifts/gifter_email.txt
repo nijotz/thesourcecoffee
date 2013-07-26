@@ -1,0 +1,18 @@
+Hi {{gift.gifter}},
+
+Thanks for choosing to connect {{gift.giftee}} to The Source!
+
+We have successfully delivered your gift subscription to our luxury coffee delivery service.
+Your friend {{gift.giftee}} will receive {{gift.plan.amount_str}} of coffee every two weeks for {{gift.plan.interval_str}}!
+
+Your gift will not only benefit the recipient, it will also help raise indigenous farmers our of poverty! Thanks again for your generosity!
+
+Best,
+The Source Coffee Company
+yourfriends@thesourcecoffee.com
+Like us!
+http://www.facebook.com/thesourcecoffeecompany
+Tweet us!
+http://www.twitter.com/thesourcecoffee
+Follow us!
+http://www.instagram.com/thesourcecoffee

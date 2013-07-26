@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -53,12 +53,18 @@ class MailOrder(Order):
 @receiver(post_save, sender=Subscription)
 def create_subscription_orders(sender, instance, **kwargs):
 
-    num_orders = SiteSetting.objects.get(key='subscriptions.number_of_orders').value
-    order_period = ((instance.current_period_end - datetime.now(pytz.utc)) /
-        num_orders)
+    subscription = instance
+
+    #TODO: this shouldn't be hardcoded; too many magic numbers
+    if subscription.plan.interval == 1:
+        num_orders = 2
+    elif subscription.plan.interval == 3:
+        num_orders = 6
+    elif subscription.plan.interval == 12:
+        num_orders = 26
 
     for i in range(0, num_orders):
         order = Order(
             subscription=instance,
-            to_be_fulfilled=datetime.now() + (i * order_period))
+            to_be_fulfilled=datetime.now() + (i * timedelta(weeks=2)))
         order.save()

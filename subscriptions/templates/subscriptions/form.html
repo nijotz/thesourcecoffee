@@ -1,11 +1,15 @@
 {% load jsonify %}
 
 <script type="text/javascript">
+
+// Turn interval and amount radios into jquery buttonsets
 $(function() {
   $('#amount_radios').buttonset();
   $('#interval_radios').buttonset();
 });
 
+// Update the grand total HTML with a given price or calculate based on
+// chosen interval and amount
 function update_total(price) {
   if (!price) {
     var plans = {{plans|jsonify}};
@@ -25,23 +29,88 @@ function update_total(price) {
   $('#signup_total').html('Grand Total: ' + price);
 }
 
+// Event handling code for interval/amount buttons
 $(function(){
   $("input[type='radio']").change(function(obj) {
+
+    //disable interval when choosing the 2oz trial or re-enable when deselected
     if ($('input:checked[name="amount"]').val() == 0.125) {
       $('input[name="interval"]').button({disabled:true});
       $('input[name="interval"]').prop('checked', false);
       $('#interval_radios').buttonset('refresh');
       update_total('Free!');
-    }
-    else {
+    } else {
       $('input[name="interval"]').button({disabled:false});
       update_total();
     }
   });
 });
 
+// Initialize total
 $(function(){
   update_total();
+});
+
+// Make an ajax request to see if the code is valid and apply it if so
+function apply_code() {
+  var code = $('#id_code').val();
+  var email = $('#id_email').val();
+  $.ajax({
+    url: '{{code_check_url}}',
+    data: {
+      'code': code,
+      'email': email
+    },
+  }).done(function(data) {
+    data = JSON.parse(data);
+    if (data) {
+      // Update interval and amount radios
+      var input = "input[type='radio']";
+      var interval = "[name='interval'][value='" + data['interval'] + "']";
+      var amount = "[name='amount'][value='" + data['amount'] + "']";
+
+      // Disable all buttons
+      $("input[type='radio']").button({disabled:true});
+
+      // Just enable the amount and interval gifted
+      $(input + interval).button({disabled:false});
+      $(input + amount).button({disabled:false});
+
+      // Actual click the radios of the amount and interval gifted
+      $(input + interval).attr("checked", "checked").button('refresh');
+      $(input + amount).attr("checked", "checked").button('refresh');
+
+      // Don't allow other 'on change' code to mess with button state
+      $('input[type="radio"]').unbind('change');
+
+      // Update grand total
+      update_total('Free!');
+
+      // Remove stripe button
+      $('.stripe-button-el').remove();
+
+      // Place redeem code button
+      $('#redeem_code_btn').show();
+
+      // Remove invalid code msg if present
+      $('.input_id_code .help-inline').html('');
+
+      // Get rid of "Is this a gift?"
+      $('#gift_checkbox').hide();
+      $('label[for="gift_checkbox"]').hide();
+    } else {
+      $('.input_id_code .help-inline').html('Invalid code!');
+    }
+  });
+
+}
+
+$(function(){
+  // Handle gift code application
+  $("#apply_code_btn").click(function(obj) { apply_code(); });
+
+  // Apply code on page load if filled in
+  if ($('#id_code').val()) { apply_code(); }
 });
 </script>
 
@@ -70,18 +139,34 @@ $(function(){
   </div>
 
 <div class="control-group input_id_code">
-    <label for="id_code" class="signup">Have a gift code?</label>
+    <label for="id_code" class="signup">Have a gift/promo code?</label>
     <div class="controls">
         <input id="id_code" name="code" type="text" />
         <span class="help-inline"></span>
-        <input type="submit" class="btn" value="Apply Code"></input>
+        <input type="button" class="btn" id="apply_code_btn" value="Apply Code"></input>
     </div>
 </div>
 
-<div class="control-group input_invite_code">
-    {{ reward_code_form.as_p }}
-</div>
+{% for field in reward_code_form %}
+  <div class="control-group input_{{ field.id_for_label }} {{ field.field.type }}
+    {% if field.errors %} error{% endif %}">
+    {{ field.label_tag }}
+    <div class="controls">
+      {{ field }}
+      {% if field.errors %}
+      <span class="help-inline">
+        {% for e in field.errors %}
+        {% if not forloop.first %} / {% endif %}{{ e }}
+        {% endfor %}
+      </span>
+      {% else %}
+      <span class="help-inline">{{ field.help_text }}</span>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
 
 <h3 id="signup_total">Grand Total:</h3>
-<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="pk_test_byUXCM2Jh3dR4GG5SbML95zn">
+<input type="submit" class="btn" id="redeem_code_btn" value="Redeem Gift" style="display:none"></input>
+<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="{{stripe_key}}">
 </script>

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from subscriptions.forms import SubscriptionForm
+from subscriptions.forms import SubscriptionUpdateForm
 from subscriptions.models import Plan, Subscription
 
 @login_required
@@ -44,7 +44,7 @@ def update(request):
 
     subscription_form = None
     if request.method == 'POST':
-        subscription_form = SubscriptionForm(request.POST)
+        subscription_form = SubscriptionUpdateForm(request.POST)
         if subscription_form.is_valid():
             plan = Plan.objects.get(
                 amount=subscription_form.cleaned_data['amount'],
@@ -59,7 +59,7 @@ def update(request):
 
     if not subscription_form:
         subscription = customer.subscription
-        subscription_form = SubscriptionForm({
+        subscription_form = SubscriptionUpdateForm({
             'amount':subscription.plan.amount,
             'interval':subscription.plan.interval})
 
