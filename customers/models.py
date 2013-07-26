@@ -71,11 +71,11 @@ class Customer(StripeObject):
         else:
             return 'Already invited.' # This person was already invited.
 
+        interval = SiteSetting.objects.get(key='subscriptions.interval').value
         # Not month to month
         if plan.interval > 1:
             # The invitee probably signed up for 3 months or a year. Hooray,
             # then the customer gets a reward right away!
-            interval = SiteSetting.objects.get(key='subscriptions.interval').value
             last_order = self.orders.all().order_by('-to_be_fulfilled')[0]
             to_be_fulfilled = last_order.to_be_fulfilled + timedelta(weeks=interval)
             order = Order.objects.create(subscription=self.subscription,
@@ -85,8 +85,10 @@ class Customer(StripeObject):
         elif plan.interval == 1:
             # See if the rewardee has at least a month of orders
             if self.has_enough_orders_for_m2m_reward:
+                last_order = self.orders.all().order_by('-to_be_fulfilled')[0]
+                to_be_fulfilled = last_order.to_be_fulfilled + timedelta(weeks=interval)
                 order = Order.objects.create(subscription=self.subscription,
-                    to_be_fulfilled=datetime.now()) #TODO: Remove to_be_fulfilled from here
+                    to_be_fulfilled=to_be_fulfilled)
                 return Reward.objects.create(rewardee=self, invitee=invitee,
                     order=order)
 
@@ -134,7 +136,12 @@ class Customer(StripeObject):
 
     @property
     def has_enough_orders_for_m2m_reward(self):
-        assert False == 'TODO'
+        # Assuming interval is in weeks
+        interval = SiteSetting.objects.get(key='subscriptions.interval').value
+        fulfilled_orders = self.orders.filter(fulfilled__isnull=False)
+        if ((fulfilled_orders * timedelta(weeks=interval)) >= timedelta(days=28)):
+            return True
+        return False
 
     def update_card(self, token):
         sc = self.stripe_customer
