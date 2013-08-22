@@ -40,6 +40,12 @@ class Customer(StripeObject):
         super(Customer, self).save(*args, **kwargs)
 
     @property
+    def address(self):
+        fields = ['street', 'city', 'state', 'zipcode']
+        data = dict([ (field, getattr(self, field)) for field in fields ])
+        return '{street} {city}, {state} {zipcode}'.format(**data)
+
+    @property
     def stripe_customer(self):
         return stripe.Customer.retrieve(self.stripe_id)
 

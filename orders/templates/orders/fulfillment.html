@@ -8,6 +8,7 @@
     <tr>
       <th>Order #</th>
       <th>Name</th>
+      <th>Address</th>
       <th>E-mail</th>
       <th>Fulfillment Date/Time</th>
       <th>Amount</th>
@@ -18,6 +19,7 @@
     <tr>
       <td>{{ order.pk }}</td>
       <td>{{ order.customer.user.get_full_name }}</td>
+      <td>{{ order.customer.address }}</td>
       <td>{{ order.customer.user.email }}</td>
       <td>{{ order.to_be_fulfilled }}</td>
       <td>{{ order.subscription.plan.amount }} lbs</td>
