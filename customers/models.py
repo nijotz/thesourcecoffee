@@ -1,9 +1,8 @@
-from base.models import StripeObject
-from datetime import datetime, timedelta
+from datetime import timedelta
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
-from django_localflavor_us.models import PhoneNumberField, USStateField, USPostalCodeField
+from django_localflavor_us.models import PhoneNumberField, USStateField
 import stripe
 from base.models import StripeObject, SiteSetting
 from subscriptions.models import Subscription
@@ -64,14 +63,14 @@ class Customer(StripeObject):
         try:
             invitee_subscription = invitee.subscription
             plan = self.subscription.plan
-        except Subscription.DoesNotExist, e:
+        except Subscription.DoesNotExist:
             # Either this customer doesn't have a plan or the invtee
             # doen't have one.
             return None
 
         try:
             already_invited = invitee.reward_resulting_from_my_invitation
-        except Reward.DoesNotExist, e:
+        except Reward.DoesNotExist:
             pass
         else:
             return 'Already invited.' # This person was already invited.
