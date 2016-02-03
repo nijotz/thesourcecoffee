@@ -35,6 +35,8 @@ def fulfillment(request):
         order = Order.objects.get(id=request.POST.get('order_id'))
         if not order.fulfilled:
             order.fulfill(tracking_number=request.POST.get('tracking_number'))
+            order.customer.make_sure_rewards_have_orders()
+
         else:
             messages.warning(request, 'Order already fulfilled')
 
